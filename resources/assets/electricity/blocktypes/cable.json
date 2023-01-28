@@ -1,0 +1,125 @@
+{
+    "code": "cable",
+    "class": "Cable",
+    "entityClass": "Cable",
+    "entityBehaviors": [
+        {
+            "name": "Electricity"
+        }
+    ],
+    "variantGroups": [
+        {
+            "code": "type",
+            "states": [
+                "dot",
+                "part"
+            ]
+        }
+    ],
+    "creativeInventory": {
+        "general": [
+            "*-dot"
+        ],
+        "electricity": [
+            "*-dot"
+        ]
+    },
+    "shapeInventory": {
+        "base": "block/cable"
+    },
+    "shapeByType": {
+        "*-dot": {
+            "base": "block/cable-dot"
+        },
+        "*-part": {
+            "base": "block/cable-part"
+        }
+    },
+    "collisionSelectionBoxesByType": {
+        "*-dot": [
+            {
+                "x1": 0.46875,
+                "y1": -0.03125,
+                "z1": 0.46875,
+                "x2": 0.53125,
+                "y2": 0.03125,
+                "z2": 0.53125
+            }
+        ],
+        "*-part": [
+            {
+                "x1": 0.46875,
+                "y1": -0.03125,
+                "z1": -0.03125,
+                "x2": 0.53125,
+                "y2": 0.03125,
+                "z2": 0.46875
+            }
+        ]
+    },
+    "resistance": 1,
+    "drawType": "JSON",
+    "lightAbsorption": 0.0,
+    "faceCullMode": "NeverCull",
+    "renderPass": "OpaqueNoCull",
+    "emitSideAo": {
+        "all": false
+    },
+    "sideAo": {
+        "all": false
+    },
+    "sideOpaque": {
+        "all": false
+    },
+    "sideSolid": {
+        "all": false
+    },
+    "sounds": {
+        "place": "game:block/anvil",
+        "walk": "game:walk/stone"
+    },
+    "fpHandTransform": {
+        "translation": {
+            "x": 0.0,
+            "y": 1.25,
+            "z": 0.0
+        },
+        "rotation": {
+            "x": 64,
+            "y": -40,
+            "z": 0
+        },
+        "origin": {
+            "x": 0.5,
+            "y": -0.5,
+            "z": 0.5
+        },
+        "scale": 1.5
+    },
+    "tpHandTransform": {
+        "translation": {
+            "x": -1.0,
+            "y": -0.076,
+            "z": -0.776
+        },
+        "rotation": {
+            "x": 35,
+            "y": 84,
+            "z": 41
+        },
+        "origin": {
+            "x": 0.5,
+            "y": 0.0,
+            "z": 0.5
+        },
+        "scale": 0.64
+    },
+    "guiTransform": {
+        "origin": {
+            "x": 0.5,
+            "y": 0.05,
+            "z": 0.5
+        },
+        "scale": 2.0
+    }
+}

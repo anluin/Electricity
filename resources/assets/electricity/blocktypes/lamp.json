@@ -1,0 +1,121 @@
+{
+    "code": "lamp",
+    "class": "Lamp",
+    "entityClass": "Lamp",
+    "entityBehaviors": [
+        {
+            "name": "Lamp"
+        },
+        {
+            "name": "Electricity"
+        }
+    ],
+    "creativeInventory": {
+        "general": [
+            "*-disabled"
+        ],
+        "electricity": [
+            "*-disabled"
+        ]
+    },
+    "shape": {
+        "base": "block/lamp"
+    },
+    "variantGroups": [
+        {
+            "code": "state",
+            "states": [
+                "disabled",
+                "enabled"
+            ]
+        }
+    ],
+    "shapeByType": {
+        "*-disabled": {
+            "base": "block/lamp-disabled"
+        },
+        "*-enabled": {
+            "base": "block/lamp-enabled"
+        }
+    },
+    "resistance": 1,
+    "drawType": "JSON",
+    "lightAbsorption": 0.0,
+    "faceCullMode": "NeverCull",
+    "renderPass": "OpaqueNoCull",
+    "emitSideAo": {
+        "all": false
+    },
+    "sideAo": {
+        "all": false
+    },
+    "sideOpaque": {
+        "all": false
+    },
+    "sideSolid": {
+        "all": false
+    },
+    "sounds": {
+        "place": "game:block/anvil",
+        "walk": "game:walk/stone"
+    },
+    "guiTransform": {
+        "translation": {
+            "x": 0,
+            "y": 6,
+            "z": 0
+        },
+        "rotation": {
+            "x": -51,
+            "y": -63,
+            "z": -180
+        },
+        "origin": {
+            "x": 0.5,
+            "y": 1.25,
+            "z": 0.5
+        }
+    },
+    "fpHandTransform": {
+        "translation": {
+            "x": 0,
+            "y": 0,
+            "z": 0.5
+        },
+        "rotation": {
+            "x": 7,
+            "y": -20,
+            "z": -109
+        }
+    },
+    "tpHandTransform": {
+        "translation": {
+            "x": -1.8,
+            "y": -2.35,
+            "z": -2.1
+        },
+        "rotation": {
+            "x": -51,
+            "y": -85,
+            "z": -134
+        }
+    },
+    "groundTransform": {
+        "translation": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+        },
+        "rotation": {
+            "x": 0,
+            "y": 0,
+            "z": 180
+        },
+        "origin": {
+            "x": 0.5,
+            "y": 1.0,
+            "z": 0.5
+        },
+        "scale": 1.5
+    }
+}
