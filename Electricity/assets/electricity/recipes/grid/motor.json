@@ -1,0 +1,61 @@
+[
+    {
+        "ingredientPattern": "G",
+        "width": 1,
+        "height": 1,
+        "ingredients": {
+            "G": {
+                "type": "block",
+                "code": "electricity:generator-stator"
+            }
+        },
+        "output": {
+            "type": "block",
+            "code": "electricity:motor-stator"
+        }
+    },
+    {
+        "ingredientPattern": "HS,XM,LC",
+        "width": 2,
+        "height": 3,
+        "ingredients": {
+            "L": {
+                "type": "block",
+                "code": "game:log-*"
+            },
+            "S": {
+                "type": "item",
+                "code": "game:saw-*",
+                "isTool": true,
+                "toolDurabilityCost": 32
+            },
+            "X": {
+                "type": "item",
+                "code": "game:chisel-*",
+                "isTool": true,
+                "toolDurabilityCost": 8
+            },
+            "H": {
+                "type": "item",
+                "code": "game:hammer-*",
+                "isTool": true,
+                "toolDurabilityCost": 8
+            },
+            "M": {
+                "type": "item",
+                "code": "game:metalplate-iron",
+                "quantity": 4
+            },
+            "C": {
+                "type": "block",
+                "code": "electricity:cable-part",
+                "quantity": 32
+            }
+        },
+        "output": {
+            "type": "block",
+            "code": "electricity:motor-stator",
+            "quantity": 4
+        }
+    }
+]
