@@ -1,0 +1,10 @@
+{
+    "game:tabname-electricity": "Electricity",
+    "block-accumulator": "Akkumulator",
+    "block-cable-*": "Kabel",
+    "block-motor-*": "Motor",
+    "block-lamp-*": "Deckenlampe",
+    "block-generator-*": "Generator",
+    "block-switch-*": "Schalter",
+    "block-forge": "Elektrische Schmiede"
+}

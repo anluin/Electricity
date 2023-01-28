@@ -13,7 +13,7 @@ using Vintagestory.API.MathTools;
     "electricity",
     Website = "https://github.com/anluin/electricity",
     Description = "Brings electricity into the game!",
-    Version = "0.0.3",
+    Version = "0.0.4",
     Authors = new[] { "Anluin" }
 )]
 
@@ -31,9 +31,9 @@ namespace Electricity {
 
             api.RegisterBlockClass("Switch", typeof(Switch));
 
-            api.RegisterBlockClass("Forge", typeof(Forge));
-            api.RegisterBlockEntityClass("Forge", typeof(Content.Block.Entity.Forge));
-            api.RegisterBlockEntityBehaviorClass("Forge", typeof(Content.Block.Entity.Behavior.Forge));
+            api.RegisterBlockClass("ElectricForge", typeof(ElectricForge));
+            api.RegisterBlockEntityClass("ElectricForge", typeof(Content.Block.Entity.ElectricForge));
+            api.RegisterBlockEntityBehaviorClass("ElectricForge", typeof(Content.Block.Entity.Behavior.ElectricForge));
 
             api.RegisterBlockClass("Generator", typeof(Generator));
             api.RegisterBlockEntityClass("Generator", typeof(Content.Block.Entity.Generator));

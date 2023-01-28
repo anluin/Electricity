@@ -7,7 +7,7 @@ using Vintagestory.API.MathTools;
 using Vintagestory.API.Util;
 
 namespace Electricity.Content.Block {
-    public class Forge : Vintagestory.API.Common.Block {
+    public class ElectricForge : Vintagestory.API.Common.Block {
         private WorldInteraction[]? interactions;
 
         public override void OnLoaded(ICoreAPI api) {
@@ -42,7 +42,7 @@ namespace Electricity.Content.Block {
                                 Itemstacks = heatableStacklist.ToArray(),
                                 GetMatchingStacks = (worldInteraction, blockSelection, entitySelection) =>
                                 {
-                                    if (api.World.BlockAccessor.GetBlockEntity(blockSelection.Position) is Entity.Forge { Contents: { } } bef) {
+                                    if (api.World.BlockAccessor.GetBlockEntity(blockSelection.Position) is Entity.ElectricForge { Contents: { } } bef) {
                                         return worldInteraction.Itemstacks.Where(stack => stack.Equals(api.World, bef.Contents, GlobalConstants.IgnoredStackAttributes)).ToArray();
                                     }
 
@@ -56,7 +56,7 @@ namespace Electricity.Content.Block {
                                 Itemstacks = heatableStacklist.ToArray(),
                                 GetMatchingStacks = (worldInteraction, blockSelection, entitySelection) =>
                                 {
-                                    if (api.World.BlockAccessor.GetBlockEntity(blockSelection.Position) is Entity.Forge { Contents: { } } bef) {
+                                    if (api.World.BlockAccessor.GetBlockEntity(blockSelection.Position) is Entity.ElectricForge { Contents: { } } bef) {
                                         return new[] { bef.Contents };
                                     }
 
@@ -88,7 +88,7 @@ namespace Electricity.Content.Block {
         }
 
         public override bool OnBlockInteractStart(IWorldAccessor world, IPlayer byPlayer, BlockSelection blockSel) {
-            if (world.BlockAccessor.GetBlockEntity(blockSel.Position) is Entity.Forge entity) {
+            if (world.BlockAccessor.GetBlockEntity(blockSel.Position) is Entity.ElectricForge entity) {
                 return entity.OnPlayerInteract(world, byPlayer, blockSel);
             }
 

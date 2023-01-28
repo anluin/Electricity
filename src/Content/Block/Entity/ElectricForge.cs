@@ -10,7 +10,7 @@ using Vintagestory.API.MathTools;
 using Vintagestory.GameContent;
 
 namespace Electricity.Content.Block.Entity {
-    public class Forge : BlockEntity, IHeatSource {
+    public class ElectricForge : BlockEntity, IHeatSource {
         private readonly Vec3d tmpPos = new Vec3d();
         private ILoadedSound? ambientSound;
         private bool burning;
@@ -39,7 +39,7 @@ namespace Electricity.Content.Block.Entity {
             }
         }
 
-        private Behavior.Electricity Electricity {
+        private Behavior.Electricity? Electricity {
             get => GetBehavior<Behavior.Electricity>();
         }
 
@@ -219,7 +219,10 @@ namespace Electricity.Content.Block.Entity {
         public override void OnBlockPlaced(ItemStack? byItemStack = null) {
             base.OnBlockPlaced(byItemStack);
 
-            this.Electricity.Connection = Facing.DownAll;
+            var electricity = this.Electricity;
+
+            if (electricity != null)
+                electricity.Connection = Facing.DownAll;
         }
 
         public override void OnBlockRemoved() {

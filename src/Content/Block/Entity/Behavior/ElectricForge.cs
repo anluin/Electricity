@@ -4,11 +4,11 @@ using Electricity.Utils;
 using Vintagestory.API.Common;
 
 namespace Electricity.Content.Block.Entity.Behavior {
-    public sealed class Forge : BlockEntityBehavior, IElectricConsumer {
+    public sealed class ElectricForge : BlockEntityBehavior, IElectricConsumer {
         private int maxTemp;
         private int powerSetting;
 
-        public Forge(BlockEntity blockEntity) : base(blockEntity) { }
+        public ElectricForge(BlockEntity blockEntity) : base(blockEntity) { }
 
         public ConsumptionRange ConsumptionRange {
             get => new ConsumptionRange(10, 100);
@@ -19,7 +19,7 @@ namespace Electricity.Content.Block.Entity.Behavior {
                 this.powerSetting = amount;
                 this.maxTemp = amount * 1100 / 100;
 
-                if (this.Blockentity is Entity.Forge entity) {
+                if (this.Blockentity is Entity.ElectricForge entity) {
                     entity.MaxTemp = this.maxTemp;
                     entity.IsBurning = amount > 0;
                 }

@@ -1,7 +1,7 @@
 {
     "code": "forge",
-    "class": "Forge",
-    "entityClass": "Forge",
+    "class": "ElectricForge",
+    "entityClass": "ElectricForge",
     "shape": {
         "base": "block/forge"
     },
@@ -12,7 +12,7 @@
     ],
     "entityBehaviors": [
         {
-            "name": "Forge"
+            "name": "ElectricForge"
         },
         {
             "name": "Electricity"
