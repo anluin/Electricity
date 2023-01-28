@@ -1,0 +1,10 @@
+﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+	<s:Boolean x:Key="/Default/AddReferences/RecentPaths/=_002Fhome_002Fanluin_002FApplicationData_002Fvintagestory_002FLib_002Fprotobuf_002Dnet_002Edll/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/AddReferences/RecentPaths/=_002Fhome_002Fanluin_002FApplicationData_002Fvintagestory_002FMods_002FVSEssentials_002Edll/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/AddReferences/RecentPaths/=_002Fhome_002Fanluin_002FApplicationData_002Fvintagestory_002FMods_002FVSSurvivalMod_002Edll/@EntryIndexedValue">True</s:Boolean>
+	<s:String x:Key="/Default/Environment/AssemblyExplorer/XmlDocument/@EntryValue">&lt;AssemblyExplorer&gt;
+  &lt;Assembly Path="/home/anluin/ApplicationData/vintagestory/Lib/protobuf-net.dll" /&gt;
+  &lt;Assembly Path="/home/anluin/.nuget/packages/protobuf-net/2.1.0/lib/net451/protobuf-net.dll" /&gt;
+  &lt;Assembly Path="/home/anluin/ApplicationData/vintagestory/VintagestoryAPI.dll" /&gt;
+  &lt;Assembly Path="/home/anluin/ApplicationData/vintagestory/Mods/VSEssentials.dll" /&gt;
+&lt;/AssemblyExplorer&gt;</s:String></wpf:ResourceDictionary>

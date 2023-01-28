@@ -1,0 +1,90 @@
+{
+    "code": "forge",
+    "class": "Forge",
+    "entityClass": "Forge",
+    "shape": {
+        "base": "block/forge"
+    },
+    "behaviors": [
+        {
+            "name": "HeatSource"
+        }
+    ],
+    "entityBehaviors": [
+        {
+            "name": "Forge"
+        },
+        {
+            "name": "Electricity"
+        }
+    ],
+    "blockMaterial": "Stone",
+    "creativeInventory": {
+        "general": [
+            "*"
+        ],
+        "decorative": [
+            "*"
+        ],
+        "electricity": [
+            "*"
+        ]
+    },
+    "replaceable": 500,
+    "lightAbsorption": 0,
+    "resistance": 3.5,
+    "sounds": {
+        "walk": "game:walk/stone",
+        "byTool": {
+            "Pickaxe": {
+                "hit": "game:block/rock-hit-pickaxe",
+                "break": "game:block/rock-break-pickaxe"
+            }
+        }
+    },
+    "sideSolid": {
+        "all": false
+    },
+    "sideOpaque": {
+        "all": false
+    },
+    "textures": {
+        "coal": {
+            "base": "block/forge-inner"
+        },
+        "ember": {
+            "base": "block/forge"
+        }
+    },
+    "collisionBox": {
+        "x1": 0.0625,
+        "y1": 0,
+        "z1": 0.0625,
+        "x2": 0.9375,
+        "y2": 0.875,
+        "z2": 0.9375
+    },
+    "selectionBox": {
+        "x1": 0.0625,
+        "y1": 0,
+        "z1": 0.0625,
+        "x2": 0.9375,
+        "y2": 0.875,
+        "z2": 0.9375
+    },
+    "heldTpIdleAnimation": "game:holdbothhandslarge",
+    "heldTpUseAnimation": "game:twohandplaceblock",
+    "tpHandTransform": {
+        "translation": {
+            "x": -1.23,
+            "y": -0.91,
+            "z": -0.8
+        },
+        "rotation": {
+            "x": -2,
+            "y": 25,
+            "z": -78
+        },
+        "scale": 0.4
+    }
+}

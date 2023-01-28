@@ -1,0 +1,31 @@
+{
+    "ingredientPattern": "GS,MC",
+    "width": 2,
+    "height": 2,
+    "ingredients": {
+        "G": {
+            "type": "block",
+            "code": "game:forge"
+        },
+        "S": {
+            "type": "item",
+            "code": "game:saw-*",
+            "isTool": true,
+            "toolDurabilityCost": 16
+        },
+        "M": {
+            "type": "item",
+            "code": "game:metalplate-iron"
+        },
+        "C": {
+            "type": "block",
+            "code": "electricity:cable-*",
+            "quantity": 16
+        }
+    },
+    "output": {
+        "type": "block",
+        "code": "electricity:forge",
+        "quantity": 1
+    }
+}

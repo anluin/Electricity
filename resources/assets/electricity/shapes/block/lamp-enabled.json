@@ -1,0 +1,102 @@
+{
+    "editor": {
+        "allAngles": false,
+        "entityTextureMode": false
+    },
+    "textureWidth": 16,
+    "textureHeight": 16,
+    "textureSizes": {
+    },
+    "textures": {
+        "glass": "block/lamp-enabled",
+        "iron": "block/iron"
+    },
+    "elements": [
+        {
+            "name": "Cube2",
+            "from": [
+                0.0,
+                15.0,
+                0.0
+            ],
+            "to": [
+                16.0,
+                16.0,
+                16.0
+            ],
+            "rotationOrigin": [
+                0.0,
+                15.0,
+                0.0
+            ],
+            "faces": {
+                "north": {
+                    "texture": "#glass",
+                    "uv": [
+                        0.0,
+                        15.0,
+                        16.0,
+                        16.0
+                    ],
+                    "glow": 128,
+                    "autoUv": false
+                },
+                "east": {
+                    "texture": "#glass",
+                    "uv": [
+                        0.0,
+                        15.0,
+                        16.0,
+                        16.0
+                    ],
+                    "glow": 128,
+                    "autoUv": false
+                },
+                "south": {
+                    "texture": "#glass",
+                    "uv": [
+                        0.0,
+                        15.0,
+                        16.0,
+                        16.0
+                    ],
+                    "glow": 128,
+                    "autoUv": false
+                },
+                "west": {
+                    "texture": "#glass",
+                    "uv": [
+                        0.0,
+                        15.0,
+                        16.0,
+                        16.0
+                    ],
+                    "glow": 128,
+                    "autoUv": false
+                },
+                "up": {
+                    "texture": "#iron",
+                    "uv": [
+                        0.0,
+                        0.0,
+                        16.0,
+                        16.0
+                    ],
+                    "glow": 128,
+                    "autoUv": false
+                },
+                "down": {
+                    "texture": "#glass",
+                    "uv": [
+                        0.0,
+                        0.0,
+                        16.0,
+                        16.0
+                    ],
+                    "glow": 128,
+                    "autoUv": false
+                }
+            }
+        }
+    ]
+}

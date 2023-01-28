@@ -1,9 +1,0 @@
-{
-    "block-accumulator": "Accumulator",
-    "block-cable-*": "Cable",
-    "block-motor-*": "Motor",
-    "block-lamp-*": "Lamp",
-    "block-generator-*": "Generator",
-    "game:tabname-electricity": "Electricity",
-    "block-switch-*": "Switch"
-}

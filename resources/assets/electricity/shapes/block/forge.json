@@ -1,0 +1,445 @@
+{
+    "editor": {
+        "allAngles": false,
+        "entityTextureMode": false
+    },
+    "textureWidth": 16,
+    "textureHeight": 16,
+    "textureSizes": {
+    },
+    "textures": {
+        "coal-dust": "block/coal-dust",
+        "forge": "block/forge",
+        "copper": "block/forge-inner",
+        "iron": "block/iron"
+    },
+    "elements": [
+        {
+            "name": "N",
+            "from": [
+                1.0,
+                0.0,
+                1.0
+            ],
+            "to": [
+                15.0,
+                14.0,
+                3.0
+            ],
+            "faces": {
+                "north": {
+                    "texture": "#forge",
+                    "uv": [
+                        1.0,
+                        0.0,
+                        15.0,
+                        14.0
+                    ]
+                },
+                "east": {
+                    "texture": "#forge",
+                    "uv": [
+                        13.0,
+                        0.0,
+                        15.0,
+                        14.0
+                    ]
+                },
+                "south": {
+                    "texture": "#coal-dust",
+                    "uv": [
+                        0.0,
+                        0.0,
+                        14.0,
+                        14.0
+                    ]
+                },
+                "west": {
+                    "texture": "#forge",
+                    "uv": [
+                        1.0,
+                        0.0,
+                        3.0,
+                        14.0
+                    ]
+                },
+                "up": {
+                    "texture": "#coal-dust",
+                    "uv": [
+                        0.0,
+                        13.0,
+                        14.0,
+                        15.0
+                    ],
+                    "rotation": 180
+                },
+                "down": {
+                    "texture": "#forge",
+                    "uv": [
+                        1.0,
+                        11.0,
+                        15.0,
+                        13.0
+                    ]
+                }
+            }
+        },
+        {
+            "name": "S",
+            "from": [
+                1.0,
+                0.0,
+                13.0
+            ],
+            "to": [
+                15.0,
+                14.0,
+                15.0
+            ],
+            "faces": {
+                "north": {
+                    "texture": "#coal-dust",
+                    "uv": [
+                        1.0,
+                        0.0,
+                        15.0,
+                        14.0
+                    ]
+                },
+                "east": {
+                    "texture": "#forge",
+                    "uv": [
+                        1.0,
+                        0.0,
+                        3.0,
+                        14.0
+                    ]
+                },
+                "south": {
+                    "texture": "#forge",
+                    "uv": [
+                        1.0,
+                        0.0,
+                        15.0,
+                        14.0
+                    ]
+                },
+                "west": {
+                    "texture": "#forge",
+                    "uv": [
+                        13.0,
+                        0.0,
+                        15.0,
+                        14.0
+                    ]
+                },
+                "up": {
+                    "texture": "#coal-dust",
+                    "uv": [
+                        1.0,
+                        9.0,
+                        15.0,
+                        11.0
+                    ]
+                },
+                "down": {
+                    "texture": "#forge",
+                    "uv": [
+                        1.0,
+                        5.0,
+                        15.0,
+                        7.0
+                    ]
+                }
+            }
+        },
+        {
+            "name": "W",
+            "from": [
+                1.0,
+                0.0,
+                3.0
+            ],
+            "to": [
+                3.0,
+                14.0,
+                13.0
+            ],
+            "faces": {
+                "north": {
+                    "texture": "#forge",
+                    "uv": [
+                        0.0,
+                        0.0,
+                        2.0,
+                        14.0
+                    ],
+                    "enabled": false
+                },
+                "east": {
+                    "texture": "#coal-dust",
+                    "uv": [
+                        2.0,
+                        0.0,
+                        12.0,
+                        14.0
+                    ]
+                },
+                "south": {
+                    "texture": "#-1",
+                    "uv": [
+                        0.0,
+                        0.0,
+                        2.0,
+                        14.0
+                    ],
+                    "enabled": false
+                },
+                "west": {
+                    "texture": "#forge",
+                    "uv": [
+                        3.0,
+                        0.0,
+                        13.0,
+                        14.0
+                    ]
+                },
+                "up": {
+                    "texture": "#coal-dust",
+                    "uv": [
+                        4.0,
+                        14.0,
+                        14.0,
+                        16.0
+                    ],
+                    "rotation": 90
+                },
+                "down": {
+                    "texture": "#forge",
+                    "uv": [
+                        13.0,
+                        3.0,
+                        15.0,
+                        13.0
+                    ]
+                }
+            }
+        },
+        {
+            "name": "E",
+            "from": [
+                13.0,
+                0.0,
+                3.0
+            ],
+            "to": [
+                15.0,
+                14.0,
+                13.0
+            ],
+            "faces": {
+                "north": {
+                    "texture": "#-1",
+                    "uv": [
+                        0.0,
+                        0.0,
+                        2.0,
+                        14.0
+                    ],
+                    "enabled": false
+                },
+                "east": {
+                    "texture": "#forge",
+                    "uv": [
+                        3.0,
+                        0.0,
+                        13.0,
+                        14.0
+                    ]
+                },
+                "south": {
+                    "texture": "#-1",
+                    "uv": [
+                        0.0,
+                        0.0,
+                        2.0,
+                        14.0
+                    ],
+                    "enabled": false
+                },
+                "west": {
+                    "texture": "#coal-dust",
+                    "uv": [
+                        4.0,
+                        1.0,
+                        14.0,
+                        15.0
+                    ]
+                },
+                "up": {
+                    "texture": "#coal-dust",
+                    "uv": [
+                        4.0,
+                        10.0,
+                        14.0,
+                        12.0
+                    ],
+                    "rotation": 270
+                },
+                "down": {
+                    "texture": "#forge",
+                    "uv": [
+                        4.0,
+                        3.0,
+                        6.0,
+                        13.0
+                    ]
+                }
+            }
+        },
+        {
+            "name": "Floor",
+            "from": [
+                3.0,
+                0.0,
+                3.0
+            ],
+            "to": [
+                13.0,
+                10.0,
+                13.0
+            ],
+            "faces": {
+                "north": {
+                    "texture": "#coal-dust",
+                    "uv": [
+                        0.0,
+                        0.0,
+                        10.0,
+                        10.0
+                    ],
+                    "enabled": false
+                },
+                "east": {
+                    "texture": "#-1",
+                    "uv": [
+                        0.0,
+                        0.0,
+                        10.0,
+                        10.0
+                    ],
+                    "enabled": false
+                },
+                "south": {
+                    "texture": "#-1",
+                    "uv": [
+                        0.0,
+                        0.0,
+                        10.0,
+                        10.0
+                    ],
+                    "enabled": false
+                },
+                "west": {
+                    "texture": "#-1",
+                    "uv": [
+                        0.0,
+                        0.0,
+                        10.0,
+                        10.0
+                    ],
+                    "enabled": false
+                },
+                "up": {
+                    "texture": "#copper",
+                    "uv": [
+                        2.0,
+                        2.0,
+                        14.0,
+                        14.0
+                    ],
+                    "autoUv": false
+                },
+                "down": {
+                    "texture": "#-1",
+                    "uv": [
+                        3.0,
+                        3.0,
+                        13.0,
+                        13.0
+                    ],
+                    "enabled": false
+                }
+            }
+        },
+        {
+            "name": "Cube1",
+            "from": [
+                0.0,
+                -0.5,
+                0.0
+            ],
+            "to": [
+                16.0,
+                1.5,
+                16.0
+            ],
+            "faces": {
+                "north": {
+                    "texture": "#iron",
+                    "uv": [
+                        0.0,
+                        0.0,
+                        16.0,
+                        2.0
+                    ]
+                },
+                "east": {
+                    "texture": "#iron",
+                    "uv": [
+                        0.0,
+                        0.0,
+                        16.0,
+                        2.0
+                    ]
+                },
+                "south": {
+                    "texture": "#iron",
+                    "uv": [
+                        0.0,
+                        0.0,
+                        16.0,
+                        2.0
+                    ]
+                },
+                "west": {
+                    "texture": "#iron",
+                    "uv": [
+                        0.0,
+                        0.0,
+                        16.0,
+                        2.0
+                    ]
+                },
+                "up": {
+                    "texture": "#iron",
+                    "uv": [
+                        0.0,
+                        0.0,
+                        16.0,
+                        16.0
+                    ]
+                },
+                "down": {
+                    "texture": "#iron",
+                    "uv": [
+                        0.0,
+                        0.0,
+                        16.0,
+                        16.0
+                    ]
+                }
+            }
+        }
+    ]
+}
