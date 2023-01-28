@@ -1,0 +1,125 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')"/>
+    <PropertyGroup>
+        <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+        <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+        <ProjectGuid>{A12AE64C-926F-4B9A-9D85-4EE629230DC0}</ProjectGuid>
+        <OutputType>Library</OutputType>
+        <AppDesignerFolder>Properties</AppDesignerFolder>
+        <RootNamespace>Electricity</RootNamespace>
+        <AssemblyName>Electricity</AssemblyName>
+        <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+        <FileAlignment>512</FileAlignment>
+        <LangVersion>8</LangVersion>
+        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+        <PlatformTarget>AnyCPU</PlatformTarget>
+        <DebugSymbols>true</DebugSymbols>
+        <DebugType>full</DebugType>
+        <Optimize>false</Optimize>
+        <OutputPath>bin\Debug\</OutputPath>
+        <DefineConstants>DEBUG;TRACE</DefineConstants>
+        <ErrorReport>prompt</ErrorReport>
+        <WarningLevel>4</WarningLevel>
+    </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+        <PlatformTarget>AnyCPU</PlatformTarget>
+        <DebugType>pdbonly</DebugType>
+        <Optimize>true</Optimize>
+        <OutputPath>bin\Release\</OutputPath>
+        <DefineConstants>TRACE</DefineConstants>
+        <ErrorReport>prompt</ErrorReport>
+        <WarningLevel>4</WarningLevel>
+    </PropertyGroup>
+    <ItemGroup>
+        <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed">
+            <HintPath>deps\Newtonsoft.Json.dll</HintPath>
+            <Private>False</Private>
+        </Reference>
+        <Reference Include="protobuf-net, Version=2.1.0.0, Culture=neutral, PublicKeyToken=257b51d87d2e4d67">
+            <HintPath>deps\protobuf-net.dll</HintPath>
+            <Private>False</Private>
+        </Reference>
+        <Reference Include="System"/>
+        <Reference Include="VintagestoryAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+            <HintPath>deps\VintagestoryAPI.dll</HintPath>
+            <Private>False</Private>
+        </Reference>
+        <Reference Include="VSSurvivalMod, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+            <HintPath>deps\VSSurvivalMod.dll</HintPath>
+            <Private>False</Private>
+        </Reference>
+    </ItemGroup>
+    <ItemGroup>
+        <Compile Include="Properties\AssemblyInfo.cs"/>
+        <Compile Include="src\BlockEntityBehavior\BEBehaviorAccumulator.cs"/>
+        <Compile Include="src\BlockEntityBehavior\BEBehaviorElectricity.cs"/>
+        <Compile Include="src\BlockEntityBehavior\BEBehaviorGenerator.cs"/>
+        <Compile Include="src\BlockEntityBehavior\BEBehaviorLamp.cs"/>
+        <Compile Include="src\BlockEntityBehavior\BEBehaviorMotor.cs"/>
+        <Compile Include="src\BlockEntity\BlockEntityAccumulator.cs"/>
+        <Compile Include="src\BlockEntity\BlockEntityCable.cs"/>
+        <Compile Include="src\BlockEntity\BlockEntityGenerator.cs"/>
+        <Compile Include="src\BlockEntity\BlockEntityLamp.cs"/>
+        <Compile Include="src\BlockEntity\BlockEntityMotor.cs"/>
+        <Compile Include="src\Block\BlockAccumulator.cs"/>
+        <Compile Include="src\Block\BlockCable.cs"/>
+        <Compile Include="src\Block\BlockGenerator.cs"/>
+        <Compile Include="src\Block\BlockLamp.cs"/>
+        <Compile Include="src\Block\BlockMotor.cs"/>
+        <Compile Include="src\Block\BlockSwitch.cs"/>
+        <Compile Include="src\Electricity.cs"/>
+        <Compile Include="src\Interface\Accumulator.cs"/>
+        <Compile Include="src\Interface\Consumer.cs"/>
+        <Compile Include="src\Interface\Producer.cs"/>
+        <Compile Include="src\Utils\BlockVariant.cs"/>
+        <Compile Include="src\Utils\Facing.cs"/>
+        <Compile Include="src\Utils\Float.cs"/>
+        <Compile Include="src\Utils\Selection.cs"/>
+    </ItemGroup>
+    <ItemGroup>
+        <Content Include="assets\electricity\blocktypes\accumulator.json"/>
+        <Content Include="assets\electricity\blocktypes\cable.json"/>
+        <Content Include="assets\electricity\blocktypes\generator.json"/>
+        <Content Include="assets\electricity\blocktypes\lamp.json"/>
+        <Content Include="assets\electricity\blocktypes\motor.json"/>
+        <Content Include="assets\electricity\blocktypes\switch.json"/>
+        <Content Include="assets\electricity\lang\en.json"/>
+        <Content Include="assets\electricity\recipes\grid\accumulator.json"/>
+        <Content Include="assets\electricity\recipes\grid\cable.json"/>
+        <Content Include="assets\electricity\recipes\grid\generator.json"/>
+        <Content Include="assets\electricity\recipes\grid\lamp.json"/>
+        <Content Include="assets\electricity\recipes\grid\motor.json"/>
+        <Content Include="assets\electricity\recipes\grid\switch.json"/>
+        <Content Include="assets\electricity\shapes\block\accumulator.json"/>
+        <Content Include="assets\electricity\shapes\block\cable-dot.json"/>
+        <Content Include="assets\electricity\shapes\block\cable-part.json"/>
+        <Content Include="assets\electricity\shapes\block\cable.json"/>
+        <Content Include="assets\electricity\shapes\block\lamp-disabled.json"/>
+        <Content Include="assets\electricity\shapes\block\lamp-enabled.json"/>
+        <Content Include="assets\electricity\shapes\block\motor-rotor.json"/>
+        <Content Include="assets\electricity\shapes\block\motor-stator.json"/>
+        <Content Include="assets\electricity\shapes\block\motor.json"/>
+        <Content Include="assets\electricity\shapes\block\switch-disabled.json"/>
+        <Content Include="assets\electricity\shapes\block\switch-enabled.json"/>
+        <Content Include="assets\electricity\textures\block\copper.png"/>
+        <Content Include="assets\electricity\textures\block\iron.png"/>
+        <Content Include="assets\electricity\textures\block\oak.png"/>
+        <Content Include="assets\electricity\textures\block\lamp-disabled.png"/>
+        <Content Include="assets\electricity\textures\block\lamp-enabled.png"/>
+        <Content Include="assets\electricity\textures\block\zinc.png"/>
+        <Content Include="assets\modinfo.json"/>
+    </ItemGroup>
+    <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets"/>
+    <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+         Other similar extension points exist, see Microsoft.Common.targets.
+    <Target Name="BeforeBuild">
+    </Target>
+    <Target Name="AfterBuild">
+    </Target>
+    -->
+
+</Project>

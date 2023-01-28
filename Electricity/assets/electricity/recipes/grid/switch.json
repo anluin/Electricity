@@ -1,0 +1,31 @@
+{
+    "ingredientPattern": "GS,MC",
+    "width": 2,
+    "height": 2,
+    "ingredients": {
+        "G": {
+            "type": "item",
+            "code": "game:stick"
+        },
+        "S": {
+            "type": "item",
+            "code": "game:saw-*",
+            "isTool": true,
+            "toolDurabilityCost": 16
+        },
+        "M": {
+            "type": "item",
+            "code": "game:metalplate-iron"
+        },
+        "C": {
+            "type": "block",
+            "code": "electricity:cable-part",
+            "quantity": 8
+        }
+    },
+    "output": {
+        "type": "block",
+        "code": "electricity:switch-enabled",
+        "quantity": 4
+    }
+}

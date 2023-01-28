@@ -1,0 +1,45 @@
+{
+    "code": "accumulator",
+    "class": "Accumulator",
+    "entityClass": "Accumulator",
+    "entityBehaviors": [
+        {
+            "name": "Accumulator"
+        },
+        {
+            "name": "Electricity"
+        }
+    ],
+    "creativeInventory": {
+        "general": [
+            "*"
+        ],
+        "electricity": [
+            "*"
+        ]
+    },
+    "shape": {
+        "base": "block/accumulator"
+    },
+    "resistance": 1,
+    "drawType": "JSON",
+    "lightAbsorption": 0.0,
+    "faceCullMode": "NeverCull",
+    "renderPass": "OpaqueNoCull",
+    "emitSideAo": {
+        "all": false
+    },
+    "sideAo": {
+        "all": false
+    },
+    "sideOpaque": {
+        "all": false
+    },
+    "sideSolid": {
+        "all": false
+    },
+    "sounds": {
+        "place": "game:block/anvil",
+        "walk": "game:walk/stone"
+    }
+}

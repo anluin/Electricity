@@ -1,0 +1,13 @@
+{
+    "type": "code",
+    "modid": "electricity",
+    "name": "Electricity",
+    "authors": [
+        "Anluin"
+    ],
+    "description": "Brings electricity into the game!",
+    "version": "0.0.1",
+    "dependencies": {
+        "game": "1.16.4"
+    }
+}

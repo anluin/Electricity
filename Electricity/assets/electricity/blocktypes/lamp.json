@@ -1,0 +1,69 @@
+{
+    "code": "lamp",
+    "class": "Lamp",
+    "entityClass": "Lamp",
+    "entityBehaviors": [
+        {
+            "name": "Lamp"
+        },
+        {
+            "name": "Electricity"
+        }
+    ],
+    "creativeInventory": {
+        "general": [
+            "*-disabled"
+        ],
+        "electricity": [
+            "*-disabled"
+        ]
+    },
+    "shape": {
+        "base": "block/lamp"
+    },
+    "variantGroups": [
+        {
+            "code": "state",
+            "states": [
+                "disabled",
+                "enabled"
+            ]
+        }
+    ],
+    "shapeByType": {
+        "*-disabled": {
+            "base": "block/lamp-disabled"
+        },
+        "*-enabled": {
+            "base": "block/lamp-enabled"
+        }
+    },
+    "resistance": 1,
+    "drawType": "JSON",
+    "lightAbsorption": 0.0,
+    "faceCullMode": "NeverCull",
+    "renderPass": "OpaqueNoCull",
+    "emitSideAo": {
+        "all": false
+    },
+    "sideAo": {
+        "all": false
+    },
+    "sideOpaque": {
+        "all": false
+    },
+    "sideSolid": {
+        "all": false
+    },
+    "sounds": {
+        "place": "game:block/anvil",
+        "walk": "game:walk/stone"
+    },
+    "guiTransform": {
+        "translation": {
+            "x": 0,
+            "y": 12,
+            "z": 0
+        }
+    }
+}
