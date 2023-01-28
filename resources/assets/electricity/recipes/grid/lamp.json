@@ -19,7 +19,7 @@
         },
         "C": {
             "type": "block",
-            "code": "electricity:cable-part",
+            "code": "electricity:cable-*",
             "quantity": 16
         }
     },

@@ -16,7 +16,7 @@
     },
     "output": {
         "type": "block",
-        "code": "electricity:cable-part",
+        "code": "electricity:cable-dot",
         "quantity": 16
     }
 }

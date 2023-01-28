@@ -3,7 +3,13 @@
   <component name="ChangeListManager">
     <list default="true" id="01b87c08-5b42-46b4-bc3b-e1ebedee8464" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.electricity.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.electricity.dir/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/assets/electricity/recipes/grid/accumulator.json" beforeDir="false" afterPath="$PROJECT_DIR$/resources/assets/electricity/recipes/grid/accumulator.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/assets/electricity/recipes/grid/cable.json" beforeDir="false" afterPath="$PROJECT_DIR$/resources/assets/electricity/recipes/grid/cable.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/assets/electricity/recipes/grid/lamp.json" beforeDir="false" afterPath="$PROJECT_DIR$/resources/assets/electricity/recipes/grid/lamp.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/assets/electricity/recipes/grid/motor.json" beforeDir="false" afterPath="$PROJECT_DIR$/resources/assets/electricity/recipes/grid/motor.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/assets/electricity/recipes/grid/switch.json" beforeDir="false" afterPath="$PROJECT_DIR$/resources/assets/electricity/recipes/grid/switch.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/modinfo.json" beforeDir="false" afterPath="$PROJECT_DIR$/resources/modinfo.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Electricity.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Electricity.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,7 +49,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1674906409539</updated>
-      <workItem from="1674906410634" duration="497000" />
+      <workItem from="1674906410634" duration="650000" />
     </task>
     <servers />
   </component>
