@@ -2,16 +2,27 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="01b87c08-5b42-46b4-bc3b-e1ebedee8464" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.electricity.dir/.idea/indexLayout.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.electricity.dir/.idea/projectSettingsUpdater.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.electricity.dir/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/assets/electricity/blocktypes/heater.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/assets/electricity/shapes/block/heater-disabled.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/assets/electricity/shapes/block/heater-enabled.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/assets/electricity/textures/block/copper-hot.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Content/Block/Entity/Behavior/Heater.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Content/Block/Entity/Heater.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Content/Block/Heater.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.electricity.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.electricity.dir/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/assets/electricity/shapes/block/forge.json" beforeDir="false" afterPath="$PROJECT_DIR$/resources/assets/electricity/shapes/block/forge.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/assets/electricity/lang/de.json" beforeDir="false" afterPath="$PROJECT_DIR$/resources/assets/electricity/lang/de.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/assets/electricity/lang/en.json" beforeDir="false" afterPath="$PROJECT_DIR$/resources/assets/electricity/lang/en.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Electricity.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Electricity.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/91db2521046c453ea2051bafcf1a8522185c00/0f/56395429/Block.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/91db2521046c453ea2051bafcf1a8522185c00/4f/fd3b1711/IBlockAccessor.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/91db2521046c453ea2051bafcf1a8522185c00/a1/a7742b07/RegistryObject.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -30,6 +41,7 @@
     "WebServerToolWindowFactoryState": "false",
     "last_opened_file_path": "/home/anluin/Projects/Electricity-new",
     "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.sourceCode.C#",
     "vue.rearranger.settings.migration": "true"
   },
   "keyToStringList": {
@@ -66,7 +78,7 @@
       <option name="presentableId" value="Default" />
       <updated>1674906409539</updated>
       <workItem from="1674906410634" duration="1043000" />
-      <workItem from="1674992361171" duration="2915000" />
+      <workItem from="1674992361171" duration="9323000" />
     </task>
     <servers />
   </component>

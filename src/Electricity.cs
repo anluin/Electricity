@@ -35,6 +35,10 @@ namespace Electricity {
             api.RegisterBlockEntityClass("ElectricForge", typeof(Content.Block.Entity.ElectricForge));
             api.RegisterBlockEntityBehaviorClass("ElectricForge", typeof(Content.Block.Entity.Behavior.ElectricForge));
 
+            api.RegisterBlockClass("Heater", typeof(Heater));
+            api.RegisterBlockEntityClass("Heater", typeof(Content.Block.Entity.Heater));
+            api.RegisterBlockEntityBehaviorClass("Heater", typeof(Content.Block.Entity.Behavior.Heater));
+
             api.RegisterBlockClass("Generator", typeof(Generator));
             api.RegisterBlockEntityClass("Generator", typeof(Content.Block.Entity.Generator));
             api.RegisterBlockEntityBehaviorClass("Generator", typeof(Content.Block.Entity.Behavior.Generator));

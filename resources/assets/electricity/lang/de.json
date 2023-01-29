@@ -6,5 +6,6 @@
     "block-lamp-*": "Deckenlampe",
     "block-generator-*": "Generator",
     "block-switch-*": "Schalter",
-    "block-forge": "Elektrische Schmiede"
+    "block-forge": "Elektrische Schmiede",
+    "block-heater-*": "Elektrische Heizung"
 }
