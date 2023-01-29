@@ -10,7 +10,7 @@
     "textures": {
         "coal-dust": "block/coal-dust",
         "forge": "block/forge",
-        "copper": "block/forge-inner",
+        "copper": "block/copper",
         "iron": "block/iron"
     },
     "elements": [
@@ -351,7 +351,7 @@
                     "enabled": false
                 },
                 "up": {
-                    "texture": "#copper",
+                    "texture": "#coal-dust",
                     "uv": [
                         2.0,
                         2.0,
@@ -370,7 +370,1121 @@
                     ],
                     "enabled": false
                 }
-            }
+            },
+            "children": [
+                {
+                    "name": "Cube7",
+                    "from": [
+                        7.75,
+                        10.0,
+                        1.0
+                    ],
+                    "to": [
+                        8.25,
+                        10.5,
+                        9.0
+                    ],
+                    "rotationOrigin": [
+                        7.0,
+                        10.0,
+                        1.0
+                    ],
+                    "faces": {
+                        "north": {
+                            "texture": "#copper",
+                            "uv": [
+                                0.0,
+                                0.0,
+                                0.5,
+                                0.5
+                            ]
+                        },
+                        "east": {
+                            "texture": "#copper",
+                            "uv": [
+                                0.0,
+                                0.0,
+                                8.0,
+                                0.5
+                            ]
+                        },
+                        "south": {
+                            "texture": "#copper",
+                            "uv": [
+                                0.0,
+                                0.0,
+                                0.5,
+                                0.5
+                            ]
+                        },
+                        "west": {
+                            "texture": "#copper",
+                            "uv": [
+                                0.0,
+                                0.0,
+                                8.0,
+                                0.5
+                            ]
+                        },
+                        "up": {
+                            "texture": "#copper",
+                            "uv": [
+                                0.0,
+                                0.0,
+                                0.5,
+                                8.0
+                            ]
+                        },
+                        "down": {
+                            "texture": "#copper",
+                            "uv": [
+                                0.0,
+                                0.0,
+                                0.5,
+                                8.0
+                            ]
+                        }
+                    },
+                    "children": [
+                        {
+                            "name": "Cube8",
+                            "from": [
+                                0.5,
+                                0.0,
+                                0.0
+                            ],
+                            "to": [
+                                1.0,
+                                0.5,
+                                0.5
+                            ],
+                            "rotationOrigin": [
+                                -1.0,
+                                0.0,
+                                0.0
+                            ],
+                            "faces": {
+                                "north": {
+                                    "texture": "#copper",
+                                    "uv": [
+                                        0.0,
+                                        0.0,
+                                        0.5,
+                                        0.5
+                                    ]
+                                },
+                                "east": {
+                                    "texture": "#copper",
+                                    "uv": [
+                                        0.0,
+                                        0.0,
+                                        0.5,
+                                        0.5
+                                    ]
+                                },
+                                "south": {
+                                    "texture": "#copper",
+                                    "uv": [
+                                        0.0,
+                                        0.0,
+                                        0.5,
+                                        0.5
+                                    ]
+                                },
+                                "west": {
+                                    "texture": "#copper",
+                                    "uv": [
+                                        0.0,
+                                        0.0,
+                                        0.5,
+                                        0.5
+                                    ]
+                                },
+                                "up": {
+                                    "texture": "#copper",
+                                    "uv": [
+                                        0.0,
+                                        0.0,
+                                        0.5,
+                                        0.5
+                                    ]
+                                },
+                                "down": {
+                                    "texture": "#copper",
+                                    "uv": [
+                                        0.0,
+                                        0.0,
+                                        0.5,
+                                        0.5
+                                    ]
+                                }
+                            }
+                        },
+                        {
+                            "name": "Cube10",
+                            "from": [
+                                -0.5,
+                                0.0,
+                                7.5
+                            ],
+                            "to": [
+                                0.0,
+                                0.5,
+                                8.0
+                            ],
+                            "rotationOrigin": [
+                                -2.0,
+                                0.0,
+                                7.0
+                            ],
+                            "faces": {
+                                "north": {
+                                    "texture": "#copper",
+                                    "uv": [
+                                        0.0,
+                                        0.0,
+                                        0.5,
+                                        0.5
+                                    ]
+                                },
+                                "east": {
+                                    "texture": "#copper",
+                                    "uv": [
+                                        0.0,
+                                        0.0,
+                                        0.5,
+                                        0.5
+                                    ]
+                                },
+                                "south": {
+                                    "texture": "#copper",
+                                    "uv": [
+                                        0.0,
+                                        0.0,
+                                        0.5,
+                                        0.5
+                                    ]
+                                },
+                                "west": {
+                                    "texture": "#copper",
+                                    "uv": [
+                                        0.0,
+                                        0.0,
+                                        0.5,
+                                        0.5
+                                    ]
+                                },
+                                "up": {
+                                    "texture": "#copper",
+                                    "uv": [
+                                        0.0,
+                                        0.0,
+                                        0.5,
+                                        0.5
+                                    ]
+                                },
+                                "down": {
+                                    "texture": "#copper",
+                                    "uv": [
+                                        0.0,
+                                        0.0,
+                                        0.5,
+                                        0.5
+                                    ]
+                                }
+                            }
+                        },
+                        {
+                            "name": "Cube9",
+                            "from": [
+                                -1.0,
+                                0.0,
+                                0.0
+                            ],
+                            "to": [
+                                -0.5,
+                                0.5,
+                                8.0
+                            ],
+                            "rotationOrigin": [
+                                -1.0,
+                                0.0,
+                                0.0
+                            ],
+                            "faces": {
+                                "north": {
+                                    "texture": "#copper",
+                                    "uv": [
+                                        0.0,
+                                        0.0,
+                                        0.5,
+                                        0.5
+                                    ]
+                                },
+                                "east": {
+                                    "texture": "#copper",
+                                    "uv": [
+                                        0.0,
+                                        0.0,
+                                        8.0,
+                                        0.5
+                                    ]
+                                },
+                                "south": {
+                                    "texture": "#copper",
+                                    "uv": [
+                                        0.0,
+                                        0.0,
+                                        0.5,
+                                        0.5
+                                    ]
+                                },
+                                "west": {
+                                    "texture": "#copper",
+                                    "uv": [
+                                        0.0,
+                                        0.0,
+                                        8.0,
+                                        0.5
+                                    ]
+                                },
+                                "up": {
+                                    "texture": "#copper",
+                                    "uv": [
+                                        0.0,
+                                        0.0,
+                                        0.5,
+                                        8.0
+                                    ]
+                                },
+                                "down": {
+                                    "texture": "#copper",
+                                    "uv": [
+                                        0.0,
+                                        0.0,
+                                        0.5,
+                                        8.0
+                                    ]
+                                }
+                            }
+                        },
+                        {
+                            "name": "Cube17",
+                            "from": [
+                                -4.5,
+                                0.0,
+                                7.5
+                            ],
+                            "to": [
+                                -4.0,
+                                0.5,
+                                8.0
+                            ],
+                            "rotationOrigin": [
+                                -6.0,
+                                0.0,
+                                7.0
+                            ],
+                            "faces": {
+                                "north": {
+                                    "texture": "#copper",
+                                    "uv": [
+                                        0.0,
+                                        0.0,
+                                        0.5,
+                                        0.5
+                                    ]
+                                },
+                                "east": {
+                                    "texture": "#copper",
+                                    "uv": [
+                                        0.0,
+                                        0.0,
+                                        0.5,
+                                        0.5
+                                    ]
+                                },
+                                "south": {
+                                    "texture": "#copper",
+                                    "uv": [
+                                        0.0,
+                                        0.0,
+                                        0.5,
+                                        0.5
+                                    ]
+                                },
+                                "west": {
+                                    "texture": "#copper",
+                                    "uv": [
+                                        0.0,
+                                        0.0,
+                                        0.5,
+                                        0.5
+                                    ]
+                                },
+                                "up": {
+                                    "texture": "#copper",
+                                    "uv": [
+                                        0.0,
+                                        0.0,
+                                        0.5,
+                                        0.5
+                                    ]
+                                },
+                                "down": {
+                                    "texture": "#copper",
+                                    "uv": [
+                                        0.0,
+                                        0.0,
+                                        0.5,
+                                        0.5
+                                    ]
+                                }
+                            }
+                        },
+                        {
+                            "name": "Cube18",
+                            "from": [
+                                -5.0,
+                                0.0,
+                                0.0
+                            ],
+                            "to": [
+                                -4.5,
+                                0.5,
+                                8.0
+                            ],
+                            "rotationOrigin": [
+                                -5.0,
+                                0.0,
+                                0.0
+                            ],
+                            "faces": {
+                                "north": {
+                                    "texture": "#copper",
+                                    "uv": [
+                                        0.0,
+                                        0.0,
+                                        0.5,
+                                        0.5
+                                    ]
+                                },
+                                "east": {
+                                    "texture": "#copper",
+                                    "uv": [
+                                        0.0,
+                                        0.0,
+                                        8.0,
+                                        0.5
+                                    ]
+                                },
+                                "south": {
+                                    "texture": "#copper",
+                                    "uv": [
+                                        0.0,
+                                        0.0,
+                                        0.5,
+                                        0.5
+                                    ]
+                                },
+                                "west": {
+                                    "texture": "#copper",
+                                    "uv": [
+                                        0.0,
+                                        0.0,
+                                        8.0,
+                                        0.5
+                                    ]
+                                },
+                                "up": {
+                                    "texture": "#copper",
+                                    "uv": [
+                                        0.0,
+                                        0.0,
+                                        0.5,
+                                        8.0
+                                    ]
+                                },
+                                "down": {
+                                    "texture": "#copper",
+                                    "uv": [
+                                        0.0,
+                                        0.0,
+                                        0.5,
+                                        8.0
+                                    ]
+                                }
+                            }
+                        },
+                        {
+                            "name": "Cube20",
+                            "from": [
+                                -5.5,
+                                0.0,
+                                0.0
+                            ],
+                            "to": [
+                                -5.0,
+                                0.5,
+                                0.5
+                            ],
+                            "rotationOrigin": [
+                                -7.0,
+                                0.0,
+                                0.0
+                            ],
+                            "faces": {
+                                "north": {
+                                    "texture": "#copper",
+                                    "uv": [
+                                        0.0,
+                                        0.0,
+                                        0.5,
+                                        0.5
+                                    ]
+                                },
+                                "east": {
+                                    "texture": "#copper",
+                                    "uv": [
+                                        0.0,
+                                        0.0,
+                                        0.5,
+                                        0.5
+                                    ]
+                                },
+                                "south": {
+                                    "texture": "#copper",
+                                    "uv": [
+                                        0.0,
+                                        0.0,
+                                        0.5,
+                                        0.5
+                                    ]
+                                },
+                                "west": {
+                                    "texture": "#copper",
+                                    "uv": [
+                                        0.0,
+                                        0.0,
+                                        0.5,
+                                        0.5
+                                    ]
+                                },
+                                "up": {
+                                    "texture": "#copper",
+                                    "uv": [
+                                        0.0,
+                                        0.0,
+                                        0.5,
+                                        0.5
+                                    ]
+                                },
+                                "down": {
+                                    "texture": "#copper",
+                                    "uv": [
+                                        0.0,
+                                        0.0,
+                                        0.5,
+                                        0.5
+                                    ]
+                                }
+                            }
+                        },
+                        {
+                            "name": "Cube21",
+                            "from": [
+                                -6.5,
+                                0.0,
+                                7.5
+                            ],
+                            "to": [
+                                -6.0,
+                                0.5,
+                                8.0
+                            ],
+                            "rotationOrigin": [
+                                -8.0,
+                                0.0,
+                                7.0
+                            ],
+                            "faces": {
+                                "north": {
+                                    "texture": "#copper",
+                                    "uv": [
+                                        0.0,
+                                        0.0,
+                                        0.5,
+                                        0.5
+                                    ]
+                                },
+                                "east": {
+                                    "texture": "#copper",
+                                    "uv": [
+                                        0.0,
+                                        0.0,
+                                        0.5,
+                                        0.5
+                                    ]
+                                },
+                                "south": {
+                                    "texture": "#copper",
+                                    "uv": [
+                                        0.0,
+                                        0.0,
+                                        0.5,
+                                        0.5
+                                    ]
+                                },
+                                "west": {
+                                    "texture": "#copper",
+                                    "uv": [
+                                        0.0,
+                                        0.0,
+                                        0.5,
+                                        0.5
+                                    ]
+                                },
+                                "up": {
+                                    "texture": "#copper",
+                                    "uv": [
+                                        0.0,
+                                        0.0,
+                                        0.5,
+                                        0.5
+                                    ]
+                                },
+                                "down": {
+                                    "texture": "#copper",
+                                    "uv": [
+                                        0.0,
+                                        0.0,
+                                        0.5,
+                                        0.5
+                                    ]
+                                }
+                            }
+                        },
+                        {
+                            "name": "Cube13",
+                            "from": [
+                                -2.5,
+                                0.0,
+                                7.5
+                            ],
+                            "to": [
+                                -2.0,
+                                0.5,
+                                8.0
+                            ],
+                            "rotationOrigin": [
+                                -4.0,
+                                0.0,
+                                7.0
+                            ],
+                            "faces": {
+                                "north": {
+                                    "texture": "#copper",
+                                    "uv": [
+                                        0.0,
+                                        0.0,
+                                        0.5,
+                                        0.5
+                                    ]
+                                },
+                                "east": {
+                                    "texture": "#copper",
+                                    "uv": [
+                                        0.0,
+                                        0.0,
+                                        0.5,
+                                        0.5
+                                    ]
+                                },
+                                "south": {
+                                    "texture": "#copper",
+                                    "uv": [
+                                        0.0,
+                                        0.0,
+                                        0.5,
+                                        0.5
+                                    ]
+                                },
+                                "west": {
+                                    "texture": "#copper",
+                                    "uv": [
+                                        0.0,
+                                        0.0,
+                                        0.5,
+                                        0.5
+                                    ]
+                                },
+                                "up": {
+                                    "texture": "#copper",
+                                    "uv": [
+                                        0.0,
+                                        0.0,
+                                        0.5,
+                                        0.5
+                                    ]
+                                },
+                                "down": {
+                                    "texture": "#copper",
+                                    "uv": [
+                                        0.0,
+                                        0.0,
+                                        0.5,
+                                        0.5
+                                    ]
+                                }
+                            }
+                        },
+                        {
+                            "name": "Cube12",
+                            "from": [
+                                -1.5,
+                                0.0,
+                                0.0
+                            ],
+                            "to": [
+                                -1.0,
+                                0.5,
+                                0.5
+                            ],
+                            "rotationOrigin": [
+                                -3.0,
+                                0.0,
+                                0.0
+                            ],
+                            "faces": {
+                                "north": {
+                                    "texture": "#copper",
+                                    "uv": [
+                                        0.0,
+                                        0.0,
+                                        0.5,
+                                        0.5
+                                    ]
+                                },
+                                "east": {
+                                    "texture": "#copper",
+                                    "uv": [
+                                        0.0,
+                                        0.0,
+                                        0.5,
+                                        0.5
+                                    ]
+                                },
+                                "south": {
+                                    "texture": "#copper",
+                                    "uv": [
+                                        0.0,
+                                        0.0,
+                                        0.5,
+                                        0.5
+                                    ]
+                                },
+                                "west": {
+                                    "texture": "#copper",
+                                    "uv": [
+                                        0.0,
+                                        0.0,
+                                        0.5,
+                                        0.5
+                                    ]
+                                },
+                                "up": {
+                                    "texture": "#copper",
+                                    "uv": [
+                                        0.0,
+                                        0.0,
+                                        0.5,
+                                        0.5
+                                    ]
+                                },
+                                "down": {
+                                    "texture": "#copper",
+                                    "uv": [
+                                        0.0,
+                                        0.0,
+                                        0.5,
+                                        0.5
+                                    ]
+                                }
+                            }
+                        },
+                        {
+                            "name": "Cube14",
+                            "from": [
+                                -3.0,
+                                0.0,
+                                0.0
+                            ],
+                            "to": [
+                                -2.5,
+                                0.5,
+                                8.0
+                            ],
+                            "rotationOrigin": [
+                                -3.0,
+                                0.0,
+                                0.0
+                            ],
+                            "faces": {
+                                "north": {
+                                    "texture": "#copper",
+                                    "uv": [
+                                        0.0,
+                                        0.0,
+                                        0.5,
+                                        0.5
+                                    ]
+                                },
+                                "east": {
+                                    "texture": "#copper",
+                                    "uv": [
+                                        0.0,
+                                        0.0,
+                                        8.0,
+                                        0.5
+                                    ]
+                                },
+                                "south": {
+                                    "texture": "#copper",
+                                    "uv": [
+                                        0.0,
+                                        0.0,
+                                        0.5,
+                                        0.5
+                                    ]
+                                },
+                                "west": {
+                                    "texture": "#copper",
+                                    "uv": [
+                                        0.0,
+                                        0.0,
+                                        8.0,
+                                        0.5
+                                    ]
+                                },
+                                "up": {
+                                    "texture": "#copper",
+                                    "uv": [
+                                        0.0,
+                                        0.0,
+                                        0.5,
+                                        8.0
+                                    ]
+                                },
+                                "down": {
+                                    "texture": "#copper",
+                                    "uv": [
+                                        0.0,
+                                        0.0,
+                                        0.5,
+                                        8.0
+                                    ]
+                                }
+                            }
+                        },
+                        {
+                            "name": "Cube16",
+                            "from": [
+                                -3.5,
+                                0.0,
+                                0.0
+                            ],
+                            "to": [
+                                -3.0,
+                                0.5,
+                                0.5
+                            ],
+                            "rotationOrigin": [
+                                -5.0,
+                                0.0,
+                                0.0
+                            ],
+                            "faces": {
+                                "north": {
+                                    "texture": "#copper",
+                                    "uv": [
+                                        0.0,
+                                        0.0,
+                                        0.5,
+                                        0.5
+                                    ]
+                                },
+                                "east": {
+                                    "texture": "#copper",
+                                    "uv": [
+                                        0.0,
+                                        0.0,
+                                        0.5,
+                                        0.5
+                                    ]
+                                },
+                                "south": {
+                                    "texture": "#copper",
+                                    "uv": [
+                                        0.0,
+                                        0.0,
+                                        0.5,
+                                        0.5
+                                    ]
+                                },
+                                "west": {
+                                    "texture": "#copper",
+                                    "uv": [
+                                        0.0,
+                                        0.0,
+                                        0.5,
+                                        0.5
+                                    ]
+                                },
+                                "up": {
+                                    "texture": "#copper",
+                                    "uv": [
+                                        0.0,
+                                        0.0,
+                                        0.5,
+                                        0.5
+                                    ]
+                                },
+                                "down": {
+                                    "texture": "#copper",
+                                    "uv": [
+                                        0.0,
+                                        0.0,
+                                        0.5,
+                                        0.5
+                                    ]
+                                }
+                            }
+                        },
+                        {
+                            "name": "Cube11",
+                            "from": [
+                                -2.0,
+                                0.0,
+                                0.0
+                            ],
+                            "to": [
+                                -1.5,
+                                0.5,
+                                8.0
+                            ],
+                            "rotationOrigin": [
+                                -2.0,
+                                0.0,
+                                0.0
+                            ],
+                            "faces": {
+                                "north": {
+                                    "texture": "#copper",
+                                    "uv": [
+                                        0.0,
+                                        0.0,
+                                        0.5,
+                                        0.5
+                                    ]
+                                },
+                                "east": {
+                                    "texture": "#copper",
+                                    "uv": [
+                                        0.0,
+                                        0.0,
+                                        8.0,
+                                        0.5
+                                    ]
+                                },
+                                "south": {
+                                    "texture": "#copper",
+                                    "uv": [
+                                        0.0,
+                                        0.0,
+                                        0.5,
+                                        0.5
+                                    ]
+                                },
+                                "west": {
+                                    "texture": "#copper",
+                                    "uv": [
+                                        0.0,
+                                        0.0,
+                                        8.0,
+                                        0.5
+                                    ]
+                                },
+                                "up": {
+                                    "texture": "#copper",
+                                    "uv": [
+                                        0.0,
+                                        0.0,
+                                        0.5,
+                                        8.0
+                                    ]
+                                },
+                                "down": {
+                                    "texture": "#copper",
+                                    "uv": [
+                                        0.0,
+                                        0.0,
+                                        0.5,
+                                        8.0
+                                    ]
+                                }
+                            }
+                        },
+                        {
+                            "name": "Cube15",
+                            "from": [
+                                -4.0,
+                                0.0,
+                                0.0
+                            ],
+                            "to": [
+                                -3.5,
+                                0.5,
+                                8.0
+                            ],
+                            "rotationOrigin": [
+                                -4.0,
+                                0.0,
+                                0.0
+                            ],
+                            "faces": {
+                                "north": {
+                                    "texture": "#copper",
+                                    "uv": [
+                                        0.0,
+                                        0.0,
+                                        0.5,
+                                        0.5
+                                    ]
+                                },
+                                "east": {
+                                    "texture": "#copper",
+                                    "uv": [
+                                        0.0,
+                                        0.0,
+                                        8.0,
+                                        0.5
+                                    ]
+                                },
+                                "south": {
+                                    "texture": "#copper",
+                                    "uv": [
+                                        0.0,
+                                        0.0,
+                                        0.5,
+                                        0.5
+                                    ]
+                                },
+                                "west": {
+                                    "texture": "#copper",
+                                    "uv": [
+                                        0.0,
+                                        0.0,
+                                        8.0,
+                                        0.5
+                                    ]
+                                },
+                                "up": {
+                                    "texture": "#copper",
+                                    "uv": [
+                                        0.0,
+                                        0.0,
+                                        0.5,
+                                        8.0
+                                    ]
+                                },
+                                "down": {
+                                    "texture": "#copper",
+                                    "uv": [
+                                        0.0,
+                                        0.0,
+                                        0.5,
+                                        8.0
+                                    ]
+                                }
+                            }
+                        },
+                        {
+                            "name": "Cube19",
+                            "from": [
+                                -6.0,
+                                0.0,
+                                0.0
+                            ],
+                            "to": [
+                                -5.5,
+                                0.5,
+                                8.0
+                            ],
+                            "rotationOrigin": [
+                                -6.0,
+                                0.0,
+                                0.0
+                            ],
+                            "faces": {
+                                "north": {
+                                    "texture": "#copper",
+                                    "uv": [
+                                        0.0,
+                                        0.0,
+                                        0.5,
+                                        0.5
+                                    ]
+                                },
+                                "east": {
+                                    "texture": "#copper",
+                                    "uv": [
+                                        0.0,
+                                        0.0,
+                                        8.0,
+                                        0.5
+                                    ]
+                                },
+                                "south": {
+                                    "texture": "#copper",
+                                    "uv": [
+                                        0.0,
+                                        0.0,
+                                        0.5,
+                                        0.5
+                                    ]
+                                },
+                                "west": {
+                                    "texture": "#copper",
+                                    "uv": [
+                                        0.0,
+                                        0.0,
+                                        8.0,
+                                        0.5
+                                    ]
+                                },
+                                "up": {
+                                    "texture": "#copper",
+                                    "uv": [
+                                        0.0,
+                                        0.0,
+                                        0.5,
+                                        8.0
+                                    ]
+                                },
+                                "down": {
+                                    "texture": "#copper",
+                                    "uv": [
+                                        0.0,
+                                        0.0,
+                                        0.5,
+                                        8.0
+                                    ]
+                                }
+                            }
+                        }
+                    ]
+                }
+            ]
         },
         {
             "name": "Cube1",

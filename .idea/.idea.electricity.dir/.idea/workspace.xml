@@ -2,21 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="01b87c08-5b42-46b4-bc3b-e1ebedee8464" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.Electricity-new.dir/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.Electricity-new.dir/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.Electricity-new.dir/.idea/indexLayout.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/assets/electricity/lang/de.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Content/Block/ElectricForge.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Content/Block/Entity/Behavior/ElectricForge.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Content/Block/Entity/ElectricForge.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/.idea.electricity.dir/.idea/indexLayout.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/.idea.electricity.dir/.idea/projectSettingsUpdater.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/.idea.electricity.dir/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.electricity.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.electricity.dir/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Electricity.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Electricity.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/assets/electricity/blocktypes/forge.json" beforeDir="false" afterPath="$PROJECT_DIR$/resources/assets/electricity/blocktypes/forge.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/modinfo.json" beforeDir="false" afterPath="$PROJECT_DIR$/resources/modinfo.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Content/Block/Entity/Behavior/Forge.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Content/Block/Entity/Forge.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Content/Block/Forge.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Electricity.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Electricity.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/assets/electricity/shapes/block/forge.json" beforeDir="false" afterPath="$PROJECT_DIR$/resources/assets/electricity/shapes/block/forge.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,8 +23,10 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
     "last_opened_file_path": "/home/anluin/Projects/Electricity-new",
     "nodejs_package_manager_path": "npm",
@@ -48,6 +40,23 @@
     ]
   }
 }]]></component>
+  <component name="RunManager">
+    <configuration name="Launch Client" type="ShConfigurationType">
+      <option name="SCRIPT_TEXT" value="dotnet build -c Debug &amp;&amp; mono ~/ApplicationData/vintagestory/Vintagestory.exe --playStyle preset-surviveandbuild --openWorld modding test world --addModPath $(pwd)/bin/Debug/net461 --addOrigin $(pwd)/resources/assets" />
+      <option name="INDEPENDENT_SCRIPT_PATH" value="true" />
+      <option name="SCRIPT_PATH" value="" />
+      <option name="SCRIPT_OPTIONS" value="" />
+      <option name="INDEPENDENT_SCRIPT_WORKING_DIRECTORY" value="true" />
+      <option name="SCRIPT_WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="INDEPENDENT_INTERPRETER_PATH" value="true" />
+      <option name="INTERPRETER_PATH" value="/bin/bash" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="EXECUTE_IN_TERMINAL" value="true" />
+      <option name="EXECUTE_SCRIPT_FILE" value="false" />
+      <envs />
+      <method v="2" />
+    </configuration>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -57,6 +66,7 @@
       <option name="presentableId" value="Default" />
       <updated>1674906409539</updated>
       <workItem from="1674906410634" duration="1043000" />
+      <workItem from="1674992361171" duration="2915000" />
     </task>
     <servers />
   </component>
