@@ -2,16 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="01b87c08-5b42-46b4-bc3b-e1ebedee8464" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/resources/assets/electricity/recipes/grid/heater.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.electricity.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.electricity.dir/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/assets/electricity/blocktypes/heater.json" beforeDir="false" afterPath="$PROJECT_DIR$/resources/assets/electricity/blocktypes/heater.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/assets/electricity/blocktypes/lamp.json" beforeDir="false" afterPath="$PROJECT_DIR$/resources/assets/electricity/blocktypes/lamp.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/assets/electricity/lang/de.json" beforeDir="false" afterPath="$PROJECT_DIR$/resources/assets/electricity/lang/de.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/assets/electricity/lang/en.json" beforeDir="false" afterPath="$PROJECT_DIR$/resources/assets/electricity/lang/en.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/assets/electricity/shapes/block/lamp-disabled.json" beforeDir="false" afterPath="$PROJECT_DIR$/resources/assets/electricity/shapes/block/lamp-disabled.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/assets/electricity/shapes/block/lamp-enabled.json" beforeDir="false" afterPath="$PROJECT_DIR$/resources/assets/electricity/shapes/block/lamp-enabled.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Content/Block/Entity/Behavior/Lamp.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Content/Block/Entity/Behavior/Lamp.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Content/Block/Entity/Lamp.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Content/Block/Entity/Lamp.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Content/Block/Lamp.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Content/Block/Lamp.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Electricity.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Electricity.csproj" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
