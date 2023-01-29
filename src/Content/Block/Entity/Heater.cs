@@ -32,6 +32,10 @@ namespace Electricity.Content.Block.Entity {
             get => this.Behavior.HeatLevel > 0;
         }
 
+        public float GetHeatStrength(IWorldAccessor world, BlockPos heatSourcePos, BlockPos heatReceiverPos) {
+            return this.Behavior.HeatLevel * 20f / 8.0f;
+        }
+
         public override void ToTreeAttributes(ITreeAttribute tree) {
             base.ToTreeAttributes(tree);
 
@@ -46,10 +50,6 @@ namespace Electricity.Content.Block.Entity {
             } catch (Exception exception) {
                 this.Api?.Logger.Error(exception.ToString());
             }
-        }
-
-        public float GetHeatStrength(IWorldAccessor world, BlockPos heatSourcePos, BlockPos heatReceiverPos) {
-            return this.Behavior.HeatLevel * 20f / 8.0f;
         }
     }
 }

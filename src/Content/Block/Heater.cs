@@ -217,8 +217,8 @@ namespace Electricity.Content.Block {
                 if (!MeshDataCache.TryGetValue(key, out var meshData)) {
                     var origin = new Vec3f(0.5f, 0.5f, 0.5f);
 
-                    var assetLocation = this.CodeWithVariant("state", entity.IsEnabled ? "enabled" : "disabled");
-                    var block = api.World.BlockAccessor.GetBlock(assetLocation);
+                    var assetLocation = CodeWithVariant("state", entity.IsEnabled ? "enabled" : "disabled");
+                    var block = this.api.World.BlockAccessor.GetBlock(assetLocation);
 
                     clientApi.Tesselator.TesselateBlock(block, out meshData);
 
