@@ -1,15 +1,10 @@
 {
-    "code": "heater",
-    "class": "Heater",
-    "entityClass": "Heater",
-    "behaviors": [
-        {
-            "name": "HeatSource"
-        }
-    ],
+    "code": "lamp_small",
+    "class": "SmallLamp",
+    "entityClass": "SmallLamp",
     "entityBehaviors": [
         {
-            "name": "Heater"
+            "name": "SmallLamp"
         },
         {
             "name": "Electricity"
@@ -34,10 +29,10 @@
     ],
     "shapeByType": {
         "*-disabled": {
-            "base": "block/heater-disabled"
+            "base": "block/lamp_small-disabled"
         },
         "*-enabled": {
-            "base": "block/heater-enabled"
+            "base": "block/lamp_small-enabled"
         }
     },
     "resistance": 1,

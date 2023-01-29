@@ -2,9 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="01b87c08-5b42-46b4-bc3b-e1ebedee8464" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/resources/assets/electricity/recipes/grid/heater.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/assets/electricity/blocktypes/lamp_small.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/assets/electricity/recipes/grid/lamp_small.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/assets/electricity/shapes/block/lamp_small-disabled.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/assets/electricity/shapes/block/lamp_small-enabled.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Content/Block/Entity/Behavior/SmallLamp.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Content/Block/Entity/SmallLamp.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Content/Block/SmallLamp.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.electricity.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.electricity.dir/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Electricity.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Electricity.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/assets/electricity/blocktypes/heater.json" beforeDir="false" afterPath="$PROJECT_DIR$/resources/assets/electricity/blocktypes/heater.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/assets/electricity/blocktypes/lamp.json" beforeDir="false" afterPath="$PROJECT_DIR$/resources/assets/electricity/blocktypes/lamp.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/assets/electricity/lang/en.json" beforeDir="false" afterPath="$PROJECT_DIR$/resources/assets/electricity/lang/en.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Electricity.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Electricity.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,30 +29,34 @@
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectId" id="2KxBZcqfGkkCOB9HbKp1FSpmUgL" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/anluin/Projects/Electricity-new&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.sourceCode.C#&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "/home/anluin/Projects/Electricity-new",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.sourceCode.C#",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;rider.external.source.directories&quot;: [
-      &quot;/home/anluin/.config/JetBrains/Rider2022.3/resharper-host/DecompilerCache&quot;,
-      &quot;/home/anluin/.config/JetBrains/Rider2022.3/resharper-host/SourcesCache&quot;,
-      &quot;/home/anluin/.local/share/Symbols/src&quot;
+  "keyToStringList": {
+    "rider.external.source.directories": [
+      "/home/anluin/.config/JetBrains/Rider2022.3/resharper-host/DecompilerCache",
+      "/home/anluin/.config/JetBrains/Rider2022.3/resharper-host/SourcesCache",
+      "/home/anluin/.local/share/Symbols/src"
     ]
   }
-}</component>
+}]]></component>
   <component name="RunManager">
     <configuration name="Launch Client" type="ShConfigurationType">
       <option name="SCRIPT_TEXT" value="dotnet build -c Debug &amp;&amp; mono ~/ApplicationData/vintagestory/Vintagestory.exe --playStyle preset-surviveandbuild --openWorld modding test world --addModPath $(pwd)/bin/Debug/net461 --addOrigin $(pwd)/resources/assets" />
@@ -91,6 +104,7 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
   </component>
 </project>

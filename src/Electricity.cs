@@ -51,6 +51,10 @@ namespace Electricity {
             api.RegisterBlockEntityClass("Lamp", typeof(Content.Block.Entity.Lamp));
             api.RegisterBlockEntityBehaviorClass("Lamp", typeof(Content.Block.Entity.Behavior.Lamp));
 
+            api.RegisterBlockClass("SmallLamp", typeof(SmallLamp));
+            api.RegisterBlockEntityClass("SmallLamp", typeof(Content.Block.Entity.SmallLamp));
+            api.RegisterBlockEntityBehaviorClass("SmallLamp", typeof(Content.Block.Entity.Behavior.SmallLamp));
+
             api.RegisterBlockClass("Accumulator", typeof(Accumulator));
             api.RegisterBlockEntityClass("Accumulator", typeof(Content.Block.Entity.Accumulator));
             api.RegisterBlockEntityBehaviorClass("Accumulator", typeof(Content.Block.Entity.Behavior.Accumulator));

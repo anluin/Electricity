@@ -32,11 +32,11 @@
     </ItemGroup>
 
     <ItemGroup>
-        <Folder Include="resources\assets" />
+        <Folder Include="resources\assets"/>
     </ItemGroup>
 
     <Target Name="Package" AfterTargets="PostBuildEvent" Condition="'$(Configuration)' == 'Release'">
-        <MakeDir Directories="bin/Bundle" Condition="!Exists('bin/Bundle')" />
-        <ZipDirectory DestinationFile="bin/Bundle/$(TargetName).zip" SourceDirectory="$(TargetDir)" Overwrite="true" />
+        <MakeDir Directories="bin/Bundle" Condition="!Exists('bin/Bundle')"/>
+        <ZipDirectory DestinationFile="bin/Bundle/$(TargetName).zip" SourceDirectory="$(TargetDir)" Overwrite="true"/>
     </Target>
 </Project>

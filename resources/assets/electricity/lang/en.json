@@ -6,6 +6,7 @@
     "block-generator-*": "Generator",
     "block-switch-*": "Switch",
     "block-lamp-*": "Electric Lamp",
+    "block-lamp_small-*": "Electric Lamp (Small)",
     "block-forge": "Electric Forge",
     "block-heater-*": "Electric Heater"
 }

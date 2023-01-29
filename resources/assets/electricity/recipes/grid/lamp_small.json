@@ -1,0 +1,22 @@
+{
+    "ingredientPattern": "MS",
+    "width": 2,
+    "height": 1,
+    "ingredients": {
+        "M": {
+            "type": "block",
+            "code": "electricity:lamp-*"
+        },
+        "S": {
+            "type": "item",
+            "code": "game:saw-*",
+            "isTool": true,
+            "toolDurabilityCost": 16
+        }
+    },
+    "output": {
+        "type": "block",
+        "code": "electricity:lamp_small-disabled",
+        "quantity": 4
+    }
+}
