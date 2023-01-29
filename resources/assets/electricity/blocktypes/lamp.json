@@ -59,45 +59,71 @@
         "place": "game:block/anvil",
         "walk": "game:walk/stone"
     },
+    "collisionBox": {
+        "x1": 0.0,
+        "y1": 0.0,
+        "z1": 0.0,
+        "x2": 1.0,
+        "y2": 0.0625,
+        "z2": 1.0
+    },
+    "selectionBox": {
+        "x1": 0.0,
+        "y1": 0.0,
+        "z1": 0.0,
+        "x2": 1.0,
+        "y2": 0.0625,
+        "z2": 1.0
+    },
     "guiTransform": {
         "translation": {
             "x": 0,
-            "y": 6,
+            "y": 3,
             "z": 0
         },
         "rotation": {
             "x": -51,
             "y": -63,
-            "z": -180
+            "z": 0
         },
         "origin": {
             "x": 0.5,
-            "y": 1.25,
+            "y": 0.0,
             "z": 0.5
         }
     },
     "fpHandTransform": {
         "translation": {
             "x": 0,
-            "y": 0,
+            "y": 0.75,
             "z": 0.5
         },
         "rotation": {
-            "x": 7,
-            "y": -20,
-            "z": -109
+            "x": -39,
+            "y": -35,
+            "z": 27
+        },
+        "origin": {
+            "x": 0.5,
+            "y": 0,
+            "z": 0.5
         }
     },
     "tpHandTransform": {
         "translation": {
             "x": -1.8,
-            "y": -2.35,
-            "z": -2.1
+            "y": -0.6,
+            "z": -1.75
         },
         "rotation": {
-            "x": -51,
-            "y": -85,
-            "z": -134
+            "x": -83,
+            "y": -2,
+            "z": -19
+        },
+        "origin": {
+            "x": 0.5,
+            "y": 0,
+            "z": 0.5
         }
     },
     "groundTransform": {
@@ -109,13 +135,13 @@
         "rotation": {
             "x": 0,
             "y": 0,
-            "z": 180
+            "z": 0
         },
         "origin": {
             "x": 0.5,
-            "y": 1.0,
+            "y": 0.0,
             "z": 0.5
         },
-        "scale": 1.5
+        "scale": 2.0
     }
 }
