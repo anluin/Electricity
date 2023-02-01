@@ -51,7 +51,7 @@ namespace Electricity.Content.Block.Entity.Behavior {
         }
 
         public override float GetResistance() {
-            return this.powerSetting != 0 ? FloatHelper.Remap(this.powerSetting / 100.0f, 0.0f, 1.0f, 0.01f, 0.075f) : 0.05f;
+            return this.powerSetting != 0 ? FloatHelper.Remap(this.powerSetting / 100.0f, 0.0f, 1.0f, 0.01f, 0.1f) : 0.05f;
         }
 
         public override void WasPlaced(BlockFacing connectedOnFacing) { }
