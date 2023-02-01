@@ -13,7 +13,7 @@ using Vintagestory.API.MathTools;
     "electricity",
     Website = "https://github.com/anluin/electricity",
     Description = "Brings electricity into the game!",
-    Version = "0.0.5",
+    Version = "0.0.6",
     Authors = new[] { "Anluin" }
 )]
 
