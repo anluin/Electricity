@@ -33,7 +33,7 @@ namespace Electricity.Content.Block.Entity.Behavior {
         }
 
         private float TorqueFactor {
-            get => 0.003f * this.powerSetting;
+            get => 0.0027f * this.powerSetting;
         }
 
         public override int[] AxisSign {
