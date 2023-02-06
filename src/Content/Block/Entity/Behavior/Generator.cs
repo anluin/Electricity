@@ -6,6 +6,7 @@ using Electricity.Utils;
 using Vintagestory.API.Client;
 using Vintagestory.API.Common;
 using Vintagestory.API.MathTools;
+using Vintagestory.API.Server;
 using Vintagestory.GameContent.Mechanics;
 
 namespace Electricity.Content.Block.Entity.Behavior {
@@ -15,6 +16,18 @@ namespace Electricity.Content.Block.Entity.Behavior {
         private int powerSetting;
 
         public Generator(BlockEntity blockEntity) : base(blockEntity) { }
+
+        public override void JoinNetwork(MechanicalNetwork network) {
+            base.JoinNetwork(network);
+
+            if (this.Api is ICoreServerAPI api && this.network is { }) {
+                foreach (var block in this.network.nodes.Select(mechanicalPowerNode => api.World.BlockAccessor.GetBlockEntity(mechanicalPowerNode.Key))) {
+                    if (block?.GetBehavior<Motor>() is { } motor) {
+                        api.Event.EnqueueMainThreadTask(() => api.World.BlockAccessor.BreakBlock(motor.Position, null), "break-motor");
+                    }
+                }
+            }
+        }
 
         public override BlockFacing OutFacingForNetworkDiscovery {
             get {
@@ -51,7 +64,9 @@ namespace Electricity.Content.Block.Entity.Behavior {
         }
 
         public override float GetResistance() {
-            return this.powerSetting != 0 ? FloatHelper.Remap(this.powerSetting / 100.0f, 0.0f, 1.0f, 0.01f, 0.075f) : 0.05f;
+            return this.powerSetting != 0
+                ? FloatHelper.Remap(this.powerSetting / 100.0f, 0.0f, 1.0f, 0.01f, 0.075f)
+                : 0.05f;
         }
 
         public override void WasPlaced(BlockFacing connectedOnFacing) { }
@@ -68,12 +83,23 @@ namespace Electricity.Content.Block.Entity.Behavior {
 
                 var shape = CompositeShape.Clone();
 
-                if (direction == BlockFacing.NORTH) shape.rotateY = 0;
-                if (direction == BlockFacing.EAST) shape.rotateY = 270;
-                if (direction == BlockFacing.SOUTH) shape.rotateY = 180;
-                if (direction == BlockFacing.WEST) shape.rotateY = 90;
-                if (direction == BlockFacing.UP) shape.rotateX = 90;
-                if (direction == BlockFacing.DOWN) shape.rotateX = 270;
+                if (direction == BlockFacing.NORTH)
+                    shape.rotateY = 0;
+
+                if (direction == BlockFacing.EAST)
+                    shape.rotateY = 270;
+
+                if (direction == BlockFacing.SOUTH)
+                    shape.rotateY = 180;
+
+                if (direction == BlockFacing.WEST)
+                    shape.rotateY = 90;
+
+                if (direction == BlockFacing.UP)
+                    shape.rotateX = 90;
+
+                if (direction == BlockFacing.DOWN)
+                    shape.rotateX = 270;
 
                 return shape;
             }

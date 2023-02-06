@@ -11,8 +11,8 @@ namespace Electricity.Content.Block {
         private readonly static Dictionary<Facing, MeshData> MeshData = new Dictionary<Facing, MeshData>();
 
         public MechanicalNetwork? GetNetwork(IWorldAccessor world, BlockPos pos) {
-            if (world.BlockAccessor.GetBlockEntity(pos)?.GetBehavior<BEBehaviorMPBase>() is IMechanicalPowerDevice
-                device) return device.Network;
+            if (world.BlockAccessor.GetBlockEntity(pos)?.GetBehavior<BEBehaviorMPBase>() is IMechanicalPowerDevice device) 
+                return device.Network;
 
             return null;
         }

@@ -6,6 +6,7 @@ using Electricity.Utils;
 using Vintagestory.API.Client;
 using Vintagestory.API.Common;
 using Vintagestory.API.MathTools;
+using Vintagestory.API.Server;
 using Vintagestory.GameContent.Mechanics;
 
 namespace Electricity.Content.Block.Entity.Behavior {
@@ -18,6 +19,18 @@ namespace Electricity.Content.Block.Entity.Behavior {
         private float resistance = 0.03f;
 
         public Motor(BlockEntity blockEntity) : base(blockEntity) { }
+
+        public override void JoinNetwork(MechanicalNetwork network) {
+            base.JoinNetwork(network);
+
+            if (this.Api is ICoreServerAPI api && this.network is { } && (
+                    from mechanicalPowerNode in this.network.nodes
+                    let block = api.World.BlockAccessor.GetBlockEntity(mechanicalPowerNode.Key)
+                    where block?.GetBehavior<Generator>() is { }
+                    select mechanicalPowerNode).Any()) {
+                api.Event.EnqueueMainThreadTask(() => api.World.BlockAccessor.BreakBlock(this.Position, null), "break-motor");
+            }
+        }
 
         public override BlockFacing OutFacingForNetworkDiscovery {
             get {
@@ -60,7 +73,9 @@ namespace Electricity.Content.Block.Entity.Behavior {
         }
 
         public override float GetResistance() {
-            return this.powerSetting != 0 ? FloatHelper.Remap(this.powerSetting / 100.0f, 0.0f, 1.0f, 0.01f, 0.075f) : 0.25f;
+            return this.powerSetting != 0
+                ? FloatHelper.Remap(this.powerSetting / 100.0f, 0.0f, 1.0f, 0.01f, 0.075f)
+                : 0.25f;
         }
 
         public override float GetTorque(long tick, float speed, out float resistance) {
@@ -68,7 +83,10 @@ namespace Electricity.Content.Block.Entity.Behavior {
             this.capableSpeed += (this.TargetSpeed - this.capableSpeed) * AccelerationFactor;
             var csFloat = (float)this.capableSpeed;
 
-            var dir = this.propagationDir == this.OutFacingForNetworkDiscovery ? 1f : -1f;
+            var dir = this.propagationDir == this.OutFacingForNetworkDiscovery
+                ? 1f
+                : -1f;
+
             var absSpeed = Math.Abs(speed);
             var excessSpeed = absSpeed - csFloat;
             var wrongDirection = dir * speed < 0f;
@@ -99,12 +117,23 @@ namespace Electricity.Content.Block.Entity.Behavior {
 
                 var shape = CompositeShape.Clone();
 
-                if (direction == BlockFacing.NORTH) shape.rotateY = 0;
-                if (direction == BlockFacing.EAST) shape.rotateY = 270;
-                if (direction == BlockFacing.SOUTH) shape.rotateY = 180;
-                if (direction == BlockFacing.WEST) shape.rotateY = 90;
-                if (direction == BlockFacing.UP) shape.rotateX = 90;
-                if (direction == BlockFacing.DOWN) shape.rotateX = 270;
+                if (direction == BlockFacing.NORTH)
+                    shape.rotateY = 0;
+
+                if (direction == BlockFacing.EAST)
+                    shape.rotateY = 270;
+
+                if (direction == BlockFacing.SOUTH)
+                    shape.rotateY = 180;
+
+                if (direction == BlockFacing.WEST)
+                    shape.rotateY = 90;
+
+                if (direction == BlockFacing.UP)
+                    shape.rotateX = 90;
+
+                if (direction == BlockFacing.DOWN)
+                    shape.rotateX = 270;
 
                 return shape;
             }
