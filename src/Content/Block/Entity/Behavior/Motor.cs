@@ -10,7 +10,7 @@ using Vintagestory.GameContent.Mechanics;
 
 namespace Electricity.Content.Block.Entity.Behavior {
     public sealed class Motor : BEBehaviorMPBase, IElectricConsumer {
-        private const float AccelerationFactor = 0.5f;
+        private const float AccelerationFactor = 1.0f;
         private static CompositeShape? CompositeShape;
 
         private double capableSpeed;
@@ -29,11 +29,11 @@ namespace Electricity.Content.Block.Entity.Behavior {
         }
 
         private float TargetSpeed {
-            get => 0.0075f * this.powerSetting;
+            get => 0.01f * this.powerSetting;
         }
 
         private float TorqueFactor {
-            get => 0.0027f * this.powerSetting;
+            get => 0.007f * this.powerSetting;
         }
 
         public override int[] AxisSign {
