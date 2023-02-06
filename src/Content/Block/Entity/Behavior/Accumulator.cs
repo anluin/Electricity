@@ -41,8 +41,8 @@ namespace Electricity.Content.Block.Entity.Behavior {
         public override void GetBlockInfo(IPlayer forPlayer, StringBuilder stringBuilder) {
             base.GetBlockInfo(forPlayer, stringBuilder);
 
-            stringBuilder.AppendLine(StringHelper.Progressbar(GetCapacity() * 100.0f / GetMaxCapacity()));
-            stringBuilder.AppendLine("└ Storage: " + GetCapacity() + "/" + GetMaxCapacity() + "⚡   ");
+            stringBuilder.AppendLine(StringHelper.Progressbar((this.GetCapacity() * 100.0f) / this.GetMaxCapacity()));
+            stringBuilder.AppendLine("└ Storage: " + this.GetCapacity() + "/" + this.GetMaxCapacity() + "⚡   ");
             stringBuilder.AppendLine();
         }
     }

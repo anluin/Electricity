@@ -11,6 +11,7 @@ namespace Electricity.Interface {
 
     public interface IElectricConsumer {
         public ConsumptionRange ConsumptionRange { get; }
+
         public void Consume(int amount);
     }
 }

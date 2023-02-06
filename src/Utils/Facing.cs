@@ -87,53 +87,132 @@ namespace Electricity.Utils {
         public static Facing OppositeDirection(Facing self) {
             var result = Facing.None;
 
-            result |= (self & Facing.NorthEast) != 0 ? Facing.NorthWest : Facing.None;
-            result |= (self & Facing.NorthWest) != 0 ? Facing.NorthEast : Facing.None;
-            result |= (self & Facing.NorthUp) != 0 ? Facing.NorthDown : Facing.None;
-            result |= (self & Facing.NorthDown) != 0 ? Facing.NorthUp : Facing.None;
+            result |= (self & Facing.NorthEast) != 0
+                ? Facing.NorthWest
+                : Facing.None;
 
-            result |= (self & Facing.EastNorth) != 0 ? Facing.EastSouth : Facing.None;
-            result |= (self & Facing.EastSouth) != 0 ? Facing.EastNorth : Facing.None;
-            result |= (self & Facing.EastUp) != 0 ? Facing.EastDown : Facing.None;
-            result |= (self & Facing.EastDown) != 0 ? Facing.EastUp : Facing.None;
+            result |= (self & Facing.NorthWest) != 0
+                ? Facing.NorthEast
+                : Facing.None;
 
-            result |= (self & Facing.SouthEast) != 0 ? Facing.SouthWest : Facing.None;
-            result |= (self & Facing.SouthWest) != 0 ? Facing.SouthEast : Facing.None;
-            result |= (self & Facing.SouthUp) != 0 ? Facing.SouthDown : Facing.None;
-            result |= (self & Facing.SouthDown) != 0 ? Facing.SouthUp : Facing.None;
+            result |= (self & Facing.NorthUp) != 0
+                ? Facing.NorthDown
+                : Facing.None;
 
-            result |= (self & Facing.UpNorth) != 0 ? Facing.UpSouth : Facing.None;
-            result |= (self & Facing.UpEast) != 0 ? Facing.UpWest : Facing.None;
-            result |= (self & Facing.UpSouth) != 0 ? Facing.UpNorth : Facing.None;
-            result |= (self & Facing.UpWest) != 0 ? Facing.UpEast : Facing.None;
+            result |= (self & Facing.NorthDown) != 0
+                ? Facing.NorthUp
+                : Facing.None;
 
-            result |= (self & Facing.DownNorth) != 0 ? Facing.DownSouth : Facing.None;
-            result |= (self & Facing.DownEast) != 0 ? Facing.DownWest : Facing.None;
-            result |= (self & Facing.DownSouth) != 0 ? Facing.DownNorth : Facing.None;
-            result |= (self & Facing.DownWest) != 0 ? Facing.DownEast : Facing.None;
+            result |= (self & Facing.EastNorth) != 0
+                ? Facing.EastSouth
+                : Facing.None;
+
+            result |= (self & Facing.EastSouth) != 0
+                ? Facing.EastNorth
+                : Facing.None;
+
+            result |= (self & Facing.EastUp) != 0
+                ? Facing.EastDown
+                : Facing.None;
+
+            result |= (self & Facing.EastDown) != 0
+                ? Facing.EastUp
+                : Facing.None;
+
+            result |= (self & Facing.SouthEast) != 0
+                ? Facing.SouthWest
+                : Facing.None;
+
+            result |= (self & Facing.SouthWest) != 0
+                ? Facing.SouthEast
+                : Facing.None;
+
+            result |= (self & Facing.SouthUp) != 0
+                ? Facing.SouthDown
+                : Facing.None;
+
+            result |= (self & Facing.SouthDown) != 0
+                ? Facing.SouthUp
+                : Facing.None;
+
+            result |= (self & Facing.UpNorth) != 0
+                ? Facing.UpSouth
+                : Facing.None;
+
+            result |= (self & Facing.UpEast) != 0
+                ? Facing.UpWest
+                : Facing.None;
+
+            result |= (self & Facing.UpSouth) != 0
+                ? Facing.UpNorth
+                : Facing.None;
+
+            result |= (self & Facing.UpWest) != 0
+                ? Facing.UpEast
+                : Facing.None;
+
+            result |= (self & Facing.DownNorth) != 0
+                ? Facing.DownSouth
+                : Facing.None;
+
+            result |= (self & Facing.DownEast) != 0
+                ? Facing.DownWest
+                : Facing.None;
+
+            result |= (self & Facing.DownSouth) != 0
+                ? Facing.DownNorth
+                : Facing.None;
+
+            result |= (self & Facing.DownWest) != 0
+                ? Facing.DownEast
+                : Facing.None;
 
             return result;
         }
 
         public static IEnumerable<BlockFacing> Faces(Facing self) {
             return new[] {
-                (self & Facing.NorthAll) != 0 ? BlockFacing.NORTH : null,
-                (self & Facing.EastAll) != 0 ? BlockFacing.EAST : null,
-                (self & Facing.SouthAll) != 0 ? BlockFacing.SOUTH : null,
-                (self & Facing.WestAll) != 0 ? BlockFacing.WEST : null,
-                (self & Facing.UpAll) != 0 ? BlockFacing.UP : null,
-                (self & Facing.DownAll) != 0 ? BlockFacing.DOWN : null
+                (self & Facing.NorthAll) != 0
+                    ? BlockFacing.NORTH
+                    : null,
+                (self & Facing.EastAll) != 0
+                    ? BlockFacing.EAST
+                    : null,
+                (self & Facing.SouthAll) != 0
+                    ? BlockFacing.SOUTH
+                    : null,
+                (self & Facing.WestAll) != 0
+                    ? BlockFacing.WEST
+                    : null,
+                (self & Facing.UpAll) != 0
+                    ? BlockFacing.UP
+                    : null,
+                (self & Facing.DownAll) != 0
+                    ? BlockFacing.DOWN
+                    : null
             }.Where(face => face is { }).Select(face => face!);
         }
 
         public static IEnumerable<BlockFacing> Directions(Facing self) {
             return new[] {
-                (self & Facing.AllNorth) != 0 ? BlockFacing.NORTH : null,
-                (self & Facing.AllEast) != 0 ? BlockFacing.EAST : null,
-                (self & Facing.AllSouth) != 0 ? BlockFacing.SOUTH : null,
-                (self & Facing.AllWest) != 0 ? BlockFacing.WEST : null,
-                (self & Facing.AllUp) != 0 ? BlockFacing.UP : null,
-                (self & Facing.AllDown) != 0 ? BlockFacing.DOWN : null
+                (self & Facing.AllNorth) != 0
+                    ? BlockFacing.NORTH
+                    : null,
+                (self & Facing.AllEast) != 0
+                    ? BlockFacing.EAST
+                    : null,
+                (self & Facing.AllSouth) != 0
+                    ? BlockFacing.SOUTH
+                    : null,
+                (self & Facing.AllWest) != 0
+                    ? BlockFacing.WEST
+                    : null,
+                (self & Facing.AllUp) != 0
+                    ? BlockFacing.UP
+                    : null,
+                (self & Facing.AllDown) != 0
+                    ? BlockFacing.DOWN
+                    : null
             }.Where(face => face is { }).Select(face => face!);
         }
 

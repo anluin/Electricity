@@ -11,15 +11,17 @@ namespace Electricity.Content.Block {
         private readonly static Dictionary<Facing, MeshData> MeshData = new Dictionary<Facing, MeshData>();
 
         public MechanicalNetwork? GetNetwork(IWorldAccessor world, BlockPos pos) {
-            if (world.BlockAccessor.GetBlockEntity(pos)?.GetBehavior<BEBehaviorMPBase>() is IMechanicalPowerDevice device)
+            if (world.BlockAccessor.GetBlockEntity(pos)?.GetBehavior<BEBehaviorMPBase>() is IMechanicalPowerDevice device) {
                 return device.Network;
+            }
 
             return null;
         }
 
         public bool HasMechPowerConnectorAt(IWorldAccessor world, BlockPos pos, BlockFacing face) {
-            if (world.BlockAccessor.GetBlockEntity(pos) is Entity.Generator entity && entity.Facing != Facing.None)
+            if (world.BlockAccessor.GetBlockEntity(pos) is Entity.Generator entity && entity.Facing != Facing.None) {
                 return FacingHelper.Directions(entity.Facing).First() == face;
+            }
 
             return false;
         }
@@ -39,8 +41,9 @@ namespace Electricity.Content.Block {
                 !world.BlockAccessor
                     .GetBlock(blockSel.Position.AddCopy(blockFacing))
                     .SideSolid[blockFacing.Opposite.Index]
-            )
+            ) {
                 return false;
+            }
 
             return base.TryPlaceBlock(world, byPlayer, itemstack, blockSel, ref failureCode);
         }
@@ -81,8 +84,9 @@ namespace Electricity.Content.Block {
                 world.BlockAccessor.GetBlockEntity(pos) is Entity.Generator entity &&
                 FacingHelper.Faces(entity.Facing).First() is { } blockFacing &&
                 !world.BlockAccessor.GetBlock(pos.AddCopy(blockFacing)).SideSolid[blockFacing.Opposite.Index]
-            )
+            ) {
                 world.BlockAccessor.BreakBlock(pos, null);
+            }
         }
 
         public override void OnJsonTesselation(ref MeshData sourceMesh, ref int[] lightRgbsByCorner, BlockPos pos, Vintagestory.API.Common.Block[] chunkExtBlocks, int extIndex3d) {
@@ -99,77 +103,101 @@ namespace Electricity.Content.Block {
 
                     clientApi.Tesselator.TesselateBlock(block, out meshData);
 
-                    if ((facing & Facing.NorthEast) != 0)
+                    if ((facing & Facing.NorthEast) != 0) {
                         meshData.Rotate(origin, 90.0f * GameMath.DEG2RAD, 270.0f * GameMath.DEG2RAD, 0.0f);
+                    }
 
-                    if ((facing & Facing.NorthWest) != 0)
+                    if ((facing & Facing.NorthWest) != 0) {
                         meshData.Rotate(origin, 90.0f * GameMath.DEG2RAD, 90.0f * GameMath.DEG2RAD, 0.0f);
+                    }
 
-                    if ((facing & Facing.NorthUp) != 0)
+                    if ((facing & Facing.NorthUp) != 0) {
                         meshData.Rotate(origin, 90.0f * GameMath.DEG2RAD, 0.0f * GameMath.DEG2RAD, 0.0f);
+                    }
 
-                    if ((facing & Facing.NorthDown) != 0)
+                    if ((facing & Facing.NorthDown) != 0) {
                         meshData.Rotate(origin, 90.0f * GameMath.DEG2RAD, 180.0f * GameMath.DEG2RAD, 0.0f);
+                    }
 
-                    if ((facing & Facing.EastNorth) != 0)
+                    if ((facing & Facing.EastNorth) != 0) {
                         meshData.Rotate(origin, 0.0f * GameMath.DEG2RAD, 0.0f, 90.0f * GameMath.DEG2RAD);
+                    }
 
-                    if ((facing & Facing.EastSouth) != 0)
+                    if ((facing & Facing.EastSouth) != 0) {
                         meshData.Rotate(origin, 180.0f * GameMath.DEG2RAD, 0.0f, 90.0f * GameMath.DEG2RAD);
+                    }
 
-                    if ((facing & Facing.EastUp) != 0)
+                    if ((facing & Facing.EastUp) != 0) {
                         meshData.Rotate(origin, 90.0f * GameMath.DEG2RAD, 0.0f, 90.0f * GameMath.DEG2RAD);
+                    }
 
-                    if ((facing & Facing.EastDown) != 0)
+                    if ((facing & Facing.EastDown) != 0) {
                         meshData.Rotate(origin, 270.0f * GameMath.DEG2RAD, 0.0f, 90.0f * GameMath.DEG2RAD);
+                    }
 
-                    if ((facing & Facing.SouthEast) != 0)
+                    if ((facing & Facing.SouthEast) != 0) {
                         meshData.Rotate(origin, 90.0f * GameMath.DEG2RAD, 270.0f * GameMath.DEG2RAD, 180.0f * GameMath.DEG2RAD);
+                    }
 
-                    if ((facing & Facing.SouthWest) != 0)
+                    if ((facing & Facing.SouthWest) != 0) {
                         meshData.Rotate(origin, 90.0f * GameMath.DEG2RAD, 90.0f * GameMath.DEG2RAD, 180.0f * GameMath.DEG2RAD);
+                    }
 
-                    if ((facing & Facing.SouthUp) != 0)
+                    if ((facing & Facing.SouthUp) != 0) {
                         meshData.Rotate(origin, 90.0f * GameMath.DEG2RAD, 0.0f * GameMath.DEG2RAD, 180.0f * GameMath.DEG2RAD);
+                    }
 
-                    if ((facing & Facing.SouthDown) != 0)
+                    if ((facing & Facing.SouthDown) != 0) {
                         meshData.Rotate(origin, 90.0f * GameMath.DEG2RAD, 180.0f * GameMath.DEG2RAD, 180.0f * GameMath.DEG2RAD);
+                    }
 
-                    if ((facing & Facing.WestNorth) != 0)
+                    if ((facing & Facing.WestNorth) != 0) {
                         meshData.Rotate(origin, 0.0f * GameMath.DEG2RAD, 0.0f, 270.0f * GameMath.DEG2RAD);
+                    }
 
-                    if ((facing & Facing.WestSouth) != 0)
+                    if ((facing & Facing.WestSouth) != 0) {
                         meshData.Rotate(origin, 180.0f * GameMath.DEG2RAD, 0.0f, 270.0f * GameMath.DEG2RAD);
+                    }
 
-                    if ((facing & Facing.WestUp) != 0)
+                    if ((facing & Facing.WestUp) != 0) {
                         meshData.Rotate(origin, 90.0f * GameMath.DEG2RAD, 0.0f, 270.0f * GameMath.DEG2RAD);
+                    }
 
-                    if ((facing & Facing.WestDown) != 0)
+                    if ((facing & Facing.WestDown) != 0) {
                         meshData.Rotate(origin, 270.0f * GameMath.DEG2RAD, 0.0f, 270.0f * GameMath.DEG2RAD);
+                    }
 
-                    if ((facing & Facing.UpNorth) != 0)
+                    if ((facing & Facing.UpNorth) != 0) {
                         meshData.Rotate(origin, 0.0f, 0.0f * GameMath.DEG2RAD, 180.0f * GameMath.DEG2RAD);
+                    }
 
-                    if ((facing & Facing.UpEast) != 0)
+                    if ((facing & Facing.UpEast) != 0) {
                         meshData.Rotate(origin, 0.0f, 270.0f * GameMath.DEG2RAD, 180.0f * GameMath.DEG2RAD);
+                    }
 
-                    if ((facing & Facing.UpSouth) != 0)
+                    if ((facing & Facing.UpSouth) != 0) {
                         meshData.Rotate(origin, 0.0f, 180.0f * GameMath.DEG2RAD, 180.0f * GameMath.DEG2RAD);
+                    }
 
-                    if ((facing & Facing.UpWest) != 0)
+                    if ((facing & Facing.UpWest) != 0) {
                         meshData.Rotate(origin, 0.0f, 90.0f * GameMath.DEG2RAD, 180.0f * GameMath.DEG2RAD);
+                    }
 
-                    if ((facing & Facing.DownNorth) != 0)
+                    if ((facing & Facing.DownNorth) != 0) {
                         meshData.Rotate(origin, 0.0f, 0.0f * GameMath.DEG2RAD, 0.0f);
+                    }
 
-                    if ((facing & Facing.DownEast) != 0)
+                    if ((facing & Facing.DownEast) != 0) {
                         meshData.Rotate(origin, 0.0f, 270.0f * GameMath.DEG2RAD, 0.0f);
+                    }
 
-                    if ((facing & Facing.DownSouth) != 0)
+                    if ((facing & Facing.DownSouth) != 0) {
                         meshData.Rotate(origin, 0.0f, 180.0f * GameMath.DEG2RAD, 0.0f);
+                    }
 
-                    if ((facing & Facing.DownWest) != 0)
+                    if ((facing & Facing.DownWest) != 0) {
                         meshData.Rotate(origin, 0.0f, 90.0f * GameMath.DEG2RAD, 0.0f);
+                    }
 
                     MeshData.Add(facing, meshData);
                 }

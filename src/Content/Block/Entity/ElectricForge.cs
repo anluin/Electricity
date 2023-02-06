@@ -31,7 +31,7 @@ namespace Electricity.Content.Block.Entity {
                     if (value && !this.burning) {
                         this.renderer?.SetContents(this.Contents, 0, this.burning, false);
                         this.lastTickTotalHours = this.Api.World.Calendar.TotalHours;
-                        MarkDirty();
+                        this.MarkDirty();
                     }
 
                     this.burning = value;
@@ -39,12 +39,12 @@ namespace Electricity.Content.Block.Entity {
             }
         }
 
-        private Behavior.Electricity? Electricity {
-            get => GetBehavior<Behavior.Electricity>();
-        }
+        private Behavior.Electricity? Electricity => this.GetBehavior<Behavior.Electricity>();
 
         public float GetHeatStrength(IWorldAccessor world, BlockPos heatSourcePos, BlockPos heatReceiverPos) {
-            return this.burning ? 7 : 0;
+            return this.burning
+                ? 7
+                : 0;
         }
 
         public override void Initialize(ICoreAPI api) {
@@ -56,17 +56,17 @@ namespace Electricity.Content.Block.Entity {
                 clientApi.Event.RegisterRenderer(this.renderer = new ForgeContentsRenderer(this.Pos, clientApi), EnumRenderStage.Opaque, "forge");
                 this.renderer.SetContents(this.Contents, 0, this.burning, true);
 
-                RegisterGameTickListener(OnClientTick, 50);
+                this.RegisterGameTickListener(this.OnClientTick, 50);
             }
 
             this.weatherSystem = api.ModLoader.GetModSystem<WeatherSystemBase>();
 
-            RegisterGameTickListener(OnCommonTick, 200);
+            this.RegisterGameTickListener(this.OnCommonTick, 200);
         }
 
         private void OnClientTick(float dt) {
             if (this.Api?.Side == EnumAppSide.Client && this.clientSidePrevBurning != this.burning) {
-                ToggleAmbientSounds(this.burning);
+                this.ToggleAmbientSounds(this.burning);
                 this.clientSidePrevBurning = this.burning;
             }
 
@@ -88,7 +88,7 @@ namespace Electricity.Content.Block.Entity {
                         var tempGain = (float)(hoursPassed * 1500);
 
                         this.Contents.Collectible.SetTemperature(this.Api.World, this.Contents, Math.Min(this.MaxTemp, temp + tempGain));
-                        MarkDirty();
+                        this.MarkDirty();
                     }
                 }
             }
@@ -107,15 +107,17 @@ namespace Electricity.Content.Block.Entity {
                 if (this.burning) {
                     playSound = true;
 
-                    MarkDirty();
+                    this.MarkDirty();
                 }
 
-                var temp = this.Contents == null ? 0 : this.Contents.Collectible.GetTemperature(this.Api.World, this.Contents);
+                var temp = this.Contents == null
+                    ? 0
+                    : this.Contents.Collectible.GetTemperature(this.Api.World, this.Contents);
 
                 if (temp > 20) {
                     playSound = temp > 100;
                     this.Contents?.Collectible.SetTemperature(this.Api.World, this.Contents, Math.Min(this.MaxTemp, temp - 8), false);
-                    MarkDirty();
+                    this.MarkDirty();
                 }
 
                 if (playSound) {
@@ -127,7 +129,9 @@ namespace Electricity.Content.Block.Entity {
         }
 
         public void ToggleAmbientSounds(bool on) {
-            if (this.Api.Side != EnumAppSide.Client) return;
+            if (this.Api.Side != EnumAppSide.Client) {
+                return;
+            }
 
             if (on) {
                 if (!(this.ambientSound is { IsPlaying: true })) {
@@ -143,7 +147,8 @@ namespace Electricity.Content.Block.Entity {
 
                     this.ambientSound.Start();
                 }
-            } else {
+            }
+            else {
                 this.ambientSound?.Stop();
                 this.ambientSound?.Dispose();
                 this.ambientSound = null;
@@ -154,26 +159,32 @@ namespace Electricity.Content.Block.Entity {
             var slot = byPlayer.InventoryManager.ActiveHotbarSlot;
 
             if (!byPlayer.Entity.Controls.ShiftKey) {
-                if (this.Contents == null) return false;
+                if (this.Contents == null) {
+                    return false;
+                }
+
                 var split = this.Contents.Clone();
                 split.StackSize = 1;
                 this.Contents.StackSize--;
 
-                if (this.Contents.StackSize == 0)
+                if (this.Contents.StackSize == 0) {
                     this.Contents = null;
+                }
 
                 if (!byPlayer.InventoryManager.TryGiveItemstack(split)) {
                     world.SpawnItemEntity(split, this.Pos.ToVec3d().Add(0.5, 0.5, 0.5));
                 }
 
                 this.renderer?.SetContents(this.Contents, 0, this.burning, true);
-                MarkDirty();
+                this.MarkDirty();
                 this.Api.World.PlaySoundAt(new AssetLocation("sounds/block/ingot"), this.Pos.X, this.Pos.Y, this.Pos.Z, byPlayer, false);
 
                 return true;
             }
 
-            if (slot.Itemstack == null) return false;
+            if (slot.Itemstack == null) {
+                return false;
+            }
 
             var firstCodePart = slot.Itemstack.Collectible.FirstCodePart();
             var forgableGeneric = slot.Itemstack.Collectible.Attributes?.IsTrue("forgable") == true;
@@ -187,7 +198,7 @@ namespace Electricity.Content.Block.Entity {
                 slot.MarkDirty();
 
                 this.renderer?.SetContents(this.Contents, 0, this.burning, true);
-                MarkDirty();
+                this.MarkDirty();
                 this.Api.World.PlaySoundAt(new AssetLocation("sounds/block/ingot"), this.Pos.X, this.Pos.Y, this.Pos.Z, byPlayer, false);
 
                 return true;
@@ -199,7 +210,7 @@ namespace Electricity.Content.Block.Entity {
                 var myTemp = this.Contents.Collectible.GetTemperature(this.Api.World, this.Contents);
                 var histemp = slot.Itemstack.Collectible.GetTemperature(this.Api.World, slot.Itemstack);
 
-                this.Contents.Collectible.SetTemperature(world, this.Contents, (myTemp * this.Contents.StackSize + histemp * 1) / (this.Contents.StackSize + 1));
+                this.Contents.Collectible.SetTemperature(world, this.Contents, ((myTemp * this.Contents.StackSize) + (histemp * 1)) / (this.Contents.StackSize + 1));
                 this.Contents.StackSize++;
 
                 slot.TakeOut(1);
@@ -208,7 +219,7 @@ namespace Electricity.Content.Block.Entity {
                 this.renderer?.SetContents(this.Contents, 0, this.burning, true);
                 this.Api.World.PlaySoundAt(new AssetLocation("sounds/block/ingot"), this.Pos.X, this.Pos.Y, this.Pos.Z, byPlayer, false);
 
-                MarkDirty();
+                this.MarkDirty();
 
                 return true;
             }
@@ -221,8 +232,9 @@ namespace Electricity.Content.Block.Entity {
 
             var electricity = this.Electricity;
 
-            if (electricity != null)
+            if (electricity != null) {
                 electricity.Connection = Facing.DownAll;
+            }
         }
 
         public override void OnBlockRemoved() {
@@ -264,7 +276,10 @@ namespace Electricity.Content.Block.Entity {
             base.ToTreeAttributes(tree);
 
             tree.SetItemstack("contents", this.Contents);
-            tree.SetInt("burning", this.burning ? 1 : 0);
+            tree.SetInt("burning", this.burning
+                ? 1
+                : 0);
+
             tree.SetDouble("lastTickTotalHours", this.lastTickTotalHours);
         }
 
@@ -282,8 +297,8 @@ namespace Electricity.Content.Block.Entity {
             }
         }
 
-        public override void OnLoadCollectibleMappings(
-            IWorldAccessor worldForResolve, Dictionary<int, AssetLocation> oldBlockIdMapping, Dictionary<int, AssetLocation> oldItemIdMapping, int schematicSeed) {
+        public override void OnLoadCollectibleMappings(IWorldAccessor worldForResolve, Dictionary<int, AssetLocation> oldBlockIdMapping, Dictionary<int, AssetLocation> oldItemIdMapping,
+            int schematicSeed) {
             base.OnLoadCollectibleMappings(worldForResolve, oldBlockIdMapping, oldItemIdMapping, schematicSeed);
 
             if (this.Contents?.FixMapping(oldBlockIdMapping, oldItemIdMapping, worldForResolve) == false) {
@@ -297,7 +312,8 @@ namespace Electricity.Content.Block.Entity {
             if (this.Contents != null) {
                 if (this.Contents.Class == EnumItemClass.Item) {
                     blockIdMapping[this.Contents.Id] = this.Contents.Item.Code;
-                } else {
+                }
+                else {
                     itemIdMapping[this.Contents.Id] = this.Contents.Block.Code;
                 }
             }

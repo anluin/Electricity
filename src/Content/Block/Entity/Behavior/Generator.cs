@@ -17,38 +17,25 @@ namespace Electricity.Content.Block.Entity.Behavior {
 
         public Generator(BlockEntity blockEntity) : base(blockEntity) { }
 
-        public override void JoinNetwork(MechanicalNetwork network) {
-            base.JoinNetwork(network);
-
-            if (this.Api is ICoreServerAPI api && this.network is { }) {
-                foreach (var block in this.network.nodes.Select(mechanicalPowerNode => api.World.BlockAccessor.GetBlockEntity(mechanicalPowerNode.Key))) {
-                    if (block?.GetBehavior<Motor>() is { } motor) {
-                        api.Event.EnqueueMainThreadTask(() => api.World.BlockAccessor.BreakBlock(motor.Position, null), "break-motor");
-                    }
-                }
-            }
-        }
-
         public override BlockFacing OutFacingForNetworkDiscovery {
             get {
-                if (this.Blockentity is Entity.Generator entity && entity.Facing != Facing.None)
+                if (this.Blockentity is Entity.Generator entity && entity.Facing != Facing.None) {
                     return FacingHelper.Directions(entity.Facing).First();
+                }
 
                 return BlockFacing.NORTH;
             }
         }
 
-        public override int[] AxisSign {
-            get => this.OutFacingForNetworkDiscovery.Index switch {
-                0 => new[] { +0, +0, -1 },
-                1 => new[] { -1, +0, +0 },
-                2 => new[] { +0, +0, -1 },
-                3 => new[] { -1, +0, +0 },
-                4 => new[] { +0, +1, +0 },
-                5 => new[] { +0, -1, +0 },
-                _ => this.AxisSign
-            };
-        }
+        public override int[] AxisSign => this.OutFacingForNetworkDiscovery.Index switch {
+            0 => new[] { +0, +0, -1 },
+            1 => new[] { -1, +0, +0 },
+            2 => new[] { +0, +0, -1 },
+            3 => new[] { -1, +0, +0 },
+            4 => new[] { +0, +1, +0 },
+            5 => new[] { +0, -1, +0 },
+            _ => this.AxisSign
+        };
 
         public int Produce() {
             var speed = GameMath.Clamp(Math.Abs(this.network?.Speed ?? 0.0f), 0.0f, 1.0f);
@@ -61,6 +48,18 @@ namespace Electricity.Content.Block.Entity.Behavior {
             }
 
             return (int)(speed * 100.0f);
+        }
+
+        public override void JoinNetwork(MechanicalNetwork network) {
+            base.JoinNetwork(network);
+
+            if (this.Api is ICoreServerAPI api && this.network is { }) {
+                foreach (var block in this.network.nodes.Select(mechanicalPowerNode => api.World.BlockAccessor.GetBlockEntity(mechanicalPowerNode.Key))) {
+                    if (block?.GetBehavior<Motor>() is { } motor) {
+                        api.Event.EnqueueMainThreadTask(() => api.World.BlockAccessor.BreakBlock(motor.Position, null), "break-motor");
+                    }
+                }
+            }
         }
 
         public override float GetResistance() {
@@ -83,23 +82,29 @@ namespace Electricity.Content.Block.Entity.Behavior {
 
                 var shape = CompositeShape.Clone();
 
-                if (direction == BlockFacing.NORTH)
+                if (direction == BlockFacing.NORTH) {
                     shape.rotateY = 0;
+                }
 
-                if (direction == BlockFacing.EAST)
+                if (direction == BlockFacing.EAST) {
                     shape.rotateY = 270;
+                }
 
-                if (direction == BlockFacing.SOUTH)
+                if (direction == BlockFacing.SOUTH) {
                     shape.rotateY = 180;
+                }
 
-                if (direction == BlockFacing.WEST)
+                if (direction == BlockFacing.WEST) {
                     shape.rotateY = 90;
+                }
 
-                if (direction == BlockFacing.UP)
+                if (direction == BlockFacing.UP) {
                     shape.rotateX = 90;
+                }
 
-                if (direction == BlockFacing.DOWN)
+                if (direction == BlockFacing.DOWN) {
                     shape.rotateX = 270;
+                }
 
                 return shape;
             }
@@ -108,7 +113,7 @@ namespace Electricity.Content.Block.Entity.Behavior {
         }
 
         protected override void updateShape(IWorldAccessor worldForResolve) {
-            this.Shape = GetShape();
+            this.Shape = this.GetShape();
         }
 
         public override bool OnTesselation(ITerrainMeshPool mesher, ITesselatorAPI tesselator) {

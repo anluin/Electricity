@@ -10,14 +10,12 @@ namespace Electricity.Content.Block.Entity.Behavior {
 
         public ElectricForge(BlockEntity blockEntity) : base(blockEntity) { }
 
-        public ConsumptionRange ConsumptionRange {
-            get => new ConsumptionRange(10, 100);
-        }
+        public ConsumptionRange ConsumptionRange => new ConsumptionRange(10, 100);
 
         public void Consume(int amount) {
             if (this.powerSetting != amount) {
                 this.powerSetting = amount;
-                this.maxTemp = amount * 1100 / 100;
+                this.maxTemp = (amount * 1100) / 100;
 
                 if (this.Blockentity is Entity.ElectricForge entity) {
                     entity.MaxTemp = this.maxTemp;

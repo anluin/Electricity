@@ -10,13 +10,9 @@ namespace Electricity.Content.Block.Entity {
     public class Heater : BlockEntity, IHeatSource {
         private Facing facing = Facing.None;
 
-        private Behavior.Electricity Electricity {
-            get => GetBehavior<Behavior.Electricity>();
-        }
+        private Behavior.Electricity Electricity => this.GetBehavior<Behavior.Electricity>();
 
-        private Behavior.Heater Behavior {
-            get => GetBehavior<Behavior.Heater>();
-        }
+        private Behavior.Heater Behavior => this.GetBehavior<Behavior.Heater>();
 
         public Facing Facing {
             get => this.facing;
@@ -28,12 +24,10 @@ namespace Electricity.Content.Block.Entity {
             }
         }
 
-        public bool IsEnabled {
-            get => this.Behavior.HeatLevel > 0;
-        }
+        public bool IsEnabled => this.Behavior.HeatLevel > 0;
 
         public float GetHeatStrength(IWorldAccessor world, BlockPos heatSourcePos, BlockPos heatReceiverPos) {
-            return this.Behavior.HeatLevel * 20f / 8.0f;
+            return (this.Behavior.HeatLevel * 20f) / 8.0f;
         }
 
         public override void ToTreeAttributes(ITreeAttribute tree) {

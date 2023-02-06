@@ -8,8 +8,7 @@ namespace Electricity.Content.Block.Entity {
     public class Motor : BlockEntity {
         private Facing facing = Facing.None;
 
-        private Behavior.Electricity Electricity => 
-            GetBehavior<Behavior.Electricity>();
+        private Behavior.Electricity Electricity => this.GetBehavior<Behavior.Electricity>();
 
         public Facing Facing {
             get => this.facing;

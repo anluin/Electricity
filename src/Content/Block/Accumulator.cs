@@ -17,8 +17,9 @@ namespace Electricity.Content.Block {
                 !world.BlockAccessor
                     .GetBlock(pos.AddCopy(BlockFacing.DOWN))
                     .SideSolid[BlockFacing.indexUP]
-            )
+            ) {
                 world.BlockAccessor.BreakBlock(pos, null);
+            }
         }
     }
 }

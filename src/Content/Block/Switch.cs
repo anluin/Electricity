@@ -12,10 +12,11 @@ namespace Electricity.Content.Block {
                   blockEntity.GetBehavior<Entity.Behavior.Electricity>() is { } electricity &&
                   (blockEntity.Switches & face) == 0 &&
                   (electricity.Connection & face) != 0)
-            )
+            ) {
                 return false;
+            }
 
-            blockEntity.Switches = blockEntity.Switches & ~face | selection.Facing;
+            blockEntity.Switches = (blockEntity.Switches & ~face) | selection.Facing;
             blockEntity.SwitchesState |= face;
             blockEntity.MarkDirty(true);
 

@@ -9,12 +9,10 @@ namespace Electricity.Content.Block.Entity.Behavior {
 
         public int HeatLevel { get; private set; }
 
-        public ConsumptionRange ConsumptionRange {
-            get => new ConsumptionRange(1, 8);
-        }
+        public ConsumptionRange ConsumptionRange => new ConsumptionRange(1, 8);
 
         public void Consume(int heatLevel) {
-            if (this.Api is { } api)
+            if (this.Api is { } api) {
                 if (heatLevel != this.HeatLevel) {
                     if (this.HeatLevel == 0 && heatLevel > 0) {
                         var assetLocation = this.Blockentity.Block.CodeWithVariant("state", "enabled");
@@ -37,12 +35,13 @@ namespace Electricity.Content.Block.Entity.Behavior {
                     this.HeatLevel = heatLevel;
                     this.Blockentity.MarkDirty(true);
                 }
+            }
         }
 
         public override void GetBlockInfo(IPlayer forPlayer, StringBuilder stringBuilder) {
             base.GetBlockInfo(forPlayer, stringBuilder);
 
-            stringBuilder.AppendLine(StringHelper.Progressbar(this.HeatLevel * 100.0f / 8.0f));
+            stringBuilder.AppendLine(StringHelper.Progressbar((this.HeatLevel * 100.0f) / 8.0f));
             stringBuilder.AppendLine("└ Consumption: " + this.HeatLevel + "/" + 8 + "⚡   ");
             stringBuilder.AppendLine();
         }

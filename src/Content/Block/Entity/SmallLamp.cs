@@ -8,13 +8,9 @@ namespace Electricity.Content.Block.Entity {
     public class SmallLamp : BlockEntity {
         private Facing facing = Facing.None;
 
-        private Behavior.Electricity Electricity {
-            get => GetBehavior<Behavior.Electricity>();
-        }
+        private Behavior.Electricity Electricity => this.GetBehavior<Behavior.Electricity>();
 
-        private Behavior.SmallLamp Behavior {
-            get => GetBehavior<Behavior.SmallLamp>();
-        }
+        private Behavior.SmallLamp Behavior => this.GetBehavior<Behavior.SmallLamp>();
 
         public Facing Facing {
             get => this.facing;
@@ -25,9 +21,7 @@ namespace Electricity.Content.Block.Entity {
             }
         }
 
-        public bool IsEnabled {
-            get => this.Behavior.LightLevel > 0;
-        }
+        public bool IsEnabled => this.Behavior.LightLevel > 0;
 
         public override void ToTreeAttributes(ITreeAttribute tree) {
             base.ToTreeAttributes(tree);

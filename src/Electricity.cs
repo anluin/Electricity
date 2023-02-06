@@ -61,27 +61,33 @@ namespace Electricity {
 
             api.RegisterBlockEntityBehaviorClass("Electricity", typeof(Content.Block.Entity.Behavior.Electricity));
 
-            api.Event.RegisterGameTickListener(OnGameTick, 500);
+            api.Event.RegisterGameTickListener(this.OnGameTick, 500);
         }
 
         public bool Update(BlockPos position, Facing facing) {
             if (!this.parts.TryGetValue(position, out var part)) {
-                if (facing == Facing.None) return false;
+                if (facing == Facing.None) {
+                    return false;
+                }
 
                 part = this.parts[position] = new NetworkPart(position);
             }
 
-            if (facing == part.Connection) return false;
+            if (facing == part.Connection) {
+                return false;
+            }
 
             var addedConnections = ~part.Connection & facing;
             var removedConnections = part.Connection & ~facing;
 
             part.Connection = facing;
 
-            AddConnections(ref part, addedConnections);
-            RemoveConnections(ref part, removedConnections);
+            this.AddConnections(ref part, addedConnections);
+            this.RemoveConnections(ref part, removedConnections);
 
-            if (part.Connection == Facing.None) this.parts.Remove(position);
+            if (part.Connection == Facing.None) {
+                this.parts.Remove(position);
+            }
 
             return true;
         }
@@ -89,7 +95,7 @@ namespace Electricity {
         public void Remove(BlockPos position) {
             if (this.parts.TryGetValue(position, out var part)) {
                 this.parts.Remove(position);
-                RemoveConnections(ref part, part.Connection);
+                this.RemoveConnections(ref part, part.Connection);
             }
         }
 
@@ -101,8 +107,9 @@ namespace Electricity {
 
                 var production = 0;
 
-                foreach (var producer in network.Producers)
+                foreach (var producer in network.Producers) {
                     production += producer.Produce();
+                }
 
                 var totalRequiredEnergy = 0;
 
@@ -112,18 +119,22 @@ namespace Electricity {
                     this.consumers.Add(consumer);
                 }
 
-                if (production < totalRequiredEnergy)
+                if (production < totalRequiredEnergy) {
                     do {
                         accumulators.Clear();
 
-                        foreach (var accumulator in network.Accumulators)
-                            if (accumulator.GetCapacity() > 0)
+                        foreach (var accumulator in network.Accumulators) {
+                            if (accumulator.GetCapacity() > 0) {
                                 accumulators.Add(accumulator);
+                            }
+                        }
 
                         if (accumulators.Count > 0) {
                             var rest = (totalRequiredEnergy - production) / accumulators.Count;
 
-                            if (rest == 0) break;
+                            if (rest == 0) {
+                                break;
+                            }
 
                             foreach (var accumulator in accumulators) {
                                 var capacity = Math.Min(accumulator.GetCapacity(), rest);
@@ -135,6 +146,7 @@ namespace Electricity {
                             }
                         }
                     } while (accumulators.Count > 0 && totalRequiredEnergy - production > 0);
+                }
 
                 var availableEnergy = production;
 
@@ -142,15 +154,16 @@ namespace Electricity {
                     .OrderBy(consumer => consumer.Consumption.Min)
                     .GroupBy(consumer => consumer.Consumption.Min)
                     .Where(
-                        grouping =>
-                        {
+                        grouping => {
                             var range = grouping.First().Consumption;
                             var totalMinConsumption = range.Min * grouping.Count();
 
                             if (totalMinConsumption <= availableEnergy) {
                                 availableEnergy -= totalMinConsumption;
 
-                                foreach (var consumer in grouping) consumer.GivenEnergy += range.Min;
+                                foreach (var consumer in grouping) {
+                                    consumer.GivenEnergy += range.Min;
+                                }
 
                                 return true;
                             }
@@ -172,12 +185,16 @@ namespace Electricity {
 
                     var numberOfDissatisfiedConsumers = dissatisfiedConsumers.Count();
 
-                    if (numberOfDissatisfiedConsumers == 0) break;
+                    if (numberOfDissatisfiedConsumers == 0) {
+                        break;
+                    }
 
                     var distributableEnergy = Math.Max(1, availableEnergy / numberOfDissatisfiedConsumers);
 
                     foreach (var consumer in dissatisfiedConsumers) {
-                        if (availableEnergy == 0) break;
+                        if (availableEnergy == 0) {
+                            break;
+                        }
 
                         var giveableEnergy = Math.Min(
                             distributableEnergy,
@@ -191,8 +208,9 @@ namespace Electricity {
                     }
                 }
 
-                foreach (var consumer in this.consumers)
+                foreach (var consumer in this.consumers) {
                     consumer.ElectricConsumer.Consume(consumer.GivenEnergy);
+                }
 
                 network.Production = production;
                 network.Consumption = production - availableEnergy;
@@ -200,15 +218,21 @@ namespace Electricity {
                 while ((network.Overflow = network.Production - network.Consumption) > 0) {
                     accumulators.Clear();
 
-                    foreach (var accumulator in network.Accumulators)
-                        if (accumulator.GetMaxCapacity() - accumulator.GetCapacity() > 0)
+                    foreach (var accumulator in network.Accumulators) {
+                        if (accumulator.GetMaxCapacity() - accumulator.GetCapacity() > 0) {
                             accumulators.Add(accumulator);
+                        }
+                    }
 
-                    if (accumulators.Count == 0) break;
+                    if (accumulators.Count == 0) {
+                        break;
+                    }
 
                     var giveableEnergy = network.Overflow / accumulators.Count;
 
-                    if (giveableEnergy == 0) break;
+                    if (giveableEnergy == 0) {
+                        break;
+                    }
 
                     foreach (var accumulator in accumulators) {
                         var energy = Math.Min(giveableEnergy, accumulator.GetMaxCapacity() - accumulator.GetCapacity());
@@ -223,26 +247,38 @@ namespace Electricity {
         private Network MergeNetworks(HashSet<Network> networks) {
             Network? outNetwork = null;
 
-            foreach (var network in networks)
-                if (outNetwork == null || outNetwork.PartPositions.Count < network.PartPositions.Count)
+            foreach (var network in networks) {
+                if (outNetwork == null || outNetwork.PartPositions.Count < network.PartPositions.Count) {
                     outNetwork = network;
+                }
+            }
 
-            if (outNetwork != null)
+            if (outNetwork != null) {
                 foreach (var network in networks) {
-                    if (outNetwork == network) continue;
+                    if (outNetwork == network) {
+                        continue;
+                    }
 
                     foreach (var position in network.PartPositions) {
                         var part = this.parts[position];
 
-                        foreach (var face in BlockFacing.ALLFACES)
-                            if (part.Networks[face.Index] == network)
+                        foreach (var face in BlockFacing.ALLFACES) {
+                            if (part.Networks[face.Index] == network) {
                                 part.Networks[face.Index] = outNetwork;
+                            }
+                        }
 
-                        if (part.Consumer is { } consumer) outNetwork.Consumers.Add(consumer);
+                        if (part.Consumer is { } consumer) {
+                            outNetwork.Consumers.Add(consumer);
+                        }
 
-                        if (part.Producer is { } producer) outNetwork.Producers.Add(producer);
+                        if (part.Producer is { } producer) {
+                            outNetwork.Producers.Add(producer);
+                        }
 
-                        if (part.Accumulator is { } accumulator) outNetwork.Accumulators.Add(accumulator);
+                        if (part.Accumulator is { } accumulator) {
+                            outNetwork.Accumulators.Add(accumulator);
+                        }
 
                         outNetwork.PartPositions.Add(position);
                     }
@@ -250,8 +286,9 @@ namespace Electricity {
                     network.PartPositions.Clear();
                     this.networks.Remove(network);
                 }
+            }
 
-            return outNetwork ?? CreateNetwork();
+            return outNetwork ?? this.CreateNetwork();
         }
 
         private void RemoveNetwork(ref Network network) {
@@ -259,15 +296,21 @@ namespace Electricity {
             network.PartPositions.CopyTo(partPositions);
             this.networks.Remove(network);
 
-            foreach (var position in partPositions)
-                if (this.parts.TryGetValue(position, out var part))
-                    foreach (var face in BlockFacing.ALLFACES)
-                        if (part.Networks[face.Index] == network)
+            foreach (var position in partPositions) {
+                if (this.parts.TryGetValue(position, out var part)) {
+                    foreach (var face in BlockFacing.ALLFACES) {
+                        if (part.Networks[face.Index] == network) {
                             part.Networks[face.Index] = null;
+                        }
+                    }
+                }
+            }
 
-            foreach (var position in partPositions)
-                if (this.parts.TryGetValue(position, out var part))
-                    AddConnections(ref part, part.Connection);
+            foreach (var position in partPositions) {
+                if (this.parts.TryGetValue(position, out var part)) {
+                    this.AddConnections(ref part, part.Connection);
+                }
+            }
         }
 
         private Network CreateNetwork() {
@@ -278,30 +321,38 @@ namespace Electricity {
         }
 
         private void AddConnections(ref NetworkPart part, Facing addedConnections) {
-            if (addedConnections == Facing.None) return;
+            if (addedConnections == Facing.None) {
+                return;
+            }
 
             var networksByFace = new[] {
                 new HashSet<Network>(), new HashSet<Network>(), new HashSet<Network>(),
                 new HashSet<Network>(), new HashSet<Network>(), new HashSet<Network>()
             };
 
-            foreach (var face in FacingHelper.Faces(part.Connection))
-                networksByFace[face.Index].Add(part.Networks[face.Index] ?? CreateNetwork());
+            foreach (var face in FacingHelper.Faces(part.Connection)) {
+                networksByFace[face.Index].Add(part.Networks[face.Index] ?? this.CreateNetwork());
+            }
 
             foreach (var direction in FacingHelper.Directions(addedConnections)) {
                 var directionFilter = FacingHelper.FromDirection(direction);
                 var neighborPosition = part.Position.AddCopy(direction);
 
-                if (this.parts.TryGetValue(neighborPosition, out var neighborPart))
+                if (this.parts.TryGetValue(neighborPosition, out var neighborPart)) {
                     foreach (var face in FacingHelper.Faces(addedConnections & directionFilter)) {
-                        if ((neighborPart.Connection & FacingHelper.From(face, direction.Opposite)) != 0)
-                            if (neighborPart.Networks[face.Index] is { } network)
+                        if ((neighborPart.Connection & FacingHelper.From(face, direction.Opposite)) != 0) {
+                            if (neighborPart.Networks[face.Index] is { } network) {
                                 networksByFace[face.Index].Add(network);
+                            }
+                        }
 
-                        if ((neighborPart.Connection & FacingHelper.From(direction.Opposite, face)) != 0)
-                            if (neighborPart.Networks[direction.Opposite.Index] is { } network)
+                        if ((neighborPart.Connection & FacingHelper.From(direction.Opposite, face)) != 0) {
+                            if (neighborPart.Networks[direction.Opposite.Index] is { } network) {
                                 networksByFace[face.Index].Add(network);
+                            }
+                        }
                     }
+                }
             }
 
             foreach (var direction in FacingHelper.Directions(addedConnections)) {
@@ -311,23 +362,35 @@ namespace Electricity {
                     var neighborPosition = part.Position.AddCopy(direction).AddCopy(face);
 
                     if (this.parts.TryGetValue(neighborPosition, out var neighborPart)) {
-                        if ((neighborPart.Connection & FacingHelper.From(direction.Opposite, face.Opposite)) != 0)
-                            if (neighborPart.Networks[direction.Opposite.Index] is { } network)
+                        if ((neighborPart.Connection & FacingHelper.From(direction.Opposite, face.Opposite)) != 0) {
+                            if (neighborPart.Networks[direction.Opposite.Index] is { } network) {
                                 networksByFace[face.Index].Add(network);
+                            }
+                        }
 
-                        if ((neighborPart.Connection & FacingHelper.From(face.Opposite, direction.Opposite)) != 0)
-                            if (neighborPart.Networks[face.Opposite.Index] is { } network)
+                        if ((neighborPart.Connection & FacingHelper.From(face.Opposite, direction.Opposite)) != 0) {
+                            if (neighborPart.Networks[face.Opposite.Index] is { } network) {
                                 networksByFace[face.Index].Add(network);
+                            }
+                        }
                     }
                 }
             }
 
             foreach (var face in FacingHelper.Faces(part.Connection)) {
-                var network = MergeNetworks(networksByFace[face.Index]);
+                var network = this.MergeNetworks(networksByFace[face.Index]);
 
-                if (part.Consumer is { } consumer) network.Consumers.Add(consumer);
-                if (part.Producer is { } producer) network.Producers.Add(producer);
-                if (part.Accumulator is { } accumulator) network.Accumulators.Add(accumulator);
+                if (part.Consumer is { } consumer) {
+                    network.Consumers.Add(consumer);
+                }
+
+                if (part.Producer is { } producer) {
+                    network.Producers.Add(producer);
+                }
+
+                if (part.Accumulator is { } accumulator) {
+                    network.Accumulators.Add(accumulator);
+                }
 
                 network.PartPositions.Add(part.Position);
                 part.Networks[face.Index] = network;
@@ -336,7 +399,7 @@ namespace Electricity {
             foreach (var direction in FacingHelper.Directions(part.Connection)) {
                 var directionFilter = FacingHelper.FromDirection(direction);
 
-                foreach (var face in FacingHelper.Faces(part.Connection & directionFilter))
+                foreach (var face in FacingHelper.Faces(part.Connection & directionFilter)) {
                     if ((part.Connection & FacingHelper.From(direction, face)) != 0) {
                         if (part.Networks[face.Index] is { } network1 && part.Networks[direction.Index] is { } network2) {
                             var networks = new HashSet<Network> {
@@ -344,32 +407,46 @@ namespace Electricity {
                                 network2
                             };
 
-                            MergeNetworks(networks);
-                        } else {
+                            this.MergeNetworks(networks);
+                        }
+                        else {
                             throw new Exception();
                         }
                     }
+                }
             }
         }
 
         private void RemoveConnections(ref NetworkPart part, Facing removedConnections) {
-            if (removedConnections == Facing.None) return;
+            if (removedConnections == Facing.None) {
+                return;
+            }
 
-            foreach (var blockFacing in FacingHelper.Faces(removedConnections))
-                if (part.Networks[blockFacing.Index] is { } network)
-                    RemoveNetwork(ref network);
+            foreach (var blockFacing in FacingHelper.Faces(removedConnections)) {
+                if (part.Networks[blockFacing.Index] is { } network) {
+                    this.RemoveNetwork(ref network);
+                }
+            }
         }
 
         public void SetConsumer(BlockPos position, IElectricConsumer? consumer) {
             if (!this.parts.TryGetValue(position, out var part)) {
-                if (consumer == null) return;
+                if (consumer == null) {
+                    return;
+                }
+
                 part = this.parts[position] = new NetworkPart(position);
             }
 
             if (part.Consumer != consumer) {
                 foreach (var network in part.Networks) {
-                    if (part.Consumer is { }) network?.Consumers.Remove(part.Consumer);
-                    if (consumer is { }) network?.Consumers.Add(consumer);
+                    if (part.Consumer is { }) {
+                        network?.Consumers.Remove(part.Consumer);
+                    }
+
+                    if (consumer is { }) {
+                        network?.Consumers.Add(consumer);
+                    }
                 }
 
                 part.Consumer = consumer;
@@ -378,14 +455,22 @@ namespace Electricity {
 
         public void SetProducer(BlockPos position, IElectricProducer? producer) {
             if (!this.parts.TryGetValue(position, out var part)) {
-                if (producer == null) return;
+                if (producer == null) {
+                    return;
+                }
+
                 part = this.parts[position] = new NetworkPart(position);
             }
 
             if (part.Producer != producer) {
                 foreach (var network in part.Networks) {
-                    if (part.Producer is { }) network?.Producers.Remove(part.Producer);
-                    if (producer is { }) network?.Producers.Add(producer);
+                    if (part.Producer is { }) {
+                        network?.Producers.Remove(part.Producer);
+                    }
+
+                    if (producer is { }) {
+                        network?.Producers.Add(producer);
+                    }
                 }
 
                 part.Producer = producer;
@@ -394,14 +479,22 @@ namespace Electricity {
 
         public void SetAccumulator(BlockPos position, IElectricAccumulator? accumulator) {
             if (!this.parts.TryGetValue(position, out var part)) {
-                if (accumulator == null) return;
+                if (accumulator == null) {
+                    return;
+                }
+
                 part = this.parts[position] = new NetworkPart(position);
             }
 
             if (part.Accumulator != accumulator) {
                 foreach (var network in part.Networks) {
-                    if (part.Accumulator is { }) network?.Accumulators.Remove(part.Accumulator);
-                    if (accumulator is { }) network?.Accumulators.Add(accumulator);
+                    if (part.Accumulator is { }) {
+                        network?.Accumulators.Remove(part.Accumulator);
+                    }
+
+                    if (accumulator is { }) {
+                        network?.Accumulators.Add(accumulator);
+                    }
                 }
 
                 part.Accumulator = accumulator;

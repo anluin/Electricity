@@ -17,8 +17,7 @@ namespace Electricity.Content.Block {
                 this.interactions = ObjectCacheUtil.GetOrCreate(
                     api,
                     "forgeBlockInteractions",
-                    () =>
-                    {
+                    () => {
                         var heatableStacklist = new List<ItemStack>();
 
                         foreach (
@@ -40,8 +39,7 @@ namespace Electricity.Content.Block {
                                 HotKeyCode = "shift",
                                 MouseButton = EnumMouseButton.Right,
                                 Itemstacks = heatableStacklist.ToArray(),
-                                GetMatchingStacks = (worldInteraction, blockSelection, entitySelection) =>
-                                {
+                                GetMatchingStacks = (worldInteraction, blockSelection, entitySelection) => {
                                     if (api.World.BlockAccessor.GetBlockEntity(blockSelection.Position) is Entity.ElectricForge { Contents: { } } bef) {
                                         return worldInteraction.Itemstacks.Where(stack => stack.Equals(api.World, bef.Contents, GlobalConstants.IgnoredStackAttributes)).ToArray();
                                     }
@@ -54,8 +52,7 @@ namespace Electricity.Content.Block {
                                 HotKeyCode = null,
                                 MouseButton = EnumMouseButton.Right,
                                 Itemstacks = heatableStacklist.ToArray(),
-                                GetMatchingStacks = (worldInteraction, blockSelection, entitySelection) =>
-                                {
+                                GetMatchingStacks = (worldInteraction, blockSelection, entitySelection) => {
                                     if (api.World.BlockAccessor.GetBlockEntity(blockSelection.Position) is Entity.ElectricForge { Contents: { } } bef) {
                                         return new[] { bef.Contents };
                                     }
@@ -83,8 +80,9 @@ namespace Electricity.Content.Block {
                 !world.BlockAccessor
                     .GetBlock(pos.AddCopy(BlockFacing.DOWN))
                     .SideSolid[BlockFacing.indexUP]
-            )
+            ) {
                 world.BlockAccessor.BreakBlock(pos, null);
+            }
         }
 
         public override bool OnBlockInteractStart(IWorldAccessor world, IPlayer byPlayer, BlockSelection blockSel) {

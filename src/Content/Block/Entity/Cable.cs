@@ -8,9 +8,7 @@ namespace Electricity.Content.Block.Entity {
     public class Cable : BlockEntity {
         private Facing switches = Facing.None;
 
-        private Behavior.Electricity Electricity {
-            get => GetBehavior<Behavior.Electricity>();
-        }
+        private Behavior.Electricity Electricity => this.GetBehavior<Behavior.Electricity>();
 
         public Facing Connection {
             get => this.Electricity.Connection;

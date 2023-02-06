@@ -72,7 +72,9 @@ namespace Electricity.Content.Block {
         }
 
         public override void OnBlockBroken(IWorldAccessor world, BlockPos position, IPlayer byPlayer, float dropQuantityMultiplier = 1) {
-            if (this.api is ICoreClientAPI) return;
+            if (this.api is ICoreClientAPI) {
+                return;
+            }
 
             if (world.BlockAccessor.GetBlockEntity(position) is Entity.Cable entity) {
                 if (byPlayer is { CurrentBlockSelection: { } blockSelection }) {
@@ -206,7 +208,9 @@ namespace Electricity.Content.Block {
         }
 
         public override bool OnBlockInteractStart(IWorldAccessor world, IPlayer byPlayer, BlockSelection blockSel) {
-            if (this.api is ICoreClientAPI) return true;
+            if (this.api is ICoreClientAPI) {
+                return true;
+            }
 
             var hitPosition = blockSel.HitPosition;
 
@@ -231,8 +235,9 @@ namespace Electricity.Content.Block {
                     )
                     .Aggregate(Facing.None, (current, selectionFacing) => current | selectionFacing);
 
-                foreach (var face in FacingHelper.Faces(selectedFacing))
+                foreach (var face in FacingHelper.Faces(selectedFacing)) {
                     selectedFacing |= FacingHelper.FromFace(face);
+                }
 
                 var selectedSwitches = selectedFacing & entity.Switches;
 
@@ -297,101 +302,125 @@ namespace Electricity.Content.Block {
                     if ((key.Connection & Facing.NorthAll) != 0) {
                         AddMeshData(ref meshData, this.dotVariant?.MeshData?.Clone().Rotate(origin, 90.0f * GameMath.DEG2RAD, 0.0f, 0.0f));
 
-                        if ((key.Connection & Facing.NorthEast) != 0)
+                        if ((key.Connection & Facing.NorthEast) != 0) {
                             AddMeshData(ref meshData, this.partVariant?.MeshData?.Clone().Rotate(origin, 90.0f * GameMath.DEG2RAD, 270.0f * GameMath.DEG2RAD, 0.0f));
+                        }
 
-                        if ((key.Connection & Facing.NorthWest) != 0)
+                        if ((key.Connection & Facing.NorthWest) != 0) {
                             AddMeshData(ref meshData, this.partVariant?.MeshData?.Clone().Rotate(origin, 90.0f * GameMath.DEG2RAD, 90.0f * GameMath.DEG2RAD, 0.0f));
+                        }
 
-                        if ((key.Connection & Facing.NorthUp) != 0)
+                        if ((key.Connection & Facing.NorthUp) != 0) {
                             AddMeshData(ref meshData, this.partVariant?.MeshData?.Clone().Rotate(origin, 90.0f * GameMath.DEG2RAD, 0.0f * GameMath.DEG2RAD, 0.0f));
+                        }
 
-                        if ((key.Connection & Facing.NorthDown) != 0)
+                        if ((key.Connection & Facing.NorthDown) != 0) {
                             AddMeshData(ref meshData, this.partVariant?.MeshData?.Clone().Rotate(origin, 90.0f * GameMath.DEG2RAD, 180.0f * GameMath.DEG2RAD, 0.0f));
+                        }
                     }
 
                     if ((key.Connection & Facing.EastAll) != 0) {
                         AddMeshData(ref meshData, this.dotVariant?.MeshData?.Clone().Rotate(origin, 0.0f, 0.0f, 90.0f * GameMath.DEG2RAD));
 
-                        if ((key.Connection & Facing.EastNorth) != 0)
+                        if ((key.Connection & Facing.EastNorth) != 0) {
                             AddMeshData(ref meshData, this.partVariant?.MeshData?.Clone().Rotate(origin, 0.0f * GameMath.DEG2RAD, 0.0f, 90.0f * GameMath.DEG2RAD));
+                        }
 
-                        if ((key.Connection & Facing.EastSouth) != 0)
+                        if ((key.Connection & Facing.EastSouth) != 0) {
                             AddMeshData(ref meshData, this.partVariant?.MeshData?.Clone().Rotate(origin, 180.0f * GameMath.DEG2RAD, 0.0f, 90.0f * GameMath.DEG2RAD));
+                        }
 
-                        if ((key.Connection & Facing.EastUp) != 0)
+                        if ((key.Connection & Facing.EastUp) != 0) {
                             AddMeshData(ref meshData, this.partVariant?.MeshData?.Clone().Rotate(origin, 90.0f * GameMath.DEG2RAD, 0.0f, 90.0f * GameMath.DEG2RAD));
+                        }
 
-                        if ((key.Connection & Facing.EastDown) != 0)
+                        if ((key.Connection & Facing.EastDown) != 0) {
                             AddMeshData(ref meshData, this.partVariant?.MeshData?.Clone().Rotate(origin, 270.0f * GameMath.DEG2RAD, 0.0f, 90.0f * GameMath.DEG2RAD));
+                        }
                     }
 
                     if ((key.Connection & Facing.SouthAll) != 0) {
                         AddMeshData(ref meshData, this.dotVariant?.MeshData?.Clone().Rotate(origin, 270.0f * GameMath.DEG2RAD, 0.0f, 0.0f));
 
-                        if ((key.Connection & Facing.SouthEast) != 0)
+                        if ((key.Connection & Facing.SouthEast) != 0) {
                             AddMeshData(ref meshData, this.partVariant?.MeshData?.Clone().Rotate(origin, 270.0f * GameMath.DEG2RAD, 270.0f * GameMath.DEG2RAD, 0.0f));
+                        }
 
-                        if ((key.Connection & Facing.SouthWest) != 0)
+                        if ((key.Connection & Facing.SouthWest) != 0) {
                             AddMeshData(ref meshData, this.partVariant?.MeshData?.Clone().Rotate(origin, 270.0f * GameMath.DEG2RAD, 90.0f * GameMath.DEG2RAD, 0.0f));
+                        }
 
-                        if ((key.Connection & Facing.SouthUp) != 0)
+                        if ((key.Connection & Facing.SouthUp) != 0) {
                             AddMeshData(ref meshData, this.partVariant?.MeshData?.Clone().Rotate(origin, 270.0f * GameMath.DEG2RAD, 180.0f * GameMath.DEG2RAD, 0.0f));
+                        }
 
-                        if ((key.Connection & Facing.SouthDown) != 0)
+                        if ((key.Connection & Facing.SouthDown) != 0) {
                             AddMeshData(ref meshData, this.partVariant?.MeshData?.Clone().Rotate(origin, 270.0f * GameMath.DEG2RAD, 0.0f * GameMath.DEG2RAD, 0.0f));
+                        }
                     }
 
                     if ((key.Connection & Facing.WestAll) != 0) {
                         AddMeshData(ref meshData, this.dotVariant?.MeshData?.Clone().Rotate(origin, 0.0f, 0.0f, 270.0f * GameMath.DEG2RAD));
 
-                        if ((key.Connection & Facing.WestNorth) != 0)
+                        if ((key.Connection & Facing.WestNorth) != 0) {
                             AddMeshData(ref meshData, this.partVariant?.MeshData?.Clone().Rotate(origin, 0.0f * GameMath.DEG2RAD, 0.0f, 270.0f * GameMath.DEG2RAD));
+                        }
 
-                        if ((key.Connection & Facing.WestSouth) != 0)
+                        if ((key.Connection & Facing.WestSouth) != 0) {
                             AddMeshData(ref meshData, this.partVariant?.MeshData?.Clone().Rotate(origin, 180.0f * GameMath.DEG2RAD, 0.0f, 270.0f * GameMath.DEG2RAD));
+                        }
 
-                        if ((key.Connection & Facing.WestUp) != 0)
+                        if ((key.Connection & Facing.WestUp) != 0) {
                             AddMeshData(ref meshData, this.partVariant?.MeshData?.Clone().Rotate(origin, 90.0f * GameMath.DEG2RAD, 0.0f, 270.0f * GameMath.DEG2RAD));
+                        }
 
-                        if ((key.Connection & Facing.WestDown) != 0)
+                        if ((key.Connection & Facing.WestDown) != 0) {
                             AddMeshData(ref meshData, this.partVariant?.MeshData?.Clone().Rotate(origin, 270.0f * GameMath.DEG2RAD, 0.0f, 270.0f * GameMath.DEG2RAD));
+                        }
                     }
 
                     if ((key.Connection & Facing.UpAll) != 0) {
                         AddMeshData(ref meshData, this.dotVariant?.MeshData?.Clone().Rotate(origin, 0.0f, 0.0f, 180.0f * GameMath.DEG2RAD));
 
-                        if ((key.Connection & Facing.UpNorth) != 0)
+                        if ((key.Connection & Facing.UpNorth) != 0) {
                             AddMeshData(ref meshData, this.partVariant?.MeshData?.Clone().Rotate(origin, 0.0f, 0.0f * GameMath.DEG2RAD, 180.0f * GameMath.DEG2RAD));
+                        }
 
-                        if ((key.Connection & Facing.UpEast) != 0)
+                        if ((key.Connection & Facing.UpEast) != 0) {
                             AddMeshData(ref meshData, this.partVariant?.MeshData?.Clone().Rotate(origin, 0.0f, 270.0f * GameMath.DEG2RAD, 180.0f * GameMath.DEG2RAD));
+                        }
 
-                        if ((key.Connection & Facing.UpSouth) != 0)
+                        if ((key.Connection & Facing.UpSouth) != 0) {
                             AddMeshData(ref meshData, this.partVariant?.MeshData?.Clone().Rotate(origin, 0.0f, 180.0f * GameMath.DEG2RAD, 180.0f * GameMath.DEG2RAD));
+                        }
 
-                        if ((key.Connection & Facing.UpWest) != 0)
+                        if ((key.Connection & Facing.UpWest) != 0) {
                             AddMeshData(ref meshData, this.partVariant?.MeshData?.Clone().Rotate(origin, 0.0f, 90.0f * GameMath.DEG2RAD, 180.0f * GameMath.DEG2RAD));
+                        }
                     }
 
                     if ((key.Connection & Facing.DownAll) != 0) {
                         AddMeshData(ref meshData, this.dotVariant?.MeshData?.Clone().Rotate(origin, 0.0f, 0.0f, 0.0f));
 
-                        if ((key.Connection & Facing.DownNorth) != 0)
+                        if ((key.Connection & Facing.DownNorth) != 0) {
                             AddMeshData(ref meshData, this.partVariant?.MeshData?.Clone().Rotate(origin, 0.0f, 0.0f * GameMath.DEG2RAD, 0.0f));
+                        }
 
-                        if ((key.Connection & Facing.DownEast) != 0)
+                        if ((key.Connection & Facing.DownEast) != 0) {
                             AddMeshData(ref meshData, this.partVariant?.MeshData?.Clone().Rotate(origin, 0.0f, 270.0f * GameMath.DEG2RAD, 0.0f));
+                        }
 
-                        if ((key.Connection & Facing.DownSouth) != 0)
+                        if ((key.Connection & Facing.DownSouth) != 0) {
                             AddMeshData(ref meshData, this.partVariant?.MeshData?.Clone().Rotate(origin, 0.0f, 180.0f * GameMath.DEG2RAD, 0.0f));
+                        }
 
-                        if ((key.Connection & Facing.DownWest) != 0)
+                        if ((key.Connection & Facing.DownWest) != 0) {
                             AddMeshData(ref meshData, this.partVariant?.MeshData?.Clone().Rotate(origin, 0.0f, 90.0f * GameMath.DEG2RAD, 0.0f));
+                        }
                     }
 
                     // Switches
-                    if ((key.Switches & Facing.NorthEast) != 0)
+                    if ((key.Switches & Facing.NorthEast) != 0) {
                         AddMeshData(
                             ref meshData,
                             ((key.Switches & key.SwitchesState & Facing.NorthAll) != 0
@@ -403,8 +432,9 @@ namespace Electricity.Content.Block {
                                 0.0f
                             )
                         );
+                    }
 
-                    if ((key.Switches & Facing.NorthWest) != 0)
+                    if ((key.Switches & Facing.NorthWest) != 0) {
                         AddMeshData(
                             ref meshData,
                             ((key.Switches & key.SwitchesState & Facing.NorthAll) != 0
@@ -416,8 +446,9 @@ namespace Electricity.Content.Block {
                                 0.0f
                             )
                         );
+                    }
 
-                    if ((key.Switches & Facing.NorthUp) != 0)
+                    if ((key.Switches & Facing.NorthUp) != 0) {
                         AddMeshData(
                             ref meshData,
                             ((key.Switches & key.SwitchesState & Facing.NorthAll) != 0
@@ -429,8 +460,9 @@ namespace Electricity.Content.Block {
                                 0.0f
                             )
                         );
+                    }
 
-                    if ((key.Switches & Facing.NorthDown) != 0)
+                    if ((key.Switches & Facing.NorthDown) != 0) {
                         AddMeshData(
                             ref meshData,
                             ((key.Switches & key.SwitchesState & Facing.NorthAll) != 0
@@ -442,8 +474,9 @@ namespace Electricity.Content.Block {
                                 0.0f
                             )
                         );
+                    }
 
-                    if ((key.Switches & Facing.EastNorth) != 0)
+                    if ((key.Switches & Facing.EastNorth) != 0) {
                         AddMeshData(
                             ref meshData,
                             ((key.Switches & key.SwitchesState & Facing.EastAll) != 0
@@ -455,8 +488,9 @@ namespace Electricity.Content.Block {
                                 90.0f * GameMath.DEG2RAD
                             )
                         );
+                    }
 
-                    if ((key.Switches & Facing.EastSouth) != 0)
+                    if ((key.Switches & Facing.EastSouth) != 0) {
                         AddMeshData(
                             ref meshData,
                             ((key.Switches & key.SwitchesState & Facing.EastAll) != 0
@@ -468,8 +502,9 @@ namespace Electricity.Content.Block {
                                 90.0f * GameMath.DEG2RAD
                             )
                         );
+                    }
 
-                    if ((key.Switches & Facing.EastUp) != 0)
+                    if ((key.Switches & Facing.EastUp) != 0) {
                         AddMeshData(
                             ref meshData,
                             ((key.Switches & key.SwitchesState & Facing.EastAll) != 0
@@ -481,8 +516,9 @@ namespace Electricity.Content.Block {
                                 90.0f * GameMath.DEG2RAD
                             )
                         );
+                    }
 
-                    if ((key.Switches & Facing.EastDown) != 0)
+                    if ((key.Switches & Facing.EastDown) != 0) {
                         AddMeshData(
                             ref meshData,
                             ((key.Switches & key.SwitchesState & Facing.EastAll) != 0
@@ -494,8 +530,9 @@ namespace Electricity.Content.Block {
                                 90.0f * GameMath.DEG2RAD
                             )
                         );
+                    }
 
-                    if ((key.Switches & Facing.SouthEast) != 0)
+                    if ((key.Switches & Facing.SouthEast) != 0) {
                         AddMeshData(
                             ref meshData,
                             ((key.Switches & key.SwitchesState & Facing.SouthAll) != 0
@@ -507,8 +544,9 @@ namespace Electricity.Content.Block {
                                 180.0f * GameMath.DEG2RAD
                             )
                         );
+                    }
 
-                    if ((key.Switches & Facing.SouthWest) != 0)
+                    if ((key.Switches & Facing.SouthWest) != 0) {
                         AddMeshData(
                             ref meshData,
                             ((key.Switches & key.SwitchesState & Facing.SouthAll) != 0
@@ -520,8 +558,9 @@ namespace Electricity.Content.Block {
                                 180.0f * GameMath.DEG2RAD
                             )
                         );
+                    }
 
-                    if ((key.Switches & Facing.SouthUp) != 0)
+                    if ((key.Switches & Facing.SouthUp) != 0) {
                         AddMeshData(
                             ref meshData,
                             ((key.Switches & key.SwitchesState & Facing.SouthAll) != 0
@@ -533,8 +572,9 @@ namespace Electricity.Content.Block {
                                 180.0f * GameMath.DEG2RAD
                             )
                         );
+                    }
 
-                    if ((key.Switches & Facing.SouthDown) != 0)
+                    if ((key.Switches & Facing.SouthDown) != 0) {
                         AddMeshData(
                             ref meshData,
                             ((key.Switches & key.SwitchesState & Facing.SouthAll) != 0
@@ -546,8 +586,9 @@ namespace Electricity.Content.Block {
                                 180.0f * GameMath.DEG2RAD
                             )
                         );
+                    }
 
-                    if ((key.Switches & Facing.WestNorth) != 0)
+                    if ((key.Switches & Facing.WestNorth) != 0) {
                         AddMeshData(
                             ref meshData,
                             ((key.Switches & key.SwitchesState & Facing.WestAll) != 0
@@ -559,8 +600,9 @@ namespace Electricity.Content.Block {
                                 270.0f * GameMath.DEG2RAD
                             )
                         );
+                    }
 
-                    if ((key.Switches & Facing.WestSouth) != 0)
+                    if ((key.Switches & Facing.WestSouth) != 0) {
                         AddMeshData(
                             ref meshData,
                             ((key.Switches & key.SwitchesState & Facing.WestAll) != 0
@@ -572,8 +614,9 @@ namespace Electricity.Content.Block {
                                 270.0f * GameMath.DEG2RAD
                             )
                         );
+                    }
 
-                    if ((key.Switches & Facing.WestUp) != 0)
+                    if ((key.Switches & Facing.WestUp) != 0) {
                         AddMeshData(
                             ref meshData,
                             ((key.Switches & key.SwitchesState & Facing.WestAll) != 0
@@ -585,8 +628,9 @@ namespace Electricity.Content.Block {
                                 270.0f * GameMath.DEG2RAD
                             )
                         );
+                    }
 
-                    if ((key.Switches & Facing.WestDown) != 0)
+                    if ((key.Switches & Facing.WestDown) != 0) {
                         AddMeshData(
                             ref meshData,
                             ((key.Switches & key.SwitchesState & Facing.WestAll) != 0
@@ -598,8 +642,9 @@ namespace Electricity.Content.Block {
                                 270.0f * GameMath.DEG2RAD
                             )
                         );
+                    }
 
-                    if ((key.Switches & Facing.UpNorth) != 0)
+                    if ((key.Switches & Facing.UpNorth) != 0) {
                         AddMeshData(
                             ref meshData,
                             ((key.Switches & key.SwitchesState & Facing.UpAll) != 0
@@ -611,8 +656,9 @@ namespace Electricity.Content.Block {
                                 180.0f * GameMath.DEG2RAD
                             )
                         );
+                    }
 
-                    if ((key.Switches & Facing.UpEast) != 0)
+                    if ((key.Switches & Facing.UpEast) != 0) {
                         AddMeshData(
                             ref meshData,
                             ((key.Switches & key.SwitchesState & Facing.UpAll) != 0
@@ -624,8 +670,9 @@ namespace Electricity.Content.Block {
                                 180.0f * GameMath.DEG2RAD
                             )
                         );
+                    }
 
-                    if ((key.Switches & Facing.UpSouth) != 0)
+                    if ((key.Switches & Facing.UpSouth) != 0) {
                         AddMeshData(
                             ref meshData,
                             ((key.Switches & key.SwitchesState & Facing.UpAll) != 0
@@ -637,8 +684,9 @@ namespace Electricity.Content.Block {
                                 180.0f * GameMath.DEG2RAD
                             )
                         );
+                    }
 
-                    if ((key.Switches & Facing.UpWest) != 0)
+                    if ((key.Switches & Facing.UpWest) != 0) {
                         AddMeshData(
                             ref meshData,
                             ((key.Switches & key.SwitchesState & Facing.UpAll) != 0
@@ -650,8 +698,9 @@ namespace Electricity.Content.Block {
                                 180.0f * GameMath.DEG2RAD
                             )
                         );
+                    }
 
-                    if ((key.Switches & Facing.DownNorth) != 0)
+                    if ((key.Switches & Facing.DownNorth) != 0) {
                         AddMeshData(
                             ref meshData,
                             ((key.Switches & key.SwitchesState & Facing.DownAll) != 0
@@ -659,8 +708,9 @@ namespace Electricity.Content.Block {
                                 : this.disabledSwitchVariant)?.MeshData?.Clone()
                             .Rotate(origin, 0.0f, 180.0f * GameMath.DEG2RAD, 0.0f)
                         );
+                    }
 
-                    if ((key.Switches & Facing.DownEast) != 0)
+                    if ((key.Switches & Facing.DownEast) != 0) {
                         AddMeshData(
                             ref meshData,
                             ((key.Switches & key.SwitchesState & Facing.DownAll) != 0
@@ -668,8 +718,9 @@ namespace Electricity.Content.Block {
                                 : this.disabledSwitchVariant)?.MeshData?.Clone()
                             .Rotate(origin, 0.0f, 90.0f * GameMath.DEG2RAD, 0.0f)
                         );
+                    }
 
-                    if ((key.Switches & Facing.DownSouth) != 0)
+                    if ((key.Switches & Facing.DownSouth) != 0) {
                         AddMeshData(
                             ref meshData,
                             ((key.Switches & key.SwitchesState & Facing.DownAll) != 0
@@ -677,8 +728,9 @@ namespace Electricity.Content.Block {
                                 : this.disabledSwitchVariant)?.MeshData?.Clone()
                             .Rotate(origin, 0.0f, 0.0f * GameMath.DEG2RAD, 0.0f)
                         );
+                    }
 
-                    if ((key.Switches & Facing.DownWest) != 0)
+                    if ((key.Switches & Facing.DownWest) != 0) {
                         AddMeshData(
                             ref meshData,
                             ((key.Switches & key.SwitchesState & Facing.DownAll) != 0
@@ -686,6 +738,7 @@ namespace Electricity.Content.Block {
                                 : this.disabledSwitchVariant)?.MeshData?.Clone()
                             .Rotate(origin, 0.0f, 270.0f * GameMath.DEG2RAD, 0.0f)
                         );
+                    }
 
                     MeshDataCache[key] = meshData!;
                 }
@@ -696,109 +749,137 @@ namespace Electricity.Content.Block {
             base.OnJsonTesselation(ref sourceMesh, ref lightRgbsByCorner, position, chunkExtBlocks, extIndex3d);
         }
 
-        private static Dictionary<Facing, Cuboidf[]> CalculateBoxes(
-            CacheDataKey key, IDictionary<CacheDataKey, Dictionary<Facing, Cuboidf[]>> boxesCache,
+        private static Dictionary<Facing, Cuboidf[]> CalculateBoxes(CacheDataKey key, IDictionary<CacheDataKey, Dictionary<Facing, Cuboidf[]>> boxesCache,
             Cuboidf[] dotBoxes, Cuboidf[] partBoxes,
-            Cuboidf[] enabledSwitchBoxes, Cuboidf[] disabledSwitchBoxes
-        ) {
+            Cuboidf[] enabledSwitchBoxes, Cuboidf[] disabledSwitchBoxes) {
             if (!boxesCache.TryGetValue(key, out var boxes)) {
                 var origin = new Vec3d(0.5, 0.5, 0.5);
 
                 boxesCache[key] = boxes = new Dictionary<Facing, Cuboidf[]>();
 
                 // Connections
-                if ((key.Connection & Facing.NorthAll) != 0)
+                if ((key.Connection & Facing.NorthAll) != 0) {
                     boxes.Add(Facing.NorthAll, dotBoxes.Select(selectionBox => selectionBox.RotatedCopy(90.0f, 0.0f, 0.0f, origin)).ToArray());
+                }
 
-                if ((key.Connection & Facing.NorthEast) != 0)
+                if ((key.Connection & Facing.NorthEast) != 0) {
                     boxes.Add(Facing.NorthEast, partBoxes.Select(selectionBox => selectionBox.RotatedCopy(90.0f, 270.0f, 0.0f, origin)).ToArray());
+                }
 
-                if ((key.Connection & Facing.NorthWest) != 0)
+                if ((key.Connection & Facing.NorthWest) != 0) {
                     boxes.Add(Facing.NorthWest, partBoxes.Select(selectionBox => selectionBox.RotatedCopy(90.0f, 90.0f, 0.0f, origin)).ToArray());
+                }
 
-                if ((key.Connection & Facing.NorthUp) != 0)
+                if ((key.Connection & Facing.NorthUp) != 0) {
                     boxes.Add(Facing.NorthUp, partBoxes.Select(selectionBox => selectionBox.RotatedCopy(90.0f, 0.0f, 0.0f, origin)).ToArray());
+                }
 
-                if ((key.Connection & Facing.NorthDown) != 0)
+                if ((key.Connection & Facing.NorthDown) != 0) {
                     boxes.Add(Facing.NorthDown, partBoxes.Select(selectionBox => selectionBox.RotatedCopy(90.0f, 180.0f, 0.0f, origin)).ToArray());
+                }
 
-                if ((key.Connection & Facing.EastAll) != 0)
+                if ((key.Connection & Facing.EastAll) != 0) {
                     boxes.Add(Facing.EastAll, dotBoxes.Select(selectionBox => selectionBox.RotatedCopy(0.0f, 0.0f, 90.0f, origin)).ToArray());
+                }
 
-                if ((key.Connection & Facing.EastNorth) != 0)
+                if ((key.Connection & Facing.EastNorth) != 0) {
                     boxes.Add(Facing.EastNorth, partBoxes.Select(selectionBox => selectionBox.RotatedCopy(0.0f, 0.0f, 90.0f, origin)).ToArray());
+                }
 
-                if ((key.Connection & Facing.EastSouth) != 0)
+                if ((key.Connection & Facing.EastSouth) != 0) {
                     boxes.Add(Facing.EastSouth, partBoxes.Select(selectionBox => selectionBox.RotatedCopy(180.0f, 0.0f, 90.0f, origin)).ToArray());
+                }
 
-                if ((key.Connection & Facing.EastUp) != 0)
+                if ((key.Connection & Facing.EastUp) != 0) {
                     boxes.Add(Facing.EastUp, partBoxes.Select(selectionBox => selectionBox.RotatedCopy(90.0f, 0.0f, 90.0f, origin)).ToArray());
+                }
 
-                if ((key.Connection & Facing.EastDown) != 0)
+                if ((key.Connection & Facing.EastDown) != 0) {
                     boxes.Add(Facing.EastDown, partBoxes.Select(selectionBox => selectionBox.RotatedCopy(270.0f, 0.0f, 90.0f, origin)).ToArray());
+                }
 
-                if ((key.Connection & Facing.SouthAll) != 0)
+                if ((key.Connection & Facing.SouthAll) != 0) {
                     boxes.Add(Facing.SouthAll, dotBoxes.Select(selectionBox => selectionBox.RotatedCopy(270.0f, 0.0f, 0.0f, origin)).ToArray());
+                }
 
-                if ((key.Connection & Facing.SouthEast) != 0)
+                if ((key.Connection & Facing.SouthEast) != 0) {
                     boxes.Add(Facing.SouthEast, partBoxes.Select(selectionBox => selectionBox.RotatedCopy(270.0f, 270.0f, 0.0f, origin)).ToArray());
+                }
 
-                if ((key.Connection & Facing.SouthWest) != 0)
+                if ((key.Connection & Facing.SouthWest) != 0) {
                     boxes.Add(Facing.SouthWest, partBoxes.Select(selectionBox => selectionBox.RotatedCopy(270.0f, 90.0f, 0.0f, origin)).ToArray());
+                }
 
-                if ((key.Connection & Facing.SouthUp) != 0)
+                if ((key.Connection & Facing.SouthUp) != 0) {
                     boxes.Add(Facing.SouthUp, partBoxes.Select(selectionBox => selectionBox.RotatedCopy(270.0f, 180.0f, 0.0f, origin)).ToArray());
+                }
 
-                if ((key.Connection & Facing.SouthDown) != 0)
+                if ((key.Connection & Facing.SouthDown) != 0) {
                     boxes.Add(Facing.SouthDown, partBoxes.Select(selectionBox => selectionBox.RotatedCopy(270.0f, 0.0f, 0.0f, origin)).ToArray());
+                }
 
-                if ((key.Connection & Facing.WestAll) != 0)
+                if ((key.Connection & Facing.WestAll) != 0) {
                     boxes.Add(Facing.WestAll, dotBoxes.Select(selectionBox => selectionBox.RotatedCopy(0.0f, 0.0f, 270.0f, origin)).ToArray());
+                }
 
-                if ((key.Connection & Facing.WestNorth) != 0)
+                if ((key.Connection & Facing.WestNorth) != 0) {
                     boxes.Add(Facing.WestNorth, partBoxes.Select(selectionBox => selectionBox.RotatedCopy(0.0f, 0.0f, 270.0f, origin)).ToArray());
+                }
 
-                if ((key.Connection & Facing.WestSouth) != 0)
+                if ((key.Connection & Facing.WestSouth) != 0) {
                     boxes.Add(Facing.WestSouth, partBoxes.Select(selectionBox => selectionBox.RotatedCopy(180.0f, 0.0f, 270.0f, origin)).ToArray());
+                }
 
-                if ((key.Connection & Facing.WestUp) != 0)
+                if ((key.Connection & Facing.WestUp) != 0) {
                     boxes.Add(Facing.WestUp, partBoxes.Select(selectionBox => selectionBox.RotatedCopy(90.0f, 0.0f, 270.0f, origin)).ToArray());
+                }
 
-                if ((key.Connection & Facing.WestDown) != 0)
+                if ((key.Connection & Facing.WestDown) != 0) {
                     boxes.Add(Facing.WestDown, partBoxes.Select(selectionBox => selectionBox.RotatedCopy(270.0f, 0.0f, 270.0f, origin)).ToArray());
+                }
 
-                if ((key.Connection & Facing.UpAll) != 0)
+                if ((key.Connection & Facing.UpAll) != 0) {
                     boxes.Add(Facing.UpAll, dotBoxes.Select(selectionBox => selectionBox.RotatedCopy(0.0f, 0.0f, 180.0f, origin)).ToArray());
+                }
 
-                if ((key.Connection & Facing.UpNorth) != 0)
+                if ((key.Connection & Facing.UpNorth) != 0) {
                     boxes.Add(Facing.UpNorth, partBoxes.Select(selectionBox => selectionBox.RotatedCopy(0.0f, 0.0f, 180.0f, origin)).ToArray());
+                }
 
-                if ((key.Connection & Facing.UpEast) != 0)
+                if ((key.Connection & Facing.UpEast) != 0) {
                     boxes.Add(Facing.UpEast, partBoxes.Select(selectionBox => selectionBox.RotatedCopy(0.0f, 270.0f, 180.0f, origin)).ToArray());
+                }
 
-                if ((key.Connection & Facing.UpSouth) != 0)
+                if ((key.Connection & Facing.UpSouth) != 0) {
                     boxes.Add(Facing.UpSouth, partBoxes.Select(selectionBox => selectionBox.RotatedCopy(0.0f, 180.0f, 180.0f, origin)).ToArray());
+                }
 
-                if ((key.Connection & Facing.UpWest) != 0)
+                if ((key.Connection & Facing.UpWest) != 0) {
                     boxes.Add(Facing.UpWest, partBoxes.Select(selectionBox => selectionBox.RotatedCopy(0.0f, 90.0f, 180.0f, origin)).ToArray());
+                }
 
-                if ((key.Connection & Facing.DownAll) != 0)
+                if ((key.Connection & Facing.DownAll) != 0) {
                     boxes.Add(Facing.DownAll, dotBoxes.Select(selectionBox => selectionBox.RotatedCopy(0.0f, 0.0f, 0.0f, origin)).ToArray());
+                }
 
-                if ((key.Connection & Facing.DownNorth) != 0)
+                if ((key.Connection & Facing.DownNorth) != 0) {
                     boxes.Add(Facing.DownNorth, partBoxes.Select(selectionBox => selectionBox.RotatedCopy(0.0f, 0.0f, 0.0f, origin)).ToArray());
+                }
 
-                if ((key.Connection & Facing.DownEast) != 0)
+                if ((key.Connection & Facing.DownEast) != 0) {
                     boxes.Add(Facing.DownEast, partBoxes.Select(selectionBox => selectionBox.RotatedCopy(0.0f, 270.0f, 0.0f, origin)).ToArray());
+                }
 
-                if ((key.Connection & Facing.DownSouth) != 0)
+                if ((key.Connection & Facing.DownSouth) != 0) {
                     boxes.Add(Facing.DownSouth, partBoxes.Select(selectionBox => selectionBox.RotatedCopy(0.0f, 180.0f, 0.0f, origin)).ToArray());
+                }
 
-                if ((key.Connection & Facing.DownWest) != 0)
+                if ((key.Connection & Facing.DownWest) != 0) {
                     boxes.Add(Facing.DownWest, partBoxes.Select(selectionBox => selectionBox.RotatedCopy(0.0f, 90.0f, 0.0f, origin)).ToArray());
+                }
 
                 // Switches
-                if ((key.Switches & Facing.NorthEast) != 0)
+                if ((key.Switches & Facing.NorthEast) != 0) {
                     AddBoxes(
                         ref boxes,
                         Facing.NorthAll,
@@ -807,8 +888,9 @@ namespace Electricity.Content.Block {
                             : disabledSwitchBoxes)
                         .Select(selectionBox => selectionBox.RotatedCopy(90.0f, 90.0f, 0.0f, origin)).ToArray()
                     );
+                }
 
-                if ((key.Switches & Facing.NorthWest) != 0)
+                if ((key.Switches & Facing.NorthWest) != 0) {
                     AddBoxes(
                         ref boxes,
                         Facing.NorthAll,
@@ -817,8 +899,9 @@ namespace Electricity.Content.Block {
                             : disabledSwitchBoxes)
                         .Select(selectionBox => selectionBox.RotatedCopy(90.0f, 270.0f, 0.0f, origin)).ToArray()
                     );
+                }
 
-                if ((key.Switches & Facing.NorthUp) != 0)
+                if ((key.Switches & Facing.NorthUp) != 0) {
                     AddBoxes(
                         ref boxes,
                         Facing.NorthAll,
@@ -827,8 +910,9 @@ namespace Electricity.Content.Block {
                             : disabledSwitchBoxes)
                         .Select(selectionBox => selectionBox.RotatedCopy(90.0f, 180.0f, 0.0f, origin)).ToArray()
                     );
+                }
 
-                if ((key.Switches & Facing.NorthDown) != 0)
+                if ((key.Switches & Facing.NorthDown) != 0) {
                     AddBoxes(
                         ref boxes,
                         Facing.NorthAll,
@@ -837,8 +921,9 @@ namespace Electricity.Content.Block {
                             : disabledSwitchBoxes)
                         .Select(selectionBox => selectionBox.RotatedCopy(90.0f, 0.0f, 0.0f, origin)).ToArray()
                     );
+                }
 
-                if ((key.Switches & Facing.EastNorth) != 0)
+                if ((key.Switches & Facing.EastNorth) != 0) {
                     AddBoxes(
                         ref boxes,
                         Facing.EastAll,
@@ -847,8 +932,9 @@ namespace Electricity.Content.Block {
                             : disabledSwitchBoxes)
                         .Select(selectionBox => selectionBox.RotatedCopy(180.0f, 0.0f, 90.0f, origin)).ToArray()
                     );
+                }
 
-                if ((key.Switches & Facing.EastSouth) != 0)
+                if ((key.Switches & Facing.EastSouth) != 0) {
                     AddBoxes(
                         ref boxes,
                         Facing.EastAll,
@@ -857,8 +943,9 @@ namespace Electricity.Content.Block {
                             : disabledSwitchBoxes)
                         .Select(selectionBox => selectionBox.RotatedCopy(0.0f, 0.0f, 90.0f, origin)).ToArray()
                     );
+                }
 
-                if ((key.Switches & Facing.EastUp) != 0)
+                if ((key.Switches & Facing.EastUp) != 0) {
                     AddBoxes(
                         ref boxes,
                         Facing.EastAll,
@@ -867,8 +954,9 @@ namespace Electricity.Content.Block {
                             : disabledSwitchBoxes)
                         .Select(selectionBox => selectionBox.RotatedCopy(270.0f, 0.0f, 90.0f, origin)).ToArray()
                     );
+                }
 
-                if ((key.Switches & Facing.EastDown) != 0)
+                if ((key.Switches & Facing.EastDown) != 0) {
                     AddBoxes(
                         ref boxes,
                         Facing.EastAll,
@@ -877,8 +965,9 @@ namespace Electricity.Content.Block {
                             : disabledSwitchBoxes)
                         .Select(selectionBox => selectionBox.RotatedCopy(90.0f, 0.0f, 90.0f, origin)).ToArray()
                     );
+                }
 
-                if ((key.Switches & Facing.SouthEast) != 0)
+                if ((key.Switches & Facing.SouthEast) != 0) {
                     AddBoxes(
                         ref boxes,
                         Facing.SouthAll,
@@ -887,8 +976,9 @@ namespace Electricity.Content.Block {
                             : disabledSwitchBoxes)
                         .Select(selectionBox => selectionBox.RotatedCopy(90.0f, 90.0f, 180.0f, origin)).ToArray()
                     );
+                }
 
-                if ((key.Switches & Facing.SouthWest) != 0)
+                if ((key.Switches & Facing.SouthWest) != 0) {
                     AddBoxes(
                         ref boxes,
                         Facing.SouthAll,
@@ -899,8 +989,9 @@ namespace Electricity.Content.Block {
                                 selectionBox.RotatedCopy(90.0f, 270.0f, 180.0f, origin)
                         ).ToArray()
                     );
+                }
 
-                if ((key.Switches & Facing.SouthUp) != 0)
+                if ((key.Switches & Facing.SouthUp) != 0) {
                     AddBoxes(
                         ref boxes,
                         Facing.SouthAll,
@@ -911,8 +1002,9 @@ namespace Electricity.Content.Block {
                                 selectionBox.RotatedCopy(90.0f, 180.0f, 180.0f, origin)
                         ).ToArray()
                     );
+                }
 
-                if ((key.Switches & Facing.SouthDown) != 0)
+                if ((key.Switches & Facing.SouthDown) != 0) {
                     AddBoxes(
                         ref boxes,
                         Facing.SouthAll,
@@ -921,8 +1013,9 @@ namespace Electricity.Content.Block {
                             : disabledSwitchBoxes)
                         .Select(selectionBox => selectionBox.RotatedCopy(90.0f, 0.0f, 180.0f, origin)).ToArray()
                     );
+                }
 
-                if ((key.Switches & Facing.WestNorth) != 0)
+                if ((key.Switches & Facing.WestNorth) != 0) {
                     AddBoxes(
                         ref boxes,
                         Facing.WestAll,
@@ -931,8 +1024,9 @@ namespace Electricity.Content.Block {
                             : disabledSwitchBoxes)
                         .Select(selectionBox => selectionBox.RotatedCopy(180.0f, 0.0f, 270.0f, origin)).ToArray()
                     );
+                }
 
-                if ((key.Switches & Facing.WestSouth) != 0)
+                if ((key.Switches & Facing.WestSouth) != 0) {
                     AddBoxes(
                         ref boxes,
                         Facing.WestAll,
@@ -941,8 +1035,9 @@ namespace Electricity.Content.Block {
                             : disabledSwitchBoxes)
                         .Select(selectionBox => selectionBox.RotatedCopy(0.0f, 0.0f, 270.0f, origin)).ToArray()
                     );
+                }
 
-                if ((key.Switches & Facing.WestUp) != 0)
+                if ((key.Switches & Facing.WestUp) != 0) {
                     AddBoxes(
                         ref boxes,
                         Facing.WestAll,
@@ -951,8 +1046,9 @@ namespace Electricity.Content.Block {
                             : disabledSwitchBoxes)
                         .Select(selectionBox => selectionBox.RotatedCopy(270.0f, 0.0f, 270.0f, origin)).ToArray()
                     );
+                }
 
-                if ((key.Switches & Facing.WestDown) != 0)
+                if ((key.Switches & Facing.WestDown) != 0) {
                     AddBoxes(
                         ref boxes,
                         Facing.WestAll,
@@ -961,8 +1057,9 @@ namespace Electricity.Content.Block {
                             : disabledSwitchBoxes)
                         .Select(selectionBox => selectionBox.RotatedCopy(90.0f, 0.0f, 270.0f, origin)).ToArray()
                     );
+                }
 
-                if ((key.Switches & Facing.UpNorth) != 0)
+                if ((key.Switches & Facing.UpNorth) != 0) {
                     AddBoxes(
                         ref boxes,
                         Facing.UpAll,
@@ -971,8 +1068,9 @@ namespace Electricity.Content.Block {
                             : disabledSwitchBoxes)
                         .Select(selectionBox => selectionBox.RotatedCopy(0.0f, 180.0f, 180.0f, origin)).ToArray()
                     );
+                }
 
-                if ((key.Switches & Facing.UpEast) != 0)
+                if ((key.Switches & Facing.UpEast) != 0) {
                     AddBoxes(
                         ref boxes,
                         Facing.UpAll,
@@ -981,8 +1079,9 @@ namespace Electricity.Content.Block {
                             : disabledSwitchBoxes)
                         .Select(selectionBox => selectionBox.RotatedCopy(0.0f, 90.0f, 180.0f, origin)).ToArray()
                     );
+                }
 
-                if ((key.Switches & Facing.UpSouth) != 0)
+                if ((key.Switches & Facing.UpSouth) != 0) {
                     AddBoxes(
                         ref boxes,
                         Facing.UpAll,
@@ -991,8 +1090,9 @@ namespace Electricity.Content.Block {
                             : disabledSwitchBoxes)
                         .Select(selectionBox => selectionBox.RotatedCopy(0.0f, 0.0f, 180.0f, origin)).ToArray()
                     );
+                }
 
-                if ((key.Switches & Facing.UpWest) != 0)
+                if ((key.Switches & Facing.UpWest) != 0) {
                     AddBoxes(
                         ref boxes,
                         Facing.UpAll,
@@ -1001,8 +1101,9 @@ namespace Electricity.Content.Block {
                             : disabledSwitchBoxes)
                         .Select(selectionBox => selectionBox.RotatedCopy(0.0f, 270.0f, 180.0f, origin)).ToArray()
                     );
+                }
 
-                if ((key.Switches & Facing.DownNorth) != 0)
+                if ((key.Switches & Facing.DownNorth) != 0) {
                     AddBoxes(
                         ref boxes,
                         Facing.DownAll,
@@ -1011,8 +1112,9 @@ namespace Electricity.Content.Block {
                             : disabledSwitchBoxes)
                         .Select(selectionBox => selectionBox.RotatedCopy(0.0f, 180.0f, 0.0f, origin)).ToArray()
                     );
+                }
 
-                if ((key.Switches & Facing.DownEast) != 0)
+                if ((key.Switches & Facing.DownEast) != 0) {
                     AddBoxes(
                         ref boxes,
                         Facing.DownAll,
@@ -1021,8 +1123,9 @@ namespace Electricity.Content.Block {
                             : disabledSwitchBoxes)
                         .Select(selectionBox => selectionBox.RotatedCopy(0.0f, 90.0f, 0.0f, origin)).ToArray()
                     );
+                }
 
-                if ((key.Switches & Facing.DownSouth) != 0)
+                if ((key.Switches & Facing.DownSouth) != 0) {
                     AddBoxes(
                         ref boxes,
                         Facing.DownAll,
@@ -1031,8 +1134,9 @@ namespace Electricity.Content.Block {
                             : disabledSwitchBoxes)
                         .Select(selectionBox => selectionBox.RotatedCopy(0.0f, 0.0f, 0.0f, origin)).ToArray()
                     );
+                }
 
-                if ((key.Switches & Facing.DownWest) != 0)
+                if ((key.Switches & Facing.DownWest) != 0) {
                     AddBoxes(
                         ref boxes,
                         Facing.DownAll,
@@ -1041,24 +1145,29 @@ namespace Electricity.Content.Block {
                             : disabledSwitchBoxes)
                         .Select(selectionBox => selectionBox.RotatedCopy(0.0f, 270.0f, 0.0f, origin)).ToArray()
                     );
+                }
             }
 
             return boxes;
         }
 
         private static void AddBoxes(ref Dictionary<Facing, Cuboidf[]> cache, Facing key, Cuboidf[] boxes) {
-            if (cache.ContainsKey(key))
+            if (cache.ContainsKey(key)) {
                 cache[key] = cache[key].Concat(boxes).ToArray();
-            else
+            }
+            else {
                 cache[key] = boxes;
+            }
         }
 
         private static void AddMeshData(ref MeshData? sourceMesh, MeshData? meshData) {
             if (meshData != null) {
-                if (sourceMesh != null)
+                if (sourceMesh != null) {
                     sourceMesh.AddMeshData(meshData);
-                else
+                }
+                else {
                     sourceMesh = meshData;
+                }
             }
         }
 

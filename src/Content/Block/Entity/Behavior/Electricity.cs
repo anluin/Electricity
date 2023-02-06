@@ -16,11 +16,10 @@ namespace Electricity.Content.Block.Entity.Behavior {
         private IElectricProducer? producer;
 
         public Electricity(BlockEntity blockEntity)
-            : base(blockEntity) { }
-
-        public global::Electricity.Electricity? System {
-            get => this.Api?.ModLoader.GetModSystem<global::Electricity.Electricity>();
+            : base(blockEntity) {
         }
+
+        public global::Electricity.Electricity? System => this.Api?.ModLoader.GetModSystem<global::Electricity.Electricity>();
 
         public Facing Connection {
             get => this.connection;
@@ -28,7 +27,7 @@ namespace Electricity.Content.Block.Entity.Behavior {
                 if (this.connection != value) {
                     this.connection = value;
                     this.dirty = true;
-                    Update();
+                    this.Update();
                 }
             }
         }
@@ -39,14 +38,14 @@ namespace Electricity.Content.Block.Entity.Behavior {
                 if (this.interruption != value) {
                     this.interruption = value;
                     this.dirty = true;
-                    Update();
+                    this.Update();
                 }
             }
         }
 
         public override void Initialize(ICoreAPI api, JsonObject properties) {
             base.Initialize(api, properties);
-            Update();
+            this.Update();
         }
 
         public void Update(bool force = false) {
@@ -85,7 +84,8 @@ namespace Electricity.Content.Block.Entity.Behavior {
                     if (system.Update(this.Blockentity.Pos, this.connection & ~this.interruption)) {
                         this.Blockentity.MarkDirty(true);
                     }
-                } else {
+                }
+                else {
                     this.dirty = true;
                 }
             }
@@ -129,7 +129,7 @@ namespace Electricity.Content.Block.Entity.Behavior {
                 this.interruption = interruption;
                 this.connection = connection;
                 this.dirty = true;
-                Update();
+                this.Update();
             }
         }
     }
