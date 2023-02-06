@@ -7,7 +7,7 @@ using Electricity.Utils;
 using Vintagestory.API.Common;
 using Vintagestory.API.MathTools;
 
-[assembly: ModDependency("game", "1.17.10")]
+[assembly: ModDependency("game", "1.17.11")]
 [assembly: ModInfo(
     "Electricity",
     "electricity",

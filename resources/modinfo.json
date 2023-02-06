@@ -8,6 +8,6 @@
     "description": "Brings electricity into the game!",
     "version": "0.0.7",
     "dependencies": {
-        "game": "1.17.10"
+        "game": "1.17.11"
     }
 }
