@@ -1,2 +1,5 @@
 /bin/
 /obj/
+.idea/
+.run/
+Folder.DotSettings.user
