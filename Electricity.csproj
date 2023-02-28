@@ -13,30 +13,30 @@
     </ItemGroup>
 
     <ItemGroup>
-        <Reference Include="protobuf-net">
-            <HintPath>..\..\ApplicationData\vintagestory\Lib\protobuf-net.dll</HintPath>
-            <Private>False</Private>
-        </Reference>
-        <Reference Include="VintagestoryAPI">
-            <HintPath>..\..\ApplicationData\vintagestory\VintagestoryAPI.dll</HintPath>
-            <Private>False</Private>
-        </Reference>
-        <Reference Include="VSEssentials">
-            <HintPath>..\..\ApplicationData\vintagestory\Mods\VSEssentials.dll</HintPath>
-            <Private>False</Private>
-        </Reference>
-        <Reference Include="VSSurvivalMod">
-            <HintPath>..\..\ApplicationData\vintagestory\Mods\VSSurvivalMod.dll</HintPath>
-            <Private>False</Private>
-        </Reference>
+        <Folder Include="resources\assets" />
     </ItemGroup>
 
     <ItemGroup>
-        <Folder Include="resources\assets"/>
+      <Reference Include="protobuf-net">
+        <HintPath>..\..\..\ApplicationData\vintagestory\Lib\protobuf-net.dll</HintPath>
+        <Private>False</Private>
+      </Reference>
+      <Reference Include="VintagestoryAPI">
+        <HintPath>..\..\..\ApplicationData\vintagestory\VintagestoryAPI.dll</HintPath>
+        <Private>False</Private>
+      </Reference>
+      <Reference Include="VSEssentials">
+        <HintPath>..\..\..\ApplicationData\vintagestory\Mods\VSEssentials.dll</HintPath>
+        <Private>False</Private>
+      </Reference>
+      <Reference Include="VSSurvivalMod">
+        <HintPath>..\..\..\ApplicationData\vintagestory\Mods\VSSurvivalMod.dll</HintPath>
+        <Private>False</Private>
+      </Reference>
     </ItemGroup>
 
     <Target Name="Package" AfterTargets="PostBuildEvent" Condition="'$(Configuration)' == 'Release'">
-        <MakeDir Directories="bin/Bundle" Condition="!Exists('bin/Bundle')"/>
-        <ZipDirectory DestinationFile="bin/Bundle/$(TargetName).zip" SourceDirectory="$(TargetDir)" Overwrite="true"/>
+        <MakeDir Directories="bin/Bundle" Condition="!Exists('bin/Bundle')" />
+        <ZipDirectory DestinationFile="bin/Bundle/$(TargetName).zip" SourceDirectory="$(TargetDir)" Overwrite="true" />
     </Target>
 </Project>
