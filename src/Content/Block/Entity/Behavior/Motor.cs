@@ -10,7 +10,7 @@ using Vintagestory.API.Server;
 using Vintagestory.GameContent.Mechanics;
 
 namespace Electricity.Content.Block.Entity.Behavior {
-    public sealed class Motor : BEBehaviorMPBase, IElectricConsumer {
+    public class Motor : BEBehaviorMPBase, IElectricConsumer {
         private const float AccelerationFactor = 1.0f;
         private static CompositeShape? CompositeShape;
 

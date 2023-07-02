@@ -10,7 +10,7 @@ using Vintagestory.API.Server;
 using Vintagestory.GameContent.Mechanics;
 
 namespace Electricity.Content.Block.Entity.Behavior {
-    public sealed class Generator : BEBehaviorMPBase, IElectricProducer {
+    public class Generator : BEBehaviorMPBase, IElectricProducer {
         private static CompositeShape? CompositeShape;
 
         private int powerSetting;

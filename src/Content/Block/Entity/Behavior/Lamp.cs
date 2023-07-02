@@ -4,7 +4,7 @@ using Electricity.Utils;
 using Vintagestory.API.Common;
 
 namespace Electricity.Content.Block.Entity.Behavior {
-    public sealed class Lamp : BlockEntityBehavior, IElectricConsumer {
+    public class Lamp : BlockEntityBehavior, IElectricConsumer {
         public Lamp(BlockEntity blockEntity) : base(blockEntity) { }
 
         public int LightLevel { get; private set; }

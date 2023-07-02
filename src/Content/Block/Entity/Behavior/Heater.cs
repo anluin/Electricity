@@ -4,7 +4,7 @@ using Electricity.Utils;
 using Vintagestory.API.Common;
 
 namespace Electricity.Content.Block.Entity.Behavior {
-    public sealed class Heater : BlockEntityBehavior, IElectricConsumer {
+    public class Heater : BlockEntityBehavior, IElectricConsumer {
         public Heater(BlockEntity blockEntity) : base(blockEntity) { }
 
         public int HeatLevel { get; private set; }

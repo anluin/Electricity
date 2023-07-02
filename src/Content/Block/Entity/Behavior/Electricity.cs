@@ -6,7 +6,7 @@ using Vintagestory.API.Datastructures;
 using Vintagestory.API.Util;
 
 namespace Electricity.Content.Block.Entity.Behavior {
-    public sealed class Electricity : BlockEntityBehavior {
+    public class Electricity : BlockEntityBehavior {
         private IElectricAccumulator? accumulator;
 
         private Facing connection;

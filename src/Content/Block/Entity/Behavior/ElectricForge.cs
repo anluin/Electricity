@@ -4,7 +4,7 @@ using Electricity.Utils;
 using Vintagestory.API.Common;
 
 namespace Electricity.Content.Block.Entity.Behavior {
-    public sealed class ElectricForge : BlockEntityBehavior, IElectricConsumer {
+    public class ElectricForge : BlockEntityBehavior, IElectricConsumer {
         private int maxTemp;
         private int powerSetting;
 

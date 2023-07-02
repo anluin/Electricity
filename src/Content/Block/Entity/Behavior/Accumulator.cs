@@ -5,7 +5,7 @@ using Vintagestory.API.Common;
 using Vintagestory.API.Datastructures;
 
 namespace Electricity.Content.Block.Entity.Behavior {
-    public sealed class Accumulator : BlockEntityBehavior, IElectricAccumulator {
+    public class Accumulator : BlockEntityBehavior, IElectricAccumulator {
         private int capacity;
 
         public Accumulator(BlockEntity blockEntity) : base(blockEntity) { }

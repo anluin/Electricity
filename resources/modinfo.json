@@ -6,8 +6,8 @@
         "Anluin"
     ],
     "description": "Brings electricity into the game!",
-    "version": "0.0.8",
+    "version": "0.0.9",
     "dependencies": {
-        "game": "1.18.0-pre"
+        "game": "1.18.6"
     }
 }

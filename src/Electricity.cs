@@ -7,13 +7,13 @@ using Electricity.Utils;
 using Vintagestory.API.Common;
 using Vintagestory.API.MathTools;
 
-[assembly: ModDependency("game", "1.18.0-pre")]
+[assembly: ModDependency("game", "1.18.6")]
 [assembly: ModInfo(
     "Electricity",
     "electricity",
     Website = "https://github.com/anluin/electricity",
     Description = "Brings electricity into the game!",
-    Version = "0.0.8",
+    Version = "0.0.9",
     Authors = new[] { "Anluin" }
 )]
 
