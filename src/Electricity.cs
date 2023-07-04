@@ -215,33 +215,93 @@ namespace Electricity {
                 network.Production = production;
                 network.Consumption = production - availableEnergy;
 
-                while ((network.Overflow = network.Production - network.Consumption) > 0) {
-                    accumulators.Clear();
+                StoreOverflowInAccumulators(network);
+            }
+        }
 
-                    foreach (var accumulator in network.Accumulators) {
-                        if (accumulator.GetMaxCapacity() - accumulator.GetCapacity() > 0) {
-                            accumulators.Add(accumulator);
-                        }
-                    }
+        // Local Struct to Store Accumulator Data for Overflow
+        // Note: Will NOT Update Capacity Fields
+        private struct AccumulatorTuple
+        {
+            public readonly IElectricAccumulator Accumulator; // Accumulator Object
+            public readonly int MaxCapacity; // Max Capacity of Accumulator
+            public readonly int CurrentCapacity; // Current Capacity of Accumulator
+            public readonly int AvailableCapacity; // Available Capacity of Accumulator
 
-                    if (accumulators.Count == 0) {
-                        break;
-                    }
+            public AccumulatorTuple(IElectricAccumulator accumulator, int maxCapacity, int currentCapacity)
+            {
+                Accumulator = accumulator;
+                MaxCapacity = maxCapacity;
+                CurrentCapacity = currentCapacity;
+                AvailableCapacity = MaxCapacity - CurrentCapacity;
+            }
+        }
 
-                    var giveableEnergy = network.Overflow / accumulators.Count;
+        private static void StoreOverflowInAccumulators(Network network)
+        {
+            int availableEnergy = network.Overflow = network.Production - network.Consumption;
+            int desiredEnergy = 0; // Energy the Accumulators can store
+            List<AccumulatorTuple> accumulatorEnergy = new List<AccumulatorTuple>();
 
-                    if (giveableEnergy == 0) {
-                        break;
-                    }
+            // Build a list of accumulators with available capacity
+            foreach (var accumulator in network.Accumulators)
+            {
+                AccumulatorTuple tuple = new AccumulatorTuple(
+                    accumulator,
+                    accumulator.GetMaxCapacity(),
+                    accumulator.GetCapacity()
+                );
 
-                    foreach (var accumulator in accumulators) {
-                        var energy = Math.Min(giveableEnergy, accumulator.GetMaxCapacity() - accumulator.GetCapacity());
+                if (tuple.AvailableCapacity <= 0)
+                    continue;
 
-                        accumulator.Store(energy);
-                        network.Consumption += energy;
-                    }
+                accumulatorEnergy.Add(tuple);
+                desiredEnergy += tuple.AvailableCapacity;
+            }
+            
+            // Nothing to do
+            if (desiredEnergy <= 0)
+                return;
+
+            // Sort accumulators by available capacity (Important for Remainder Algorithm)
+            accumulatorEnergy.Sort((a, b) => a.AvailableCapacity.CompareTo(b.AvailableCapacity));
+
+            // Available Energy is less than desired energy
+            // So we need to evenly distribute the available energy to all accumulators
+            if (availableEnergy < desiredEnergy)
+            {
+                int count = accumulatorEnergy.Count;
+                foreach (var tuple in accumulatorEnergy)
+                {
+                    // Calculate the average energy to give to each accumulator (this will account for remainders)
+                    int avgEnergyToGiveAccumulator = availableEnergy / count;
+                    
+                    // Minimum of the average energy or just the available capacity
+                    var energy = Math.Min(tuple.AvailableCapacity, avgEnergyToGiveAccumulator);
+                    
+                    // Update loop values
+                    availableEnergy -= energy;
+                    count--;
+                    
+                    // Update the Accumulator and Network
+                    tuple.Accumulator.Store(energy);
+                    network.Consumption += energy;
                 }
             }
+            
+            // Available Energy is greater than desired energy
+            // So fill up the accumulators with the most available capacity
+            else if (availableEnergy >= desiredEnergy)
+            {
+                foreach (var tuple in accumulatorEnergy)
+                {
+                    // Add All the available capacity to the accumulator
+                    int energy = tuple.AvailableCapacity;
+                    tuple.Accumulator.Store(energy);
+                    network.Consumption += energy;
+                }
+            }
+            network.Overflow = network.Production - network.Consumption;
         }
 
         private Network MergeNetworks(HashSet<Network> networks) {
