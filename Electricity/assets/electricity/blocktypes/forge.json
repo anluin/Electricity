@@ -50,7 +50,7 @@
     },
     "textures": {
         "coal": {
-            "base": "block/forge-inner"
+            "base": "block/coal-dust"
         },
         "ember": {
             "base": "block/forge"
