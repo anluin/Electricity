@@ -8,14 +8,11 @@ using Vintagestory.API.MathTools;
 
 namespace Electricity.Content.Block {
     public class Cable : Vintagestory.API.Common.Block {
-        private readonly static ConcurrentDictionary<CacheDataKey, Dictionary<Facing, Cuboidf[]>> CollisionBoxesCache =
-            new ConcurrentDictionary<CacheDataKey, Dictionary<Facing, Cuboidf[]>>();
+        private readonly static ConcurrentDictionary<CacheDataKey, Dictionary<Facing, Cuboidf[]>> CollisionBoxesCache = new();
 
-        private readonly static Dictionary<CacheDataKey, Dictionary<Facing, Cuboidf[]>> SelectionBoxesCache =
-            new Dictionary<CacheDataKey, Dictionary<Facing, Cuboidf[]>>();
+        private readonly static Dictionary<CacheDataKey, Dictionary<Facing, Cuboidf[]>> SelectionBoxesCache = new();
 
-        private readonly static Dictionary<CacheDataKey, MeshData> MeshDataCache =
-            new Dictionary<CacheDataKey, MeshData>();
+        private readonly static Dictionary<CacheDataKey, MeshData> MeshDataCache = new();
 
         private BlockVariant? disabledSwitchVariant;
 
@@ -80,10 +77,11 @@ namespace Electricity.Content.Block {
                 if (byPlayer is { CurrentBlockSelection: { } blockSelection }) {
                     var key = CacheDataKey.FromEntity(entity);
                     var hitPosition = blockSelection.HitPosition;
+
                     var selectedFacing = (
                             from keyValuePair in CalculateBoxes(
                                 key,
-                                SelectionBoxesCache,
+                                Cable.SelectionBoxesCache,
                                 this.dotVariant!.SelectionBoxes,
                                 this.partVariant!.SelectionBoxes,
                                 this.enabledSwitchVariant!.SelectionBoxes,
@@ -156,7 +154,9 @@ namespace Electricity.Content.Block {
                 var stackSize = FacingHelper.Count(entity.Connection);
                 var itemStack = new ItemStack(block, stackSize);
 
-                return new[] { itemStack };
+                return new[] {
+                    itemStack
+                };
             }
 
             return base.GetDrops(world, position, byPlayer, dropQuantityMultiplier);
@@ -216,10 +216,11 @@ namespace Electricity.Content.Block {
 
             if (world.BlockAccessor.GetBlockEntity(blockSel.Position) is Entity.Cable entity) {
                 var key = CacheDataKey.FromEntity(entity);
+
                 var selectedFacing = (
                         from keyValuePair in CalculateBoxes(
                             key,
-                            SelectionBoxesCache,
+                            Cable.SelectionBoxesCache,
                             this.dotVariant!.SelectionBoxes,
                             this.partVariant!.SelectionBoxes,
                             this.enabledSwitchVariant!.SelectionBoxes,
@@ -257,7 +258,7 @@ namespace Electricity.Content.Block {
 
                 return CalculateBoxes(
                         key,
-                        SelectionBoxesCache,
+                        Cable.SelectionBoxesCache,
                         this.dotVariant!.SelectionBoxes,
                         this.partVariant!.SelectionBoxes,
                         this.enabledSwitchVariant!.SelectionBoxes,
@@ -277,7 +278,7 @@ namespace Electricity.Content.Block {
 
                 return CalculateBoxes(
                         key,
-                        CollisionBoxesCache,
+                        Cable.CollisionBoxesCache,
                         this.dotVariant!.CollisionBoxes,
                         this.partVariant!.CollisionBoxes,
                         this.enabledSwitchVariant!.CollisionBoxes,
@@ -295,7 +296,7 @@ namespace Electricity.Content.Block {
             if (this.api.World.BlockAccessor.GetBlockEntity(position) is Entity.Cable entity && entity.Connection != Facing.None) {
                 var key = CacheDataKey.FromEntity(entity);
 
-                if (!MeshDataCache.TryGetValue(key, out var meshData)) {
+                if (!Cable.MeshDataCache.TryGetValue(key, out var meshData)) {
                     var origin = new Vec3f(0.5f, 0.5f, 0.5f);
 
                     // Connections
@@ -740,7 +741,7 @@ namespace Electricity.Content.Block {
                         );
                     }
 
-                    MeshDataCache[key] = meshData!;
+                    Cable.MeshDataCache[key] = meshData!;
                 }
 
                 sourceMesh = meshData ?? sourceMesh;
@@ -1154,8 +1155,7 @@ namespace Electricity.Content.Block {
         private static void AddBoxes(ref Dictionary<Facing, Cuboidf[]> cache, Facing key, Cuboidf[] boxes) {
             if (cache.ContainsKey(key)) {
                 cache[key] = cache[key].Concat(boxes).ToArray();
-            }
-            else {
+            } else {
                 cache[key] = boxes;
             }
         }
@@ -1164,8 +1164,7 @@ namespace Electricity.Content.Block {
             if (meshData != null) {
                 if (sourceMesh != null) {
                     sourceMesh.AddMeshData(meshData);
-                }
-                else {
+                } else {
                     sourceMesh = meshData;
                 }
             }

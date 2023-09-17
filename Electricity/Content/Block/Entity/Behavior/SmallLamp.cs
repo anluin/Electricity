@@ -5,25 +5,29 @@ using Vintagestory.API.Common;
 
 namespace Electricity.Content.Block.Entity.Behavior {
     public class SmallLamp : BlockEntityBehavior, IElectricConsumer {
-        public SmallLamp(BlockEntity blockEntity) : base(blockEntity) { }
+        public SmallLamp(BlockEntity blockEntity) : base(blockEntity) {
+        }
 
         public int LightLevel { get; private set; }
 
-        public ConsumptionRange ConsumptionRange => new ConsumptionRange(1, 4);
+        public ConsumptionRange ConsumptionRange => new(1, 4);
 
         public void Consume(int lightLevel) {
             if (this.Api is { } api) {
                 if (lightLevel != this.LightLevel) {
-                    if (this.LightLevel == 0 && lightLevel > 0) {
-                        var assetLocation = this.Blockentity.Block.CodeWithVariant("state", "enabled");
-                        var block = api.World.BlockAccessor.GetBlock(assetLocation);
-                        api.World.BlockAccessor.ExchangeBlock(block.Id, this.Blockentity.Pos);
-                    }
-
-                    if (this.LightLevel > 0 && lightLevel == 0) {
-                        var assetLocation = this.Blockentity.Block.CodeWithVariant("state", "disabled");
-                        var block = api.World.BlockAccessor.GetBlock(assetLocation);
-                        api.World.BlockAccessor.ExchangeBlock(block.Id, this.Blockentity.Pos);
+                    switch (this.LightLevel) {
+                        case 0 when lightLevel > 0: {
+                            var assetLocation = this.Blockentity.Block.CodeWithVariant("state", "enabled");
+                            var block = api.World.BlockAccessor.GetBlock(assetLocation);
+                            api.World.BlockAccessor.ExchangeBlock(block.Id, this.Blockentity.Pos);
+                            break;
+                        }
+                        case > 0 when lightLevel == 0: {
+                            var assetLocation = this.Blockentity.Block.CodeWithVariant("state", "disabled");
+                            var block = api.World.BlockAccessor.GetBlock(assetLocation);
+                            api.World.BlockAccessor.ExchangeBlock(block.Id, this.Blockentity.Pos);
+                            break;
+                        }
                     }
 
                     this.Blockentity.Block.LightHsv = new[] {
@@ -41,7 +45,7 @@ namespace Electricity.Content.Block.Entity.Behavior {
         public override void GetBlockInfo(IPlayer forPlayer, StringBuilder stringBuilder) {
             base.GetBlockInfo(forPlayer, stringBuilder);
 
-            stringBuilder.AppendLine(StringHelper.Progressbar((this.LightLevel * 100.0f) / 4.0f));
+            stringBuilder.AppendLine(StringHelper.Progressbar(this.LightLevel * 100.0f / 4.0f));
             stringBuilder.AppendLine("└ Consumption: " + this.LightLevel + "/" + 4 + "⚡   ");
             stringBuilder.AppendLine();
         }

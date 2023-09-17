@@ -1,15 +1,15 @@
 {
-    "ingredientPattern": "M",
-    "width": 1,
-    "height": 1,
-    "ingredients": {
-        "M": {
-            "type": "block",
-            "code": "electricity:motor-stator"
-        }
-    },
-    "output": {
-        "type": "block",
-        "code": "electricity:generator-stator"
+  "ingredientPattern": "M",
+  "width": 1,
+  "height": 1,
+  "ingredients": {
+    "M": {
+      "type": "block",
+      "code": "electricity:motor-stator"
     }
+  },
+  "output": {
+    "type": "block",
+    "code": "electricity:generator-stator"
+  }
 }

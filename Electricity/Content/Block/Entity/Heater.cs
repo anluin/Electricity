@@ -27,7 +27,7 @@ namespace Electricity.Content.Block.Entity {
         public bool IsEnabled => this.Behavior.HeatLevel > 0;
 
         public float GetHeatStrength(IWorldAccessor world, BlockPos heatSourcePos, BlockPos heatReceiverPos) {
-            return (this.Behavior.HeatLevel * 20f) / 8.0f;
+            return this.Behavior.HeatLevel * 20f / 8.0f;
         }
 
         public override void ToTreeAttributes(ITreeAttribute tree) {
@@ -41,7 +41,8 @@ namespace Electricity.Content.Block.Entity {
 
             try {
                 this.facing = SerializerUtil.Deserialize<Facing>(tree.GetBytes("electricity:facing"));
-            } catch (Exception exception) {
+            }
+            catch (Exception exception) {
                 this.Api?.Logger.Error(exception.ToString());
             }
         }

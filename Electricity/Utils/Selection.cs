@@ -106,8 +106,8 @@ namespace Electricity.Utils {
 
         private static Vec2d Rotate(Vec2d point, Vec2d origin, double angle) {
             return new Vec2d(
-                ((GameMath.Cos(angle) * (point.X - origin.X)) - (GameMath.Sin(angle) * (point.Y - origin.Y))) + origin.X,
-                (GameMath.Sin(angle) * (point.X - origin.X)) + (GameMath.Cos(angle) * (point.Y - origin.Y)) + origin.Y
+                GameMath.Cos(angle) * (point.X - origin.X) - GameMath.Sin(angle) * (point.Y - origin.Y) + origin.X,
+                GameMath.Sin(angle) * (point.X - origin.X) + GameMath.Cos(angle) * (point.Y - origin.Y) + origin.Y
             );
         }
 

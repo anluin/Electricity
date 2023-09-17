@@ -11,44 +11,44 @@ namespace Electricity.Utils {
         None = 0b_0000_0000_0000_0000_0000_0000,
 
         AllAll = 0b_1111_1111_1111_1111_1111_1111,
-        AllNorth = EastNorth | WestNorth | UpNorth | DownNorth,
-        AllEast = NorthEast | SouthEast | UpEast | DownEast,
-        AllSouth = EastSouth | WestSouth | UpSouth | DownSouth,
-        AllWest = NorthWest | SouthWest | UpWest | DownWest,
-        AllUp = NorthUp | EastUp | SouthUp | WestUp,
-        AllDown = NorthDown | EastDown | SouthDown | WestDown,
+        AllNorth = Facing.EastNorth | Facing.WestNorth | Facing.UpNorth | Facing.DownNorth,
+        AllEast = Facing.NorthEast | Facing.SouthEast | Facing.UpEast | Facing.DownEast,
+        AllSouth = Facing.EastSouth | Facing.WestSouth | Facing.UpSouth | Facing.DownSouth,
+        AllWest = Facing.NorthWest | Facing.SouthWest | Facing.UpWest | Facing.DownWest,
+        AllUp = Facing.NorthUp | Facing.EastUp | Facing.SouthUp | Facing.WestUp,
+        AllDown = Facing.NorthDown | Facing.EastDown | Facing.SouthDown | Facing.WestDown,
 
-        NorthAll = NorthEast | NorthWest | NorthUp | NorthDown,
+        NorthAll = Facing.NorthEast | Facing.NorthWest | Facing.NorthUp | Facing.NorthDown,
         NorthEast = 0b_1000_0000_0000_0000_0000_0000,
         NorthWest = 0b_0100_0000_0000_0000_0000_0000,
         NorthUp = 0b_0010_0000_0000_0000_0000_0000,
         NorthDown = 0b_0001_0000_0000_0000_0000_0000,
 
-        EastAll = EastNorth | EastSouth | EastUp | EastDown,
+        EastAll = Facing.EastNorth | Facing.EastSouth | Facing.EastUp | Facing.EastDown,
         EastNorth = 0b_0000_1000_0000_0000_0000_0000,
         EastSouth = 0b_0000_0100_0000_0000_0000_0000,
         EastUp = 0b_0000_0010_0000_0000_0000_0000,
         EastDown = 0b_0000_0001_0000_0000_0000_0000,
 
-        SouthAll = SouthEast | SouthWest | SouthUp | SouthDown,
+        SouthAll = Facing.SouthEast | Facing.SouthWest | Facing.SouthUp | Facing.SouthDown,
         SouthEast = 0b_0000_0000_1000_0000_0000_0000,
         SouthWest = 0b_0000_0000_0100_0000_0000_0000,
         SouthUp = 0b_0000_0000_0010_0000_0000_0000,
         SouthDown = 0b_0000_0000_0001_0000_0000_0000,
 
-        WestAll = WestNorth | WestSouth | WestUp | WestDown,
+        WestAll = Facing.WestNorth | Facing.WestSouth | Facing.WestUp | Facing.WestDown,
         WestNorth = 0b_0000_0000_0000_1000_0000_0000,
         WestSouth = 0b_0000_0000_0000_0100_0000_0000,
         WestUp = 0b_0000_0000_0000_0010_0000_0000,
         WestDown = 0b_0000_0000_0000_0001_0000_0000,
 
-        UpAll = UpNorth | UpEast | UpSouth | UpWest,
+        UpAll = Facing.UpNorth | Facing.UpEast | Facing.UpSouth | Facing.UpWest,
         UpNorth = 0b_0000_0000_0000_0000_1000_0000,
         UpEast = 0b_0000_0000_0000_0000_0100_0000,
         UpSouth = 0b_0000_0000_0000_0000_0010_0000,
         UpWest = 0b_0000_0000_0000_0000_0001_0000,
 
-        DownAll = DownNorth | DownEast | DownSouth | DownWest,
+        DownAll = Facing.DownNorth | Facing.DownEast | Facing.DownSouth | Facing.DownWest,
         DownNorth = 0b_0000_0000_0000_0000_0000_1000,
         DownEast = 0b_0000_0000_0000_0000_0000_0100,
         DownSouth = 0b_0000_0000_0000_0000_0000_0010,
@@ -190,7 +190,7 @@ namespace Electricity.Utils {
                 (self & Facing.DownAll) != 0
                     ? BlockFacing.DOWN
                     : null
-            }.Where(face => face is { }).Select(face => face!);
+            }.Where(face => face is not null).Select(face => face!);
         }
 
         public static IEnumerable<BlockFacing> Directions(Facing self) {
@@ -213,7 +213,7 @@ namespace Electricity.Utils {
                 (self & Facing.AllDown) != 0
                     ? BlockFacing.DOWN
                     : null
-            }.Where(face => face is { }).Select(face => face!);
+            }.Where(face => face is not null).Select(face => face!);
         }
 
         public static Facing FullFace(Facing self) {

@@ -14,14 +14,16 @@ using Vintagestory.API.MathTools;
     Website = "https://github.com/anluin/electricity",
     Description = "Brings electricity into the game!",
     Version = "0.0.10",
-    Authors = new[] { "Anluin" }
+    Authors = new[] {
+        "Anluin"
+    }
 )]
 
 namespace Electricity {
     public class Electricity : ModSystem {
-        private readonly List<Consumer> consumers = new List<Consumer>();
-        private readonly HashSet<Network> networks = new HashSet<Network>();
-        private readonly Dictionary<BlockPos, NetworkPart> parts = new Dictionary<BlockPos, NetworkPart>();
+        private readonly List<Consumer> consumers = new();
+        private readonly HashSet<Network> networks = new();
+        private readonly Dictionary<BlockPos, NetworkPart> parts = new();
 
         public override void Start(ICoreAPI api) {
             base.Start(api);
@@ -105,16 +107,11 @@ namespace Electricity {
             foreach (var network in this.networks) {
                 this.consumers.Clear();
 
-                var production = 0;
-
-                foreach (var producer in network.Producers) {
-                    production += producer.Produce();
-                }
+                var production = network.Producers.Sum(producer => producer.Produce());
 
                 var totalRequiredEnergy = 0;
 
-                foreach (var electricConsumer in network.Consumers) {
-                    var consumer = new Consumer(electricConsumer);
+                foreach (var consumer in network.Consumers.Select(electricConsumer => new Consumer(electricConsumer))) {
                     totalRequiredEnergy += consumer.Consumption.Max;
                     this.consumers.Add(consumer);
                 }
@@ -122,12 +119,7 @@ namespace Electricity {
                 if (production < totalRequiredEnergy) {
                     do {
                         accumulators.Clear();
-
-                        foreach (var accumulator in network.Accumulators) {
-                            if (accumulator.GetCapacity() > 0) {
-                                accumulators.Add(accumulator);
-                            }
-                        }
+                        accumulators.AddRange(network.Accumulators.Where(accumulator => accumulator.GetCapacity() > 0));
 
                         if (accumulators.Count > 0) {
                             var rest = (totalRequiredEnergy - production) / accumulators.Count;
@@ -219,88 +211,68 @@ namespace Electricity {
             }
         }
 
-        // Local Struct to Store Accumulator Data for Overflow
-        // Note: Will NOT Update Capacity Fields
-        private struct AccumulatorTuple
-        {
-            public readonly IElectricAccumulator Accumulator; // Accumulator Object
-            public readonly int MaxCapacity; // Max Capacity of Accumulator
-            public readonly int CurrentCapacity; // Current Capacity of Accumulator
-            public readonly int AvailableCapacity; // Available Capacity of Accumulator
-
-            public AccumulatorTuple(IElectricAccumulator accumulator, int maxCapacity, int currentCapacity)
-            {
-                Accumulator = accumulator;
-                MaxCapacity = maxCapacity;
-                CurrentCapacity = currentCapacity;
-                AvailableCapacity = MaxCapacity - CurrentCapacity;
-            }
-        }
-
-        private static void StoreOverflowInAccumulators(Network network)
-        {
-            int availableEnergy = network.Overflow = network.Production - network.Consumption;
-            int desiredEnergy = 0; // Energy the Accumulators can store
-            List<AccumulatorTuple> accumulatorEnergy = new List<AccumulatorTuple>();
+        private static void StoreOverflowInAccumulators(Network network) {
+            var availableEnergy = network.Overflow = network.Production - network.Consumption;
+            var desiredEnergy = 0; // Energy the Accumulators can store
+            var accumulatorEnergy = new List<AccumulatorTuple>();
 
             // Build a list of accumulators with available capacity
-            foreach (var accumulator in network.Accumulators)
-            {
-                AccumulatorTuple tuple = new AccumulatorTuple(
+            foreach (var accumulator in network.Accumulators) {
+                var tuple = new AccumulatorTuple(
                     accumulator,
                     accumulator.GetMaxCapacity(),
                     accumulator.GetCapacity()
                 );
 
-                if (tuple.AvailableCapacity <= 0)
+                if (tuple.AvailableCapacity <= 0) {
                     continue;
+                }
 
                 accumulatorEnergy.Add(tuple);
                 desiredEnergy += tuple.AvailableCapacity;
             }
-            
+
             // Nothing to do
-            if (desiredEnergy <= 0)
+            if (desiredEnergy <= 0) {
                 return;
+            }
 
             // Sort accumulators by available capacity (Important for Remainder Algorithm)
             accumulatorEnergy.Sort((a, b) => a.AvailableCapacity.CompareTo(b.AvailableCapacity));
 
             // Available Energy is less than desired energy
             // So we need to evenly distribute the available energy to all accumulators
-            if (availableEnergy < desiredEnergy)
-            {
-                int count = accumulatorEnergy.Count;
-                foreach (var tuple in accumulatorEnergy)
-                {
+            if (availableEnergy < desiredEnergy) {
+                var count = accumulatorEnergy.Count;
+
+                foreach (var tuple in accumulatorEnergy) {
                     // Calculate the average energy to give to each accumulator (this will account for remainders)
-                    int avgEnergyToGiveAccumulator = availableEnergy / count;
-                    
+                    var avgEnergyToGiveAccumulator = availableEnergy / count;
+
                     // Minimum of the average energy or just the available capacity
                     var energy = Math.Min(tuple.AvailableCapacity, avgEnergyToGiveAccumulator);
-                    
+
                     // Update loop values
                     availableEnergy -= energy;
                     count--;
-                    
+
                     // Update the Accumulator and Network
                     tuple.Accumulator.Store(energy);
                     network.Consumption += energy;
                 }
             }
-            
+
             // Available Energy is greater than desired energy
             // So fill up the accumulators with the most available capacity
-            else if (availableEnergy >= desiredEnergy)
-            {
-                foreach (var tuple in accumulatorEnergy)
-                {
+            else if (availableEnergy >= desiredEnergy) {
+                foreach (var tuple in accumulatorEnergy) {
                     // Add All the available capacity to the accumulator
-                    int energy = tuple.AvailableCapacity;
+                    var energy = tuple.AvailableCapacity;
                     tuple.Accumulator.Store(energy);
                     network.Consumption += energy;
                 }
             }
+
             network.Overflow = network.Production - network.Consumption;
         }
 
@@ -386,8 +358,12 @@ namespace Electricity {
             }
 
             var networksByFace = new[] {
-                new HashSet<Network>(), new HashSet<Network>(), new HashSet<Network>(),
-                new HashSet<Network>(), new HashSet<Network>(), new HashSet<Network>()
+                new HashSet<Network>(),
+                new HashSet<Network>(),
+                new HashSet<Network>(),
+                new HashSet<Network>(),
+                new HashSet<Network>(),
+                new HashSet<Network>()
             };
 
             foreach (var face in FacingHelper.Faces(part.Connection)) {
@@ -463,13 +439,11 @@ namespace Electricity {
                     if ((part.Connection & FacingHelper.From(direction, face)) != 0) {
                         if (part.Networks[face.Index] is { } network1 && part.Networks[direction.Index] is { } network2) {
                             var networks = new HashSet<Network> {
-                                network1,
-                                network2
+                                network1, network2
                             };
 
                             this.MergeNetworks(networks);
-                        }
-                        else {
+                        } else {
                             throw new Exception();
                         }
                     }
@@ -500,11 +474,11 @@ namespace Electricity {
 
             if (part.Consumer != consumer) {
                 foreach (var network in part.Networks) {
-                    if (part.Consumer is { }) {
+                    if (part.Consumer is not null) {
                         network?.Consumers.Remove(part.Consumer);
                     }
 
-                    if (consumer is { }) {
+                    if (consumer is not null) {
                         network?.Consumers.Add(consumer);
                     }
                 }
@@ -524,11 +498,11 @@ namespace Electricity {
 
             if (part.Producer != producer) {
                 foreach (var network in part.Networks) {
-                    if (part.Producer is { }) {
+                    if (part.Producer is not null) {
                         network?.Producers.Remove(part.Producer);
                     }
 
-                    if (producer is { }) {
+                    if (producer is not null) {
                         network?.Producers.Add(producer);
                     }
                 }
@@ -548,11 +522,11 @@ namespace Electricity {
 
             if (part.Accumulator != accumulator) {
                 foreach (var network in part.Networks) {
-                    if (part.Accumulator is { }) {
+                    if (part.Accumulator is not null) {
                         network?.Accumulators.Remove(part.Accumulator);
                     }
 
-                    if (accumulator is { }) {
+                    if (accumulator is not null) {
                         network?.Accumulators.Add(accumulator);
                     }
                 }
@@ -587,13 +561,29 @@ namespace Electricity {
 
             return result;
         }
+
+        // Local Struct to Store Accumulator Data for Overflow
+        // Note: Will NOT Update Capacity Fields
+        private struct AccumulatorTuple {
+            public readonly IElectricAccumulator Accumulator; // Accumulator Object
+            public readonly int MaxCapacity; // Max Capacity of Accumulator
+            public readonly int CurrentCapacity; // Current Capacity of Accumulator
+            public readonly int AvailableCapacity; // Available Capacity of Accumulator
+
+            public AccumulatorTuple(IElectricAccumulator accumulator, int maxCapacity, int currentCapacity) {
+                this.Accumulator = accumulator;
+                this.MaxCapacity = maxCapacity;
+                this.CurrentCapacity = currentCapacity;
+                this.AvailableCapacity = this.MaxCapacity - this.CurrentCapacity;
+            }
+        }
     }
 
     internal class Network {
-        public readonly HashSet<IElectricAccumulator> Accumulators = new HashSet<IElectricAccumulator>();
-        public readonly HashSet<IElectricConsumer> Consumers = new HashSet<IElectricConsumer>();
-        public readonly HashSet<BlockPos> PartPositions = new HashSet<BlockPos>();
-        public readonly HashSet<IElectricProducer> Producers = new HashSet<IElectricProducer>();
+        public readonly HashSet<IElectricAccumulator> Accumulators = new();
+        public readonly HashSet<IElectricConsumer> Consumers = new();
+        public readonly HashSet<BlockPos> PartPositions = new();
+        public readonly HashSet<IElectricProducer> Producers = new();
 
         public int Consumption;
         public int Overflow;
@@ -601,7 +591,15 @@ namespace Electricity {
     }
 
     internal class NetworkPart {
-        public readonly Network?[] Networks = { null, null, null, null, null, null };
+        public readonly Network?[] Networks = {
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+        };
+
         public readonly BlockPos Position;
         public IElectricAccumulator? Accumulator;
         public Facing Connection = Facing.None;

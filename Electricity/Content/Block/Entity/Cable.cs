@@ -36,7 +36,8 @@ namespace Electricity.Content.Block.Entity {
 
             try {
                 this.switches = SerializerUtil.Deserialize<Facing>(tree.GetBytes("electricity:switches"));
-            } catch (Exception exception) {
+            }
+            catch (Exception exception) {
                 this.Api?.Logger.Error(exception.ToString());
             }
         }

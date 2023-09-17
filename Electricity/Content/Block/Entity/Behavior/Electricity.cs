@@ -52,7 +52,7 @@ namespace Electricity.Content.Block.Entity.Behavior {
             if (this.dirty || force) {
                 var system = this.System;
 
-                if (system is { }) {
+                if (system is not null) {
                     this.dirty = false;
 
 
@@ -84,8 +84,7 @@ namespace Electricity.Content.Block.Entity.Behavior {
                     if (system.Update(this.Blockentity.Pos, this.connection & ~this.interruption)) {
                         this.Blockentity.MarkDirty(true);
                     }
-                }
-                else {
+                } else {
                     this.dirty = true;
                 }
             }

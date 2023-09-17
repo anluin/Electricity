@@ -1,22 +1,22 @@
 {
-    "ingredientPattern": "PS",
-    "width": 2,
-    "height": 1,
-    "ingredients": {
-        "P": {
-            "type": "item",
-            "code": "game:metalplate-copper"
-        },
-        "S": {
-            "type": "item",
-            "code": "game:saw-*",
-            "isTool": true,
-            "toolDurabilityCost": 16
-        }
+  "ingredientPattern": "PS",
+  "width": 2,
+  "height": 1,
+  "ingredients": {
+    "P": {
+      "type": "item",
+      "code": "game:metalplate-copper"
     },
-    "output": {
-        "type": "block",
-        "code": "electricity:cable-dot",
-        "quantity": 16
+    "S": {
+      "type": "item",
+      "code": "game:saw-*",
+      "isTool": true,
+      "toolDurabilityCost": 16
     }
+  },
+  "output": {
+    "type": "block",
+    "code": "electricity:cable-dot",
+    "quantity": 16
+  }
 }

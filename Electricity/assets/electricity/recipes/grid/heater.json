@@ -1,21 +1,21 @@
 {
-    "ingredientPattern": "MC",
-    "width": 2,
-    "height": 1,
-    "ingredients": {
-        "M": {
-            "type": "item",
-            "code": "game:metalplate-iron"
-        },
-        "C": {
-            "type": "block",
-            "code": "electricity:cable-*",
-            "quantity": 16
-        }
+  "ingredientPattern": "MC",
+  "width": 2,
+  "height": 1,
+  "ingredients": {
+    "M": {
+      "type": "item",
+      "code": "game:metalplate-iron"
     },
-    "output": {
-        "type": "block",
-        "code": "electricity:heater-disabled",
-        "quantity": 4
+    "C": {
+      "type": "block",
+      "code": "electricity:cable-*",
+      "quantity": 16
     }
+  },
+  "output": {
+    "type": "block",
+    "code": "electricity:heater-disabled",
+    "quantity": 4
+  }
 }

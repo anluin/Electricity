@@ -8,7 +8,7 @@ using Vintagestory.GameContent.Mechanics;
 
 namespace Electricity.Content.Block {
     public class Generator : Vintagestory.API.Common.Block, IMechanicalPowerBlock {
-        private readonly static Dictionary<Facing, MeshData> MeshData = new Dictionary<Facing, MeshData>();
+        private readonly static Dictionary<Facing, MeshData> MeshData = new();
 
         public MechanicalNetwork? GetNetwork(IWorldAccessor world, BlockPos pos) {
             if (world.BlockAccessor.GetBlockEntity(pos)?.GetBehavior<BEBehaviorMPBase>() is IMechanicalPowerDevice device) {
@@ -26,7 +26,8 @@ namespace Electricity.Content.Block {
             return false;
         }
 
-        public void DidConnectAt(IWorldAccessor world, BlockPos pos, BlockFacing face) { }
+        public void DidConnectAt(IWorldAccessor world, BlockPos pos, BlockFacing face) {
+        }
 
         public override void OnLoaded(ICoreAPI coreApi) {
             base.OnLoaded(coreApi);
@@ -67,6 +68,7 @@ namespace Electricity.Content.Block {
                     block.HasMechPowerConnectorAt(world, blockPos1, blockFacing.Opposite)
                 ) {
                     block.DidConnectAt(world, blockPos1, blockFacing.Opposite);
+
                     world.BlockAccessor.GetBlockEntity(blockPos)?
                         .GetBehavior<BEBehaviorMPBase>()?.tryConnect(blockFacing);
                 }
@@ -97,7 +99,7 @@ namespace Electricity.Content.Block {
                ) {
                 var facing = entity.Facing;
 
-                if (!MeshData.TryGetValue(facing, out var meshData)) {
+                if (!Generator.MeshData.TryGetValue(facing, out var meshData)) {
                     var origin = new Vec3f(0.5f, 0.5f, 0.5f);
                     var block = clientApi.World.GetBlock(new AssetLocation("electricity:generator-stator"));
 
@@ -199,7 +201,7 @@ namespace Electricity.Content.Block {
                         meshData.Rotate(origin, 0.0f, 90.0f * GameMath.DEG2RAD, 0.0f);
                     }
 
-                    MeshData.Add(facing, meshData);
+                    Generator.MeshData.Add(facing, meshData);
                 }
 
                 sourceMesh = meshData;

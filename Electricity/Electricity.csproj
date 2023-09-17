@@ -7,20 +7,20 @@
     </PropertyGroup>
     <ItemGroup>
         <Reference Include="protobuf-net">
-          <HintPath>$(VINTAGE_STORY)/Lib/protobuf-net.dll</HintPath>
-          <Private>False</Private>
+            <HintPath>$(VINTAGE_STORY)/Lib/protobuf-net.dll</HintPath>
+            <Private>False</Private>
         </Reference>
         <Reference Include="VintagestoryAPI">
             <HintPath>$(VINTAGE_STORY)/VintagestoryAPI.dll</HintPath>
             <Private>False</Private>
         </Reference>
         <Reference Include="VSEssentials">
-          <HintPath>$(VINTAGE_STORY)/Mods/VSEssentials.dll</HintPath>
-          <Private>False</Private>
+            <HintPath>$(VINTAGE_STORY)/Mods/VSEssentials.dll</HintPath>
+            <Private>False</Private>
         </Reference>
         <Reference Include="VSSurvivalMod">
-          <HintPath>$(VINTAGE_STORY)/Mods/VSSurvivalMod.dll</HintPath>
-          <Private>False</Private>
+            <HintPath>$(VINTAGE_STORY)/Mods/VSSurvivalMod.dll</HintPath>
+            <Private>False</Private>
         </Reference>
     </ItemGroup>
     <ItemGroup>
@@ -32,6 +32,6 @@
         </Content>
     </ItemGroup>
     <ItemGroup>
-      <Folder Include="assets\" />
+        <Folder Include="assets\"/>
     </ItemGroup>
 </Project>

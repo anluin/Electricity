@@ -12,13 +12,14 @@ using Vintagestory.GameContent.Mechanics;
 namespace Electricity.Content.Block.Entity.Behavior {
     public class Motor : BEBehaviorMPBase, IElectricConsumer {
         private const float AccelerationFactor = 1.0f;
-        private static CompositeShape? CompositeShape;
+        private static CompositeShape? compositeShape;
 
         private double capableSpeed;
         private int powerSetting;
         private float resistance = 0.03f;
 
-        public Motor(BlockEntity blockEntity) : base(blockEntity) { }
+        public Motor(BlockEntity blockEntity) : base(blockEntity) {
+        }
 
         public override BlockFacing OutFacingForNetworkDiscovery {
             get {
@@ -35,16 +36,40 @@ namespace Electricity.Content.Block.Entity.Behavior {
         private float TorqueFactor => 0.007f * this.powerSetting;
 
         public override int[] AxisSign => this.OutFacingForNetworkDiscovery.Index switch {
-            0 => new[] { +0, +0, -1 },
-            1 => new[] { -1, +0, +0 },
-            2 => new[] { +0, +0, -1 },
-            3 => new[] { -1, +0, +0 },
-            4 => new[] { +0, +1, +0 },
-            5 => new[] { +0, +1, +0 },
+            0 => new[] {
+                +0,
+                +0,
+                -1
+            },
+            1 => new[] {
+                -1,
+                +0,
+                +0
+            },
+            2 => new[] {
+                +0,
+                +0,
+                -1
+            },
+            3 => new[] {
+                -1,
+                +0,
+                +0
+            },
+            4 => new[] {
+                +0,
+                +1,
+                +0
+            },
+            5 => new[] {
+                +0,
+                +1,
+                +0
+            },
             _ => throw new Exception()
         };
 
-        public ConsumptionRange ConsumptionRange => new ConsumptionRange(10, 100);
+        public ConsumptionRange ConsumptionRange => new(10, 100);
 
         public void Consume(int amount) {
             if (this.powerSetting != amount) {
@@ -56,10 +81,10 @@ namespace Electricity.Content.Block.Entity.Behavior {
         public override void JoinNetwork(MechanicalNetwork network) {
             base.JoinNetwork(network);
 
-            if (this.Api is ICoreServerAPI api && this.network is { } && (
+            if (this.Api is ICoreServerAPI api && this.network is not null && (
                     from mechanicalPowerNode in this.network.nodes
                     let block = api.World.BlockAccessor.GetBlockEntity(mechanicalPowerNode.Key)
-                    where block?.GetBehavior<Generator>() is { }
+                    where block?.GetBehavior<Generator>() is not null
                     select mechanicalPowerNode).Any()) {
                 api.Event.EnqueueMainThreadTask(() => api.World.BlockAccessor.BreakBlock(this.Position, null), "break-motor");
             }
@@ -73,7 +98,7 @@ namespace Electricity.Content.Block.Entity.Behavior {
 
         public override float GetTorque(long tick, float speed, out float resistance) {
             this.resistance = this.GetResistance();
-            this.capableSpeed += (this.TargetSpeed - this.capableSpeed) * AccelerationFactor;
+            this.capableSpeed += (this.TargetSpeed - this.capableSpeed) * Motor.AccelerationFactor;
             var csFloat = (float)this.capableSpeed;
 
             var dir = this.propagationDir == this.OutFacingForNetworkDiscovery
@@ -97,18 +122,19 @@ namespace Electricity.Content.Block.Entity.Behavior {
             return Math.Max(0f, power) * this.TorqueFactor * dir;
         }
 
-        public override void WasPlaced(BlockFacing connectedOnFacing) { }
+        public override void WasPlaced(BlockFacing connectedOnFacing) {
+        }
 
         protected override CompositeShape? GetShape() {
             if (this.Api is { } api && this.Blockentity is Entity.Motor entity && entity.Facing != Facing.None) {
                 var direction = this.OutFacingForNetworkDiscovery;
 
-                if (CompositeShape == null) {
+                if (Motor.compositeShape == null) {
                     var location = this.Block.CodeWithVariant("type", "rotor");
-                    CompositeShape = api.World.BlockAccessor.GetBlock(location).Shape.Clone();
+                    Motor.compositeShape = api.World.BlockAccessor.GetBlock(location).Shape.Clone();
                 }
 
-                var shape = CompositeShape.Clone();
+                var shape = Motor.compositeShape.Clone();
 
                 if (direction == BlockFacing.NORTH) {
                     shape.rotateY = 0;

@@ -39,8 +39,8 @@ namespace Electricity.Content.Block {
                                 HotKeyCode = "shift",
                                 MouseButton = EnumMouseButton.Right,
                                 Itemstacks = heatableStacklist.ToArray(),
-                                GetMatchingStacks = (worldInteraction, blockSelection, entitySelection) => {
-                                    if (api.World.BlockAccessor.GetBlockEntity(blockSelection.Position) is Entity.ElectricForge { Contents: { } } bef) {
+                                GetMatchingStacks = (worldInteraction, blockSelection, _) => {
+                                    if (api.World.BlockAccessor.GetBlockEntity(blockSelection.Position) is Entity.ElectricForge { Contents: not null } bef) {
                                         return worldInteraction.Itemstacks.Where(stack => stack.Equals(api.World, bef.Contents, GlobalConstants.IgnoredStackAttributes)).ToArray();
                                     }
 
@@ -52,9 +52,11 @@ namespace Electricity.Content.Block {
                                 HotKeyCode = null,
                                 MouseButton = EnumMouseButton.Right,
                                 Itemstacks = heatableStacklist.ToArray(),
-                                GetMatchingStacks = (worldInteraction, blockSelection, entitySelection) => {
-                                    if (api.World.BlockAccessor.GetBlockEntity(blockSelection.Position) is Entity.ElectricForge { Contents: { } } bef) {
-                                        return new[] { bef.Contents };
+                                GetMatchingStacks = (_, blockSelection, _) => {
+                                    if (api.World.BlockAccessor.GetBlockEntity(blockSelection.Position) is Entity.ElectricForge { Contents: not null } bef) {
+                                        return new[] {
+                                            bef.Contents
+                                        };
                                     }
 
                                     return null;

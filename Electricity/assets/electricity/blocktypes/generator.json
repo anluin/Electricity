@@ -1,65 +1,65 @@
 {
-    "code": "Generator",
-    "class": "Generator",
-    "entityClass": "Generator",
-    "entityBehaviors": [
-        {
-            "name": "Generator"
-        },
-        {
-            "name": "Electricity"
-        }
-    ],
-    "creativeInventory": {
-        "general": [
-            "*-stator"
-        ],
-        "mechanics": [
-            "*-stator"
-        ],
-        "electricity": [
-            "*-stator"
-        ]
+  "code": "Generator",
+  "class": "Generator",
+  "entityClass": "Generator",
+  "entityBehaviors": [
+    {
+      "name": "Generator"
     },
-    "variantGroups": [
-        {
-            "code": "type",
-            "states": [
-                "rotor",
-                "stator"
-            ]
-        }
-    ],
-    "shapeInventory": {
-        "base": "block/motor"
-    },
-    "shapeByType": {
-        "*-rotor": {
-            "base": "block/motor-rotor"
-        },
-        "*-stator": {
-            "base": "block/motor-stator"
-        }
-    },
-    "resistance": 1,
-    "drawType": "JSON",
-    "lightAbsorption": 0.0,
-    "faceCullMode": "NeverCull",
-    "renderPass": "OpaqueNoCull",
-    "emitSideAo": {
-        "all": false
-    },
-    "sideAo": {
-        "all": false
-    },
-    "sideOpaque": {
-        "all": false
-    },
-    "sideSolid": {
-        "all": false
-    },
-    "sounds": {
-        "place": "game:block/anvil",
-        "walk": "game:walk/stone"
+    {
+      "name": "Electricity"
     }
+  ],
+  "creativeInventory": {
+    "general": [
+      "*-stator"
+    ],
+    "mechanics": [
+      "*-stator"
+    ],
+    "electricity": [
+      "*-stator"
+    ]
+  },
+  "variantGroups": [
+    {
+      "code": "type",
+      "states": [
+        "rotor",
+        "stator"
+      ]
+    }
+  ],
+  "shapeInventory": {
+    "base": "block/motor"
+  },
+  "shapeByType": {
+    "*-rotor": {
+      "base": "block/motor-rotor"
+    },
+    "*-stator": {
+      "base": "block/motor-stator"
+    }
+  },
+  "resistance": 1,
+  "drawType": "JSON",
+  "lightAbsorption": 0.0,
+  "faceCullMode": "NeverCull",
+  "renderPass": "OpaqueNoCull",
+  "emitSideAo": {
+    "all": false
+  },
+  "sideAo": {
+    "all": false
+  },
+  "sideOpaque": {
+    "all": false
+  },
+  "sideSolid": {
+    "all": false
+  },
+  "sounds": {
+    "place": "game:block/anvil",
+    "walk": "game:walk/stone"
+  }
 }

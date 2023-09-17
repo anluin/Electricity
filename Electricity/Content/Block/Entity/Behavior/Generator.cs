@@ -11,11 +11,12 @@ using Vintagestory.GameContent.Mechanics;
 
 namespace Electricity.Content.Block.Entity.Behavior {
     public class Generator : BEBehaviorMPBase, IElectricProducer {
-        private static CompositeShape? CompositeShape;
+        private static CompositeShape? compositeShape;
 
         private int powerSetting;
 
-        public Generator(BlockEntity blockEntity) : base(blockEntity) { }
+        public Generator(BlockEntity blockEntity) : base(blockEntity) {
+        }
 
         public override BlockFacing OutFacingForNetworkDiscovery {
             get {
@@ -28,12 +29,36 @@ namespace Electricity.Content.Block.Entity.Behavior {
         }
 
         public override int[] AxisSign => this.OutFacingForNetworkDiscovery.Index switch {
-            0 => new[] { +0, +0, -1 },
-            1 => new[] { -1, +0, +0 },
-            2 => new[] { +0, +0, -1 },
-            3 => new[] { -1, +0, +0 },
-            4 => new[] { +0, +1, +0 },
-            5 => new[] { +0, -1, +0 },
+            0 => new[] {
+                +0,
+                +0,
+                -1
+            },
+            1 => new[] {
+                -1,
+                +0,
+                +0
+            },
+            2 => new[] {
+                +0,
+                +0,
+                -1
+            },
+            3 => new[] {
+                -1,
+                +0,
+                +0
+            },
+            4 => new[] {
+                +0,
+                +1,
+                +0
+            },
+            5 => new[] {
+                +0,
+                -1,
+                +0
+            },
             _ => this.AxisSign
         };
 
@@ -53,7 +78,7 @@ namespace Electricity.Content.Block.Entity.Behavior {
         public override void JoinNetwork(MechanicalNetwork network) {
             base.JoinNetwork(network);
 
-            if (this.Api is ICoreServerAPI api && this.network is { }) {
+            if (this.Api is ICoreServerAPI api && this.network is not null) {
                 foreach (var block in this.network.nodes.Select(mechanicalPowerNode => api.World.BlockAccessor.GetBlockEntity(mechanicalPowerNode.Key))) {
                     if (block?.GetBehavior<Motor>() is { } motor) {
                         api.Event.EnqueueMainThreadTask(() => api.World.BlockAccessor.BreakBlock(motor.Position, null), "break-motor");
@@ -68,19 +93,20 @@ namespace Electricity.Content.Block.Entity.Behavior {
                 : 0.05f;
         }
 
-        public override void WasPlaced(BlockFacing connectedOnFacing) { }
+        public override void WasPlaced(BlockFacing connectedOnFacing) {
+        }
 
         protected override CompositeShape? GetShape() {
             if (this.Api is { } api && this.Blockentity is Entity.Generator entity && entity.Facing != Facing.None) {
                 var direction = this.OutFacingForNetworkDiscovery;
 
-                if (CompositeShape == null) {
+                if (Generator.compositeShape == null) {
                     var location = this.Block.CodeWithVariant("type", "rotor");
 
-                    CompositeShape = api.World.BlockAccessor.GetBlock(location).Shape.Clone();
+                    Generator.compositeShape = api.World.BlockAccessor.GetBlock(location).Shape.Clone();
                 }
 
-                var shape = CompositeShape.Clone();
+                var shape = Generator.compositeShape.Clone();
 
                 if (direction == BlockFacing.NORTH) {
                     shape.rotateY = 0;

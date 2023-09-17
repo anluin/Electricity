@@ -1,11 +1,11 @@
 {
-    "game:tabname-electricity": "Electricity",
-    "block-accumulator": "Akkumulator",
-    "block-cable-*": "Kabel",
-    "block-motor-*": "Motor",
-    "block-generator-*": "Generator",
-    "block-switch-*": "Schalter",
-    "block-lamp-*": "Elektrische Lampe",
-    "block-forge": "Elektrische Schmiede",
-    "block-heater-*": "Elektrische Heizung"
+  "game:tabname-electricity": "Electricity",
+  "block-accumulator": "Akkumulator",
+  "block-cable-*": "Kabel",
+  "block-motor-*": "Motor",
+  "block-generator-*": "Generator",
+  "block-switch-*": "Schalter",
+  "block-lamp-*": "Elektrische Lampe",
+  "block-forge": "Elektrische Schmiede",
+  "block-heater-*": "Elektrische Heizung"
 }

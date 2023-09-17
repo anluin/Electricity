@@ -16,7 +16,7 @@ namespace Electricity.Content.Block {
                 return false;
             }
 
-            blockEntity.Switches = (blockEntity.Switches & ~face) | selection.Facing;
+            blockEntity.Switches = blockEntity.Switches & ~face | selection.Facing;
             blockEntity.SwitchesState |= face;
             blockEntity.MarkDirty(true);
 

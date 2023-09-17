@@ -35,7 +35,8 @@ namespace Electricity.Content.Block.Entity {
 
             try {
                 this.facing = SerializerUtil.Deserialize<Facing>(tree.GetBytes("electricity:facing"));
-            } catch (Exception exception) {
+            }
+            catch (Exception exception) {
                 this.facing = Facing.UpNorth;
                 this.Api?.Logger.Error(exception.ToString());
             }

@@ -11,7 +11,7 @@ using Vintagestory.GameContent;
 
 namespace Electricity.Content.Block.Entity {
     public class ElectricForge : BlockEntity, IHeatSource {
-        private readonly Vec3d tmpPos = new Vec3d();
+        private readonly Vec3d tmpPos = new();
         private ILoadedSound? ambientSound;
         private bool burning;
         private bool clientSidePrevBurning;
@@ -96,6 +96,7 @@ namespace Electricity.Content.Block.Entity {
             this.tmpPos.Set(this.Pos.X + 0.5, this.Pos.Y + 0.5, this.Pos.Z + 0.5);
 
             double rainLevel = 0;
+
             var rainCheck = this.Api.Side == EnumAppSide.Server
                             && this.Api.World.Rand.NextDouble() < 0.15
                             && this.Api.World.BlockAccessor.GetRainMapHeightAt(this.Pos.X, this.Pos.Z) <= this.Pos.Y
@@ -147,8 +148,7 @@ namespace Electricity.Content.Block.Entity {
 
                     this.ambientSound.Start();
                 }
-            }
-            else {
+            } else {
                 this.ambientSound?.Stop();
                 this.ambientSound?.Dispose();
                 this.ambientSound = null;
@@ -210,7 +210,7 @@ namespace Electricity.Content.Block.Entity {
                 var myTemp = this.Contents.Collectible.GetTemperature(this.Api.World, this.Contents);
                 var histemp = slot.Itemstack.Collectible.GetTemperature(this.Api.World, slot.Itemstack);
 
-                this.Contents.Collectible.SetTemperature(world, this.Contents, ((myTemp * this.Contents.StackSize) + (histemp * 1)) / (this.Contents.StackSize + 1));
+                this.Contents.Collectible.SetTemperature(world, this.Contents, (myTemp * this.Contents.StackSize + histemp * 1) / (this.Contents.StackSize + 1));
                 this.Contents.StackSize++;
 
                 slot.TakeOut(1);
@@ -276,9 +276,11 @@ namespace Electricity.Content.Block.Entity {
             base.ToTreeAttributes(tree);
 
             tree.SetItemstack("contents", this.Contents);
-            tree.SetInt("burning", this.burning
-                ? 1
-                : 0);
+
+            tree.SetInt("burning",
+                this.burning
+                    ? 1
+                    : 0);
 
             tree.SetDouble("lastTickTotalHours", this.lastTickTotalHours);
         }
@@ -312,8 +314,7 @@ namespace Electricity.Content.Block.Entity {
             if (this.Contents != null) {
                 if (this.Contents.Class == EnumItemClass.Item) {
                     blockIdMapping[this.Contents.Id] = this.Contents.Item.Code;
-                }
-                else {
+                } else {
                     itemIdMapping[this.Contents.Id] = this.Contents.Block.Code;
                 }
             }
