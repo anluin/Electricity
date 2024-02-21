@@ -15,6 +15,13 @@ namespace Electricity.Content.Block {
         public override void OnLoaded(ICoreAPI coreApi) {
             base.OnLoaded(coreApi);
         }
+        
+        public override void OnUnloaded(ICoreAPI api) {
+            base.OnUnloaded(api);
+            Heater.MeshDataCache.Clear();
+            Heater.SelectionBoxesCache.Clear();
+            Heater.CollisionBoxesCache.Clear();
+        }
 
         public override bool TryPlaceBlock(IWorldAccessor world, IPlayer byPlayer, ItemStack itemstack, BlockSelection blockSel, ref string failureCode) {
             var selection = new Selection(blockSel);

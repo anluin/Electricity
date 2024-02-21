@@ -6,14 +6,15 @@ using Electricity.Interface;
 using Electricity.Utils;
 using Vintagestory.API.Common;
 using Vintagestory.API.MathTools;
+using Vintagestory.Client.NoObf;
 
-[assembly: ModDependency("game", "1.18.6")]
+[assembly: ModDependency("game", "1.19.3")]
 [assembly: ModInfo(
     "Electricity",
     "electricity",
     Website = "https://github.com/anluin/electricity",
     Description = "Brings electricity into the game!",
-    Version = "0.0.10",
+    Version = "0.0.11",
     Authors = new[] {
         "Anluin"
     }
@@ -27,7 +28,6 @@ namespace Electricity {
 
         public override void Start(ICoreAPI api) {
             base.Start(api);
-
             api.RegisterBlockClass("Cable", typeof(Cable));
             api.RegisterBlockEntityClass("Cable", typeof(Content.Block.Entity.Cable));
 

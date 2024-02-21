@@ -20,6 +20,13 @@ namespace Electricity.Content.Block {
         private BlockVariant? enabledSwitchVariant;
         private BlockVariant? partVariant;
 
+        public override void OnUnloaded(ICoreAPI api) {
+            base.OnUnloaded(api);
+            Cable.CollisionBoxesCache.Clear();
+            Cable.SelectionBoxesCache.Clear();
+            Cable.MeshDataCache.Clear();
+        }
+
         public override void OnLoaded(ICoreAPI api) {
             base.OnLoaded(api);
 

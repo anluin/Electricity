@@ -10,6 +10,11 @@ namespace Electricity.Content.Block {
     public class Motor : Vintagestory.API.Common.Block, IMechanicalPowerBlock {
         private readonly static Dictionary<Facing, MeshData> MeshData = new();
 
+        public override void OnUnloaded(ICoreAPI api) {
+            base.OnUnloaded(api);
+            Motor.MeshData.Clear();
+        }
+        
         public MechanicalNetwork? GetNetwork(IWorldAccessor world, BlockPos pos) {
             if (world.BlockAccessor.GetBlockEntity(pos)?.GetBehavior<BEBehaviorMPBase>() is IMechanicalPowerDevice device) {
                 return device.Network;
